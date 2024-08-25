@@ -1,6 +1,23 @@
 #!/bin/bash
-# This script counts the number of commits in a specific hour and year
-# for all the projects in the projects-accepted.txt file
+# This script analyzes the spike in commits made between 23:00-23:59 for a specific year.
+# It is used to detect and remove possible automated commits or anomalies.
+# It reads a list of project names from the "projects-accepted.txt" file and calculates the number of commits made between 23:00-23:59 for the given year and the previous year.
+# Outputs the number of commits, commits next year, and the difference between the two years for each project, as well as the total number of commits for the rest of the day.
+
+# Usage: check_spike.bash <year>
+
+# Parameters:
+#   <year> - The year for which to analyze the spike in commits.
+
+# Example usage: check_spike.bash 2013
+
+# Example output:
+# 2013
+# commits, commits next year, difference, commits rest of the day
+# project1: 10 5 5 40
+# project2: 8 3 5 30
+# ...
+# total commits 23:00-23:59 130 total diff 200 total commits rest day 270
 set -eu
 DATA_LOCATION=$(pwd)
 REPO_LOCATION=/home/repos/github
