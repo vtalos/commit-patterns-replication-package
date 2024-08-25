@@ -1,0 +1,1077 @@
+commit 8eefca8714775b7e0e5b711e1744b73883b23865
+Merge: 9398b07b90 20b36a56b9
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Mon Feb 19 19:31:53 2024 +0100
+
+    Merge pull request #5226 from eXist-db/dependabot/maven/com.googlecode.maven-download-plugin-download-maven-plugin-1.8.1
+    
+    build(deps): bump com.googlecode.maven-download-plugin:download-maven-plugin from 1.8.0 to 1.8.1
+commit 9398b07b9075e6c41a2e5b681c7bacc10ca258ae
+Merge: 9d193111b0 89da3861ba
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Mon Feb 19 19:30:08 2024 +0100
+
+    Merge pull request #5227 from eXist-db/dependabot/maven/com.fifesoft-rsyntaxtextarea-3.4.0
+    
+    build(deps): bump com.fifesoft:rsyntaxtextarea from 3.3.4 to 3.4.0
+commit 9d193111b072c4365f9f7cbc999844fc50957dcb
+Merge: d9e245f6f0 5896d001f4
+Author: Adam Retter <adam.retter@googlemail.com>
+Date:   Mon Feb 19 08:24:56 2024 +0100
+
+    Merge pull request #5229 from eXist-db/dependabot/maven/net.bytebuddy-byte-buddy-1.14.12
+    
+    build(deps): bump net.bytebuddy:byte-buddy from 1.14.11 to 1.14.12
+commit d9e245f6f05f3d203f591d5c956db6db7db91322
+Merge: 20efe409b1 48dd8ac57b
+Author: Adam Retter <adam.retter@googlemail.com>
+Date:   Mon Feb 19 08:24:14 2024 +0100
+
+    Merge pull request #5228 from eXist-db/dependabot/maven/org.apache.commons-commons-compress-1.26.0
+    
+    build(deps): bump org.apache.commons:commons-compress from 1.25.0 to 1.26.0
+commit 20efe409b16b4fced66c681150f3a4a90613ca46
+Merge: c90c2c9045 9a167c1fe4
+Author: Adam Retter <adam.retter@googlemail.com>
+Date:   Mon Feb 19 08:22:38 2024 +0100
+
+    Merge pull request #5230 from eXist-db/dependabot/maven/io.fabric8-docker-maven-plugin-0.44.0
+    
+    build(deps): bump io.fabric8:docker-maven-plugin from 0.43.4 to 0.44.0
+commit c90c2c90456e1dc2c4be312d918397872d13f35b
+Merge: 965618d2f5 01a65ff145
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Wed Feb 14 12:59:28 2024 +0100
+
+    Merge pull request #5225 from eXist-db/dependabot/maven/aspectj.version-1.9.21.1
+    
+    build(deps): bump aspectj.version from 1.9.21 to 1.9.21.1
+commit 965618d2f535354156cf665048b69bc07600b315
+Merge: 8decc3d82f e7d10172ba
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Mon Feb 12 09:40:01 2024 +0100
+
+    Merge pull request #5224 from eXist-db/dependabot/maven/dev.aspectj-aspectj-maven-plugin-1.14
+    
+    build(deps): bump dev.aspectj:aspectj-maven-plugin from 1.13.1 to 1.14
+commit 8decc3d82f3e0c6207dcb7cfd040179b25c4b92c
+Merge: 837519a2d3 55479e8125
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Fri Feb 9 08:00:28 2024 +0100
+
+    Merge pull request #5222 from eXist-db/dependabot/maven/org.jctools-jctools-core-4.0.3
+    
+    build(deps): bump org.jctools:jctools-core from 4.0.2 to 4.0.3
+commit 837519a2d39354f2a412ff242c15b93adedd31f1
+Merge: b12393bd7b 977df0c6f0
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Fri Feb 9 06:55:43 2024 +0100
+
+    Merge pull request #5223 from eXist-db/dependabot/maven/commons-codec-commons-codec-1.16.1
+    
+    build(deps-dev): bump commons-codec:commons-codec from 1.16.0 to 1.16.1
+commit b12393bd7b1ce0134c727b5ab009317479c708ee
+Merge: 5522743485 a634f1f15d
+Author: Adam Retter <adam.retter@googlemail.com>
+Date:   Thu Feb 8 11:20:21 2024 +0100
+
+    Merge pull request #5221 from eXist-db/dependabot/maven/it.unimi.dsi-fastutil-8.5.13
+    
+    build(deps): bump it.unimi.dsi:fastutil from 8.5.12 to 8.5.13
+commit 55227434852f24dcc48e66a72f16fbd5efec2001
+Merge: 6bccd9a77c cc7342b89f
+Author: Adam Retter <adam.retter@googlemail.com>
+Date:   Thu Feb 8 11:18:09 2024 +0100
+
+    Merge pull request #5219 from reinhapa/nvd-token
+    
+    [ci] Adds NIST NVD API key
+commit cc7342b89f3156453249c0a599abd78d602b4cb0
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Wed Feb 7 23:23:01 2024 +0100
+
+    [ci] Adds NVD API key
+    
+    Signed-off-by: Patrick Reinhart <patrick@reini.net>
+
+ .github/workflows/ci-test.yml | 5 ++++-
+ exist-parent/pom.xml          | 1 +
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+commit 6bccd9a77c963e11334853e24ea93a00c5d1f0a7
+Merge: cd07f9d0e9 f0bfbb0f99
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Wed Feb 7 21:05:31 2024 +0100
+
+    Merge pull request #5215 from reinhapa/update-xsd
+    
+    [doc] Enhances XSD documentation
+commit cd07f9d0e9b97558e6406a3013eb84043e3b10db
+Merge: 649e628b30 9c3348ee75
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Wed Feb 7 12:41:15 2024 +0100
+
+    Merge pull request #5213 from eXist-db/dependabot/maven/org.codehaus.izpack-izpack-maven-plugin-5.2.1
+    
+    build(deps): bump org.codehaus.izpack:izpack-maven-plugin from 5.2.0 to 5.2.1
+commit f0bfbb0f991c6b33ea8f632cbed72b23cc4310d8
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Sun Jan 21 12:04:10 2024 +0100
+
+    [doc] Enhances XSD documentation
+    
+    Added all avaliable attribute documentation from the example XML conf
+    file to the XSD to be available within a schema based editor.
+    
+    Signed-off-by: Patrick Reinhart <patrick@reini.net>
+
+ exist-distribution/src/main/config/conf.xml |   12 +-
+ schema/conf.xsd                             | 1128 ++++++++++++++++++++++++---
+ 2 files changed, 1019 insertions(+), 121 deletions(-)
+commit 649e628b309657e8f6edfcd012a8a8c66aaee6bd
+Merge: 9e59bb0cd4 4fb5aa76c3
+Author: Adam Retter <adam.retter@googlemail.com>
+Date:   Tue Feb 6 21:32:02 2024 +0100
+
+    Merge pull request #5216 from reinhapa/izpack-definition-fix
+    
+    [bugfix] Fixes missplaced izPack config tags
+commit 4fb5aa76c3cad6efd6e984db70f4703adc0f666c
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Tue Feb 6 19:32:13 2024 +0100
+
+    [bugfix] Fixes missplaced izPack config tags
+    
+    Removed some more missplaced configuration tags after full validation.
+    
+    Signed-off-by: Patrick Reinhart <patrick@reini.net>
+
+ exist-installer/src/main/izpack/UnixShortcutSpec.xml |  3 +--
+ exist-installer/src/main/izpack/userInput.xml        | 16 +++++++---------
+ 2 files changed, 8 insertions(+), 11 deletions(-)
+commit 9e59bb0cd45bb4769c2f48661dcf86ac44f227cc
+Merge: 7fb64f325f ad5be65f61
+Author: Juri Leino <github@line-o.de>
+Date:   Tue Feb 6 15:28:40 2024 +0100
+
+    Merge pull request #5214 from reinhapa/izpack-schema
+    
+    [bugfix] Fixes izPack schema issues
+commit 7fb64f325f0cc5c1b862eda6c8d051b3a0c56ac9
+Merge: c06c3663e7 42faf12e78
+Author: Adam Retter <adam.retter@googlemail.com>
+Date:   Tue Feb 6 12:36:36 2024 +0100
+
+    Merge pull request #5195 from reinhapa/content-file-pool
+    
+    [feature] Adds ContentFilePool
+commit ad5be65f6130cce387412f3ae4e8390390d5026e
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Tue Feb 6 10:04:30 2024 +0100
+
+    Update jobs.xml
+
+ exist-installer/src/main/izpack/jobs.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+commit c06c3663e7373114a62fe414f67f43fcd9253021
+Merge: f5575ca17e 5c6c1e2db1
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Tue Feb 6 09:42:10 2024 +0100
+
+    Merge pull request #5212 from eXist-db/dependabot/maven/org.slf4j-slf4j-api-2.0.12
+    
+    build(deps): bump org.slf4j:slf4j-api from 2.0.11 to 2.0.12
+commit 17aa9defc61d862631491534d25040cec739522e
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Tue Feb 6 09:37:23 2024 +0100
+
+    Update userInput.xml
+
+ exist-installer/src/main/izpack/userInput.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+commit ba2b8c2d28e383909c401ede13cf481f0216f621
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Tue Feb 6 07:24:30 2024 +0100
+
+    [bugfix] Fixes izPack schema issues
+    
+    Addes correct izPack 5 schema headers and fixes resulting schema errors
+    within shortcut panel specs.
+    
+    Signed-off-by: Patrick Reinhart <patrick@reini.net>
+
+ exist-installer/src/main/izpack/UnixShortcutSpec.xml | 6 ++++--
+ exist-installer/src/main/izpack/custom.eng.xml       | 5 ++++-
+ exist-installer/src/main/izpack/install.xml          | 6 ++++--
+ exist-installer/src/main/izpack/jobs.xml             | 5 ++++-
+ exist-installer/src/main/izpack/shortcutSpec.xml     | 6 ++++--
+ exist-installer/src/main/izpack/userInput.xml        | 5 ++++-
+ 6 files changed, 24 insertions(+), 9 deletions(-)
+commit f5575ca17ed968fb804296973072953fe5cf2ca7
+Merge: c3385ec07e 150bec228b
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Mon Feb 5 23:35:29 2024 +0100
+
+    Merge pull request #5211 from eXist-db/dependabot/maven/org.junit.platform-junit-platform-engine-1.10.2
+    
+    build(deps): bump org.junit.platform:junit-platform-engine from 1.10.1 to 1.10.2
+commit c3385ec07e32f1422c3ea7ecbaa1742340b2c5a6
+Merge: f234c0ee84 c0f0a7e9bc
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Mon Feb 5 19:43:57 2024 +0100
+
+    Merge pull request #5209 from eXist-db/dependabot/maven/org.assertj-assertj-core-3.25.3
+    
+    build(deps): bump org.assertj:assertj-core from 3.25.2 to 3.25.3
+commit f234c0ee841193843ca4321932afafc4748035f0
+Merge: dc192c86f1 6e582e9030
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Mon Feb 5 19:43:16 2024 +0100
+
+    Merge pull request #5208 from eXist-db/dependabot/maven/junit.jupiter.version-5.10.2
+    
+    build(deps): bump junit.jupiter.version from 5.10.1 to 5.10.2
+commit 42faf12e78109ae600e67decd209741a760134a1
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Wed Jan 24 22:36:35 2024 +0100
+
+    [feature] Adds ContentFilePool and companion tests
+    
+    Signed-off-by: Patrick Reinhart <patrick@reini.net>
+
+ .../main/java/org/exist/util/Configuration.java    | 160 +++++++++++----------
+ .../main/java/org/exist/util/io/ContentFile.java   |  31 +++-
+ .../java/org/exist/util/io/ContentFilePool.java    |  94 ++++++++++++
+ .../util/io/ContentFilePoolObjectFactory.java      |  58 ++++++++
+ .../java/org/exist/util/io/MemoryContentsImpl.java |  52 ++++---
+ .../java/org/exist/util/io/VirtualTempPath.java    |   1 +
+ .../java/org/exist/util/ConfigurationTest.java     |  56 ++++++++
+ .../org/exist/util/io/ContentFilePoolTest.java     |  92 ++++++++++++
+ exist-core/src/test/resources-filtered/conf.xml    |  23 +++
+ exist-distribution/src/main/config/conf.xml        |  22 +++
+ schema/conf.xsd                                    |  50 +++++++
+ 11 files changed, 545 insertions(+), 94 deletions(-)
+commit dc192c86f18bf3c80351606da1f3235e1403b8eb
+Merge: e3ec4534d1 2c67e416cd
+Author: Adam Retter <adam.retter@googlemail.com>
+Date:   Thu Feb 1 10:16:39 2024 +0100
+
+    Merge pull request #5205 from eXist-db/dependabot/maven/jetty.version-11.0.20
+    
+    build(deps): bump jetty.version from 11.0.19 to 11.0.20
+commit e3ec4534d1bcabb7f18809f8fd81463a3d595999
+Merge: a9673f9fdd 4540854139
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Tue Jan 30 19:57:03 2024 +0100
+
+    Merge pull request #5203 from eXist-db/dependabot/github_actions/andstor/file-existence-action-3
+    
+    build(deps): bump andstor/file-existence-action from 2 to 3
+commit a9673f9fdd530ef459d5c0ee6ed47a5f4b0d5746
+Merge: 9dd15e9ce7 ab19fcd2d1
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Mon Jan 29 19:02:56 2024 +0100
+
+    Merge pull request #5201 from eXist-db/dependabot/maven/org.xmlresolver-xmlresolver-5.2.3
+    
+    build(deps): bump org.xmlresolver:xmlresolver from 5.2.2 to 5.2.3
+commit 9dd15e9ce74ffdd80a7d62a68583006801d923e4
+Merge: 40adb97e05 8693380da0
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Mon Jan 29 19:01:46 2024 +0100
+
+    Merge pull request #5202 from eXist-db/dependabot/maven/greenmail.version-2.1.0-alpha-4
+    
+    build(deps-dev): bump greenmail.version from 2.1.0-alpha-3 to 2.1.0-alpha-4
+commit 40adb97e05ba2b965f8449269e3c0b4cfc402aad
+Merge: 61fd126f1b 38fdda5300
+Author: Adam Retter <adam.retter@googlemail.com>
+Date:   Sat Jan 27 11:49:50 2024 +0100
+
+    Merge pull request #5200 from eXist-db/dependabot/maven/org.bouncycastle-bcprov-jdk18on-1.77
+    
+    build(deps): bump org.bouncycastle:bcprov-jdk18on from 1.76 to 1.77
+commit 61fd126f1b89f687233a245b525498327e1f4c53
+Merge: 073cf7f339 d4d8d9b9aa
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Thu Jan 25 19:29:48 2024 +0100
+
+    Merge pull request #5196 from eXist-db/dependabot/maven/org.jline-jline-3.25.1
+    
+    build(deps): bump org.jline:jline from 3.25.0 to 3.25.1
+commit 073cf7f3399a0b9f35decd3fcf7175573ac93d36
+Merge: 10c4a0b67d f8238335fb
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Thu Jan 25 19:29:04 2024 +0100
+
+    Merge pull request #5199 from eXist-db/dependabot/maven/org.assertj-assertj-core-3.25.2
+    
+    build(deps): bump org.assertj:assertj-core from 3.25.1 to 3.25.2
+commit 10c4a0b67d2186cc1ebea39a59a417b01c89605e
+Merge: 82c87c6aa3 a1ddc50b82
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Thu Jan 25 12:59:04 2024 +0100
+
+    Merge pull request #5197 from reinhapa/pom-fix
+    
+    [bugfix] Fixed vunerable lib & wrong variable name
+commit 82c87c6aa3d96e3638f43fea56fa130442561e77
+Merge: 4d9cc84445 6468eea38c
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Thu Jan 25 12:57:43 2024 +0100
+
+    Merge pull request #5198 from reinhapa/clean-ups
+    
+    [refactor] Code clean up, stabalize test
+commit 6468eea38c5c0b232c5cd829d4981166553c2f9d
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Wed Jan 24 22:36:35 2024 +0100
+
+    [refactor] Code clean up, stabalize test
+    
+    - Use more readable switch statement
+    - Increase timeout in order for less windows builds to fail
+    
+    Signed-off-by: Patrick Reinhart <patrick@reini.net>
+
+ .../main/java/org/exist/xmldb/DatabaseImpl.java    | 40 +++++-----------------
+ .../exist/storage/lock/CollectionLocksTest.java    |  2 +-
+ 2 files changed, 10 insertions(+), 32 deletions(-)
+commit a1ddc50b826069ccafd3deb7595661b5843f7d0e
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Wed Jan 24 08:44:15 2024 +0100
+
+    [bugfix] Fixed vunerable lib & wrong variable name
+    
+    Signed-off-by: Patrick Reinhart <patrick@reini.net>
+
+ exist-core/pom.xml | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+commit 4d9cc8444500e6d88cd0b156d968c60f95afd0d5
+Merge: 7f26cf6efb 996f8b066c
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Tue Jan 23 17:14:30 2024 +0100
+
+    Merge pull request #5194 from eXist-db/dependabot/github_actions/actions/cache-4
+    
+    build(deps): bump actions/cache from 3 to 4
+commit 7f26cf6efb84e516ee67bf8722da2098c999d37f
+Merge: e681392303 e009fa538d
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Tue Jan 23 16:48:34 2024 +0100
+
+    Merge pull request #5192 from eXist-db/dependabot/maven/org.owasp-dependency-check-maven-9.0.9
+    
+    build(deps): bump org.owasp:dependency-check-maven from 9.0.8 to 9.0.9
+commit e68139230368d5f87e33e00e603cbf360ba775f2
+Merge: 8d25891f60 f21197a0b7
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Mon Jan 15 19:34:08 2024 +0100
+
+    Merge pull request #5190 from eXist-db/dependabot/maven/com.github.h-thurow-simple-jndi-0.24.0
+    
+    build(deps-dev): bump com.github.h-thurow:simple-jndi from 0.23.0 to 0.24.0
+commit 8d25891f60cd19b982d7059e15130a77d0d52d0e
+Merge: 3cf70f4e88 35446967f5
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Thu Jan 11 08:42:07 2024 +0100
+
+    Merge pull request #5184 from eXist-db/dependabot/maven/org.apache.maven.plugins-maven-failsafe-plugin-3.2.5
+    
+    build(deps): bump org.apache.maven.plugins:maven-failsafe-plugin from 3.2.3 to 3.2.5
+commit 3cf70f4e88aa57d586536d43527f9b8b86549c39
+Merge: 5947d8e1cd 62c068acb8
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Thu Jan 11 08:41:29 2024 +0100
+
+    Merge pull request #5183 from eXist-db/dependabot/maven/org.apache.maven.plugins-maven-surefire-report-plugin-3.2.5
+    
+    build(deps): bump org.apache.maven.plugins:maven-surefire-report-plugin from 3.2.3 to 3.2.5
+commit 5947d8e1cdc1c459f33d422910a389d7df76da94
+Merge: 5041f48549 43ba503885
+Author: Juri Leino <github@line-o.de>
+Date:   Wed Jan 10 13:31:30 2024 +0100
+
+    Merge pull request #5185 from eXist-db/dependabot/maven/org.apache.maven.plugins-maven-surefire-plugin-3.2.5
+    
+    build(deps): bump org.apache.maven.plugins:maven-surefire-plugin from 3.2.3 to 3.2.5
+commit 5041f48549704673b782c7ef75d1f0ddfbc5e6f7
+Merge: 47b3ccb2b0 9f9a85368e
+Author: Juri Leino <github@line-o.de>
+Date:   Tue Jan 9 14:56:13 2024 +0100
+
+    Merge pull request #5181 from eXist-db/dependabot/maven/org.slf4j-slf4j-api-2.0.11
+    
+    build(deps): bump org.slf4j:slf4j-api from 2.0.10 to 2.0.11
+commit 47b3ccb2b09de2bb943926d0cb9331af4948f01a
+Merge: ef9ea8e32a 0ab286167b
+Author: Juri Leino <github@line-o.de>
+Date:   Tue Jan 9 14:25:06 2024 +0100
+
+    Merge pull request #5180 from eXist-db/dependabot/maven/org.owasp-dependency-check-maven-9.0.8
+    
+    build(deps): bump org.owasp:dependency-check-maven from 9.0.7 to 9.0.8
+commit ef9ea8e32ac54ccf24b04cbc4a4c6b9314a58586
+Merge: b4fd71869d f12a5c8ec8
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Thu Jan 4 10:44:59 2024 +0100
+
+    Merge pull request #5179 from eXist-db/dependabot/maven/org.assertj-assertj-core-3.25.1
+    
+    build(deps): bump org.assertj:assertj-core from 3.25.0 to 3.25.1
+commit b4fd71869de5dab756ca747fa53154c2827cda5c
+Merge: 37c536b966 c9111c9a7d
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Mon Jan 1 19:21:24 2024 +0100
+
+    Merge pull request #5177 from eXist-db/dependabot/maven/org.assertj-assertj-core-3.25.0
+    
+    build(deps): bump org.assertj:assertj-core from 3.24.2 to 3.25.0
+commit 37c536b966836bbb450a6fdebc0cb072c39dcaf9
+Merge: 09c66e523c 9cbe946605
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Fri Dec 29 12:12:59 2023 +0100
+
+    Merge pull request #5175 from eXist-db/dependabot/maven/org.slf4j-slf4j-api-2.0.10
+    
+    build(deps): bump org.slf4j:slf4j-api from 2.0.9 to 2.0.10
+commit 09c66e523caece05a07b06e3b9ae83d6ce132368
+Merge: 9a61f639e2 0f0add65e6
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Thu Dec 28 15:45:14 2023 +0100
+
+    Merge pull request #5171 from eXist-db/dependabot/maven/org.jline-jline-3.25.0
+commit 9a61f639e235f115c303f2a30ef742a753203662
+Merge: c97612b1bf e7abcfebd8
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Thu Dec 28 15:41:56 2023 +0100
+
+    Merge pull request #5172 from eXist-db/dependabot/maven/org.apache.maven.plugins-maven-compiler-plugin-3.12.1
+commit c97612b1bf6c89ac4a68b68536859b3ae91a5c29
+Merge: d3247dbf0a a25491aafa
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Thu Dec 28 15:40:51 2023 +0100
+
+    Merge pull request #5173 from eXist-db/dependabot/maven/com.googlecode.maven-download-plugin-download-maven-plugin-1.8.0
+commit d3247dbf0aa916b69090e0216830b6f3486549b4
+Merge: c3f81cef45 cadd3535b9
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Thu Dec 28 15:39:42 2023 +0100
+
+    Merge pull request #5174 from eXist-db/dependabot/maven/log4j.version-2.22.1
+commit c3f81cef459d7ffe470ba24150633b96692e55aa
+Merge: ad934465c2 5c59ae7f52
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Thu Dec 21 21:52:15 2023 +0100
+
+    Merge pull request #5170 from eXist-db/dependabot/maven/net.bytebuddy-byte-buddy-1.14.11
+    
+    build(deps): bump net.bytebuddy:byte-buddy from 1.14.10 to 1.14.11
+commit ad934465c2747da6af3add94237e849bde9a50b8
+Merge: dcbb3c94f2 d8bcdab785
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Thu Dec 21 21:51:48 2023 +0100
+
+    Merge pull request #5169 from eXist-db/dependabot/maven/jetty.version-11.0.19
+    
+    build(deps): bump jetty.version from 11.0.18 to 11.0.19
+commit dcbb3c94f2b411d34efee5336cb15fade3a660ee
+Merge: 9c4362cb35 88ac8797f6
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Tue Dec 19 12:53:26 2023 +0100
+
+    Merge pull request #5167 from eXist-db/dependabot/maven/org.owasp-dependency-check-maven-9.0.7
+    
+    build(deps): bump org.owasp:dependency-check-maven from 9.0.6 to 9.0.7
+commit 9c4362cb353056a526e3c115e80cf945c6ad736f
+Merge: 364aeae012 0232a3ad53
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Tue Dec 19 12:52:54 2023 +0100
+
+    Merge pull request #5168 from eXist-db/dependabot/maven/org.apache.maven.plugins-maven-compiler-plugin-3.12.0
+    
+    build(deps): bump org.apache.maven.plugins:maven-compiler-plugin from 3.11.0 to 3.12.0
+commit 364aeae0122ba0ea172e50007678f9ffa8527cd6
+Merge: 2f1a1f85e3 8ffd46895f
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Mon Dec 18 22:56:49 2023 +0100
+
+    Merge pull request #5162 from eXist-db/dependabot/maven/org.apache.maven.plugins-maven-failsafe-plugin-3.2.3
+    
+    build(deps): bump org.apache.maven.plugins:maven-failsafe-plugin from 3.2.2 to 3.2.3
+commit 2f1a1f85e333199e8a800f1d63c3d306e9d524f0
+Merge: 4e4e4879e8 94c81ad09b
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Mon Dec 18 22:54:31 2023 +0100
+
+    Merge pull request #5165 from eXist-db/dependabot/github_actions/actions/upload-artifact-4
+    
+    build(deps): bump actions/upload-artifact from 3 to 4
+commit 4e4e4879e81b09467853ae65fbbbd3fc61c98f58
+Merge: 65988b69fd e4f706d977
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Mon Dec 18 22:32:19 2023 +0100
+
+    Merge pull request #5166 from dizzzz/bugfix/repair_surefire_config
+    
+    [ci] Fix surefire plugin configuration.
+commit 65988b69fd3c54ec0dad6ac70b42126b1ab6644b
+Merge: 7791077333 96bd4de66b
+Author: Duncan Paterson <duncdrum@users.noreply.github.com>
+Date:   Mon Dec 18 20:52:41 2023 +0100
+
+    Merge pull request #5164 from eXist-db/dependabot/maven/org.owasp-dependency-check-maven-9.0.6
+    
+    build(deps): bump org.owasp:dependency-check-maven from 9.0.5 to 9.0.6
+commit e4f706d977bc8352558c03c50d3947c501cc7332
+Author: Dannes Wessels <dizzzz@gmail.com>
+Date:   Mon Dec 18 20:43:33 2023 +0100
+
+    [ci] Fix surefire plugin configuration.
+
+ extensions/exquery/restxq/pom.xml  | 2 +-
+ extensions/indexes/lucene/pom.xml  | 2 +-
+ extensions/indexes/spatial/pom.xml | 2 +-
+ extensions/webdav/pom.xml          | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+commit 99ef459acceb9c93f2b2f35451bd4a7e36bfcb2f
+Author: Dannes Wessels <dizzzz@gmail.com>
+Date:   Mon Dec 18 20:31:14 2023 +0100
+
+    [ci] Fix surefire plugin configuration.
+
+ exist-core/pom.xml                   |  2 +-
+ exist-parent/pom.xml                 | 13 +++++++++----
+ extensions/contentextraction/pom.xml |  2 +-
+ 3 files changed, 11 insertions(+), 6 deletions(-)
+commit 77910773334f39ebe8f10fd5c2d29c16932e82fe
+Merge: 1a0b104f54 58d2a2c333
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Fri Dec 15 14:40:17 2023 +0100
+
+    Merge pull request #5160 from eXist-db/dependabot/maven/org.apache.maven.plugins-maven-surefire-report-plugin-3.2.3
+    
+    build(deps): bump org.apache.maven.plugins:maven-surefire-report-plugin from 3.2.2 to 3.2.3
+commit 1a0b104f54d0e9079ab658a42fff32fedce4f5c7
+Merge: 12b47fe028 2242b6d44e
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Fri Dec 15 13:36:09 2023 +0100
+
+    Merge pull request #5161 from eXist-db/dependabot/maven/org.owasp-dependency-check-maven-9.0.5
+    
+    build(deps): bump org.owasp:dependency-check-maven from 9.0.4 to 9.0.5
+commit 12b47fe02838f76ba8920a44a7ac0ed41270ad35
+Merge: 1029a51dbb f4c2100dfe
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Wed Dec 13 06:46:59 2023 +0100
+
+    Merge pull request #5159 from eXist-db/dependabot/maven/aspectj.version-1.9.21
+    
+    build(deps): bump aspectj.version from 1.9.20.1 to 1.9.21
+commit 1029a51dbbe642a2114b99dfa5b2dfcef896820a
+Merge: 6feea2cc41 643be29094
+Author: Juri Leino <github@line-o.de>
+Date:   Mon Dec 11 19:49:52 2023 +0100
+
+    Merge pull request #4530 from evolvedbinary/feature/count-expression
+    
+    Support for Count Expressions
+commit 6feea2cc41f1c844daef169f6ecbac0d726fc8de
+Merge: a565a0b9d1 3ecf90029a
+Author: Juri Leino <github@line-o.de>
+Date:   Mon Dec 11 19:39:39 2023 +0100
+
+    Merge pull request #5147 from dizzzz/refactor/misc
+    
+    [refactor] Some automatic refactoring using IntelliJ
+commit a565a0b9d14d66a03171ea661ee63ccdcc3698cb
+Merge: 886353441e c8569e584d
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Mon Dec 11 15:21:55 2023 +0100
+
+    Merge pull request #5157 from eXist-db/dependabot/maven/org.owasp-dependency-check-maven-9.0.4
+    
+    build(deps): bump org.owasp:dependency-check-maven from 9.0.3 to 9.0.4
+commit 886353441e0d7bca2244a12610aced8671171ba1
+Merge: 7ffaab7c5e 16ad8429d7
+Author: Adam Retter <adam.retter@googlemail.com>
+Date:   Fri Dec 8 12:59:23 2023 +0100
+
+    Merge pull request #5151 from eXist-db/dependabot/maven/org.codelibs-nekohtml-2.1.2
+    
+    build(deps): bump org.codelibs:nekohtml from 2.1.0 to 2.1.2
+commit 3ecf90029ae77fe896636ab6d0f255dcc7f6c692
+Author: Dannes Wessels <dizzzz@gmail.com>
+Date:   Thu Dec 7 19:24:04 2023 +0100
+
+    [refactor] Java14 - enhanced switch
+
+ exist-core/src/main/java/org/exist/stax/StaXUtil.java | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
+commit 7ffaab7c5e4487d3a559b5dcdbb81cdc02da4f46
+Merge: e44190969d ff7b162504
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Thu Dec 7 10:46:17 2023 +0100
+
+    Merge pull request #5156 from eXist-db/dependabot/maven/org.owasp-dependency-check-maven-9.0.3
+    
+    build(deps): bump org.owasp:dependency-check-maven from 9.0.2 to 9.0.3
+commit e44190969d8824bf5de92b04d4d5a4aac98822bd
+Merge: d1c6a67510 d2cb879660
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Tue Dec 5 15:57:34 2023 +0100
+
+    Merge pull request #5154 from eXist-db/dependabot/maven/de.jutzig-github-release-plugin-1.6.0
+    
+    build(deps): bump de.jutzig:github-release-plugin from 1.5.1 to 1.6.0
+commit d1c6a67510dc9f7c92c587d0c9ba99cbbcc955ba
+Merge: c0cd8ccc46 d0ce9ac6ab
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Tue Dec 5 09:47:48 2023 +0100
+
+    Merge pull request #5155 from eXist-db/dependabot/maven/com.googlecode.maven-download-plugin-download-maven-plugin-1.7.1
+    
+    build(deps): bump com.googlecode.maven-download-plugin:download-maven-plugin from 1.6.8 to 1.7.1
+commit c0cd8ccc46a11098334997a51af58ab977f1d92c
+Merge: 6cb480990e 8d96aca797
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Tue Dec 5 08:41:08 2023 +0100
+
+    Merge pull request #5153 from eXist-db/dependabot/github_actions/actions/setup-java-4
+    
+    build(deps): bump actions/setup-java from 3 to 4
+commit 16ad8429d79612565c26c6a84c5fb4a2bb2730ff
+Author: Dannes Wessels <dizzzz@gmail.com>
+Date:   Mon Dec 4 22:07:58 2023 +0100
+
+    [ignore] make nekohtml version configurable and reusable
+
+ exist-core/pom.xml   | 4 ++--
+ exist-parent/pom.xml | 1 +
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+commit 143732d1328255b7006ece99a4d10e3eb5de0665
+Author: Dannes Wessels <dizzzz@gmail.com>
+Date:   Mon Dec 4 22:01:48 2023 +0100
+
+    Minor reformatting
+
+ .../src/main/java/org/exist/xquery/SimpleStep.java | 24 +++++++++++++---------
+ 1 file changed, 14 insertions(+), 10 deletions(-)
+commit 53aa478c7eb513f4e93749f53a950946b4f049f0
+Author: Dannes Wessels <dizzzz@gmail.com>
+Date:   Mon Dec 4 20:22:35 2023 +0100
+
+    [bugfix] process feedback from human code analyzer
+
+ .../src/main/java/org/exist/dom/memtree/NodeImpl.java    | 16 ++++++----------
+ 1 file changed, 6 insertions(+), 10 deletions(-)
+commit 1a1ed4dd49b335e9a23857bb38b185b73c89591e
+Author: Dannes Wessels <dizzzz@gmail.com>
+Date:   Mon Dec 4 19:59:50 2023 +0100
+
+    [bugfix] process feedback from code analyzer
+
+ .../main/java/org/exist/dom/memtree/NodeImpl.java  | 40 ++++++++--------------
+ .../main/java/org/exist/storage/index/BFile.java   | 10 +++---
+ .../src/main/java/org/exist/xquery/SimpleStep.java |  3 +-
+ 3 files changed, 21 insertions(+), 32 deletions(-)
+commit 6cb480990e4603e68711107b704f2a9b068a2ff8
+Merge: 1e78ca7836 831fb2bfbc
+Author: Adam Retter <adam.retter@googlemail.com>
+Date:   Mon Dec 4 08:48:29 2023 +0100
+
+    Merge pull request #5150 from eXist-db/dependabot/maven/org.apache.maven.plugins-maven-javadoc-plugin-3.6.3
+    
+    build(deps): bump org.apache.maven.plugins:maven-javadoc-plugin from 3.6.2 to 3.6.3
+commit 1e78ca7836186f40364209697969ad9c13cfbd1b
+Merge: 93dc039caa 84d82272a2
+Author: Adam Retter <adam.retter@googlemail.com>
+Date:   Mon Dec 4 08:46:04 2023 +0100
+
+    Merge pull request #5152 from eXist-db/dependabot/maven/org.owasp-dependency-check-maven-9.0.2
+    
+    build(deps): bump org.owasp:dependency-check-maven from 8.4.3 to 9.0.2
+commit 93dc039caa2ecacc4787a72afb5dd5a71da5bb8a
+Merge: 6fc4beac9f 0d392bd925
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Fri Dec 1 21:14:45 2023 +0100
+
+    Merge pull request #5146 from dizzzz/feature/upgrade_nekohtml
+    
+    [ignore] upgrade nekohtml to newer and maintained version
+commit 6fc4beac9f33a9a1e3cebc2e0c4ad3abfccb6da6
+Merge: bba88c4398 5a097ae9c4
+Author: Adam Retter <adam.retter@googlemail.com>
+Date:   Fri Dec 1 18:42:00 2023 +0100
+
+    Merge pull request #5148 from eXist-db/dependabot/maven/commons-logging-commons-logging-1.3.0
+    
+    build(deps): bump commons-logging:commons-logging from 1.2 to 1.3.0
+commit 4cd81b6d44218879e27f549e51b54a2bb4c9cca0
+Author: Dannes Wessels <dizzzz@gmail.com>
+Date:   Thu Nov 30 20:03:11 2023 +0100
+
+    [refactor] Java7 - use try  resources
+
+ .../org/exist/storage/blob/BlobStoreImplTest.java  |  8 +-----
+ .../java/org/exist/validation/DtdEntityTest.java   | 16 ++---------
+ .../java/org/exist/xquery/XmldbBinariesTest.java   | 33 ++++------------------
+ .../functions/validate/JaxpDtdCatalogTest.java     | 32 +++------------------
+ .../xquery/functions/validate/JaxpParseTest.java   | 16 ++---------
+ .../functions/validate/JaxpXsdCatalogTest.java     | 32 +++------------------
+ .../exist/xquery/functions/validate/JaxvTest.java  | 16 ++---------
+ .../xquery/functions/validate/JingRelaxNgTest.java | 16 ++---------
+ .../functions/validate/JingSchematronTest.java     | 16 ++---------
+ .../xquery/functions/validate/JingXsdTest.java     | 16 ++---------
+ .../xquery/functions/validate/ParseDtdTestNOK.java | 24 ++--------------
+ .../xquery/functions/validate/ParseXsdTestNOK.java | 18 ++----------
+ 12 files changed, 33 insertions(+), 210 deletions(-)
+commit 852443c6254c117c296f4b76f7d188b0ce1f68ba
+Author: Dannes Wessels <dizzzz@gmail.com>
+Date:   Thu Nov 30 19:56:50 2023 +0100
+
+    [refactor] Java16 - use pattern Matching
+
+ .../main/java/org/exist/client/ClientFrame.java    |  6 ++--
+ .../org/exist/client/security/AclTableModel.java   |  3 +-
+ .../client/security/EditPropertiesDialog.java      |  3 +-
+ .../java/org/exist/collections/CollectionURI.java  |  3 +-
+ .../triggers/DeferrableFilteringTrigger.java       | 39 ++++++++--------------
+ .../collections/triggers/DocumentTriggers.java     |  6 ++--
+ .../collections/triggers/XQueryStartupTrigger.java |  3 +-
+ .../exist/collections/triggers/XQueryTrigger.java  |  5 ++-
+ .../exist/config/ConfigurationDocumentTrigger.java |  9 ++---
+ .../java/org/exist/config/ConfigurationImpl.java   |  3 +-
+ .../main/java/org/exist/config/Configurator.java   |  3 +-
+ .../main/java/org/exist/dom/memtree/AttrImpl.java  |  3 +-
+ .../main/java/org/exist/dom/memtree/NodeImpl.java  |  3 +-
+ .../java/org/exist/dom/persistent/AttrImpl.java    |  3 +-
+ .../exist/dom/persistent/DefaultDocumentSet.java   |  6 ++--
+ .../org/exist/dom/persistent/DocumentImpl.java     |  4 +--
+ .../java/org/exist/dom/persistent/ElementImpl.java | 22 ++++--------
+ .../java/org/exist/dom/persistent/NodeProxy.java   |  3 +-
+ .../java/org/exist/http/filter/DumpFilter.java     |  3 +-
+ .../exist/http/servlets/HttpRequestWrapper.java    | 18 ++++------
+ .../java/org/exist/http/servlets/XSLTServlet.java  |  6 ++--
+ .../src/main/java/org/exist/jetty/JettyStart.java  | 15 +++------
+ .../main/java/org/exist/launcher/UtilityPanel.java |  3 +-
+ .../src/main/java/org/exist/numbering/DLNBase.java |  3 +-
+ .../main/java/org/exist/repo/ExistRepository.java  |  3 +-
+ .../exist/scheduler/impl/QuartzSchedulerImpl.java  |  3 +-
+ .../java/org/exist/security/PermissionFactory.java |  3 +-
+ .../java/org/exist/security/internal/Password.java |  5 ++-
+ .../exist/security/internal/web/HttpAccount.java   |  3 +-
+ .../main/java/org/exist/storage/NativeBroker.java  |  6 ++--
+ .../src/main/java/org/exist/storage/NodePath.java  |  3 +-
+ .../java/org/exist/storage/blob/BlobStoreImpl.java | 12 +++----
+ .../main/java/org/exist/storage/dom/DOMFile.java   |  3 +-
+ .../exist/storage/serializers/XIncludeFilter.java  |  3 +-
+ .../src/main/java/org/exist/test/DiffMatcher.java  |  3 +-
+ .../java/org/exist/util/ParametersExtractor.java   |  3 +-
+ .../java/org/exist/util/hashtable/NamePool.java    |  3 +-
+ .../main/java/org/exist/xmldb/AbstractRemote.java  |  3 +-
+ .../java/org/exist/xmldb/LocalResourceSet.java     |  3 +-
+ .../java/org/exist/xmldb/LocalXMLResource.java     |  3 +-
+ .../java/org/exist/xmldb/RemoteCollection.java     |  6 ++--
+ .../main/java/org/exist/xmlrpc/RpcConnection.java  |  3 +-
+ .../java/org/exist/xquery/FunctionSignature.java   |  5 ++-
+ .../java/org/exist/xquery/GeneralComparison.java   |  3 +-
+ .../main/java/org/exist/xquery/LocationStep.java   |  3 +-
+ .../src/main/java/org/exist/xquery/NameTest.java   |  3 +-
+ .../java/org/exist/xquery/PerformanceStats.java    |  9 ++---
+ .../java/org/exist/xquery/TryCatchExpression.java  |  3 +-
+ .../src/main/java/org/exist/xquery/XPathUtil.java  |  6 ++--
+ .../src/main/java/org/exist/xquery/XQuery.java     |  3 +-
+ .../java/org/exist/xquery/functions/fn/FunAvg.java |  3 +-
+ .../exist/xquery/functions/fn/FunRoundBase.java    |  3 +-
+ .../xquery/functions/fn/transform/Options.java     |  6 ++--
+ .../xquery/functions/fn/transform/TreeUtils.java   |  3 +-
+ .../functions/inspect/InspectFunctionHelper.java   |  3 +-
+ .../org/exist/xquery/functions/map/MapType.java    |  6 ++--
+ .../securitymanager/PermissionsFunction.java       |  3 +-
+ .../xquery/functions/system/TriggerSystemTask.java |  3 +-
+ .../xquery/functions/util/CollectionName.java      |  3 +-
+ .../xquery/functions/util/DescribeFunction.java    | 10 ++----
+ .../xquery/functions/util/DocumentNameOrId.java    |  3 +-
+ .../exist/xquery/functions/validation/Shared.java  | 12 +++----
+ .../main/java/org/exist/xquery/update/Insert.java  |  3 +-
+ .../exist/xquery/value/AbstractDateTimeValue.java  |  6 ++--
+ .../exist/xquery/value/ArrayListValueSequence.java |  3 +-
+ .../xquery/value/PreorderedValueSequence.java      |  3 +-
+ .../java/org/exist/xquery/value/SubSequence.java   |  3 +-
+ .../java/org/exist/xquery/xqdoc/XQDocHelper.java   |  3 +-
+ .../main/java/org/exist/xslt/EXistDbXMLReader.java |  3 +-
+ .../exist/security/FnCollectionSecurityTest.java   |  3 +-
+ .../java/org/exist/security/FnDocSecurityTest.java |  3 +-
+ .../util/io/MemoryContentsInputStreamTest.java     |  3 +-
+ .../test/java/org/exist/w3c/tests/TestCase.java    |  5 ++-
+ .../org/exist/xquery/EmbeddedBinariesTest.java     |  3 +-
+ .../src/test/java/org/exist/xquery/XQueryTest.java |  6 ++--
+ .../xquery/functions/request/GetParameterTest.java | 12 +++----
+ .../xquery/functions/xquery3/TryCatchTest.java     |  3 +-
+ .../exist/xquery/update/IndexIntegrationTest.java  |  6 ++--
+ .../value/BinaryValueFromInputStreamTest.java      |  6 ++--
+ .../test/java/org/exist/xquery/value/MapTest.java  |  3 +-
+ 80 files changed, 139 insertions(+), 277 deletions(-)
+commit 45dacb53f24be38cbf1d01862f18b6786a6ce93b
+Author: Dannes Wessels <dizzzz@gmail.com>
+Date:   Thu Nov 30 19:51:14 2023 +0100
+
+    [refactor] Java14 - enhanced switch
+
+ .../main/java/org/exist/client/ClientFrame.java    |  23 ++--
+ .../main/java/org/exist/client/IndexDialog.java    |  19 ++-
+ .../java/org/exist/client/NewResourceDialog.java   |  13 +-
+ .../main/java/org/exist/client/TriggersDialog.java |  11 +-
+ .../client/tristatecheckbox/TristateState.java     |  15 +--
+ .../org/exist/collections/MutableCollection.java   |  46 +++----
+ .../exist/collections/triggers/TriggerPhase.java   |  13 +-
+ .../exist/config/ConfigurationDocumentTrigger.java |  44 +++----
+ .../java/org/exist/config/ConfigurationImpl.java   |  17 +--
+ .../java/org/exist/dom/memtree/DocumentImpl.java   |  32 ++---
+ .../exist/dom/memtree/InMemoryXMLStreamReader.java |  24 +---
+ .../main/java/org/exist/dom/memtree/NodeImpl.java  | 134 ++++++---------------
+ .../java/org/exist/dom/persistent/AttrImpl.java    |  23 ++--
+ .../java/org/exist/dom/persistent/ElementImpl.java |  24 ++--
+ .../java/org/exist/dom/persistent/NodeImpl.java    |  54 +++------
+ .../java/org/exist/dom/persistent/NodeProxy.java   |  29 ++---
+ .../java/org/exist/dom/persistent/StoredNode.java  |  24 ++--
+ .../protocolhandler/protocols/xmldb/Handler.java   |  11 +-
+ .../java/org/exist/scheduler/ScheduledJobInfo.java |  32 ++---
+ .../org/exist/security/SimpleACLPermission.java    |  13 +-
+ .../java/org/exist/security/internal/Password.java |  18 +--
+ .../src/main/java/org/exist/stax/StaXUtil.java     | 101 ++++------------
+ .../main/java/org/exist/storage/NativeBroker.java  |  41 +++----
+ .../java/org/exist/storage/NativeValueIndex.java   |  89 ++++----------
+ .../main/java/org/exist/storage/Signatures.java    |  33 +++--
+ .../java/org/exist/storage/btree/IndexQuery.java   |  52 +++-----
+ .../main/java/org/exist/storage/index/BFile.java   |  20 ++-
+ .../java/org/exist/storage/lock/LockManager.java   |  13 +-
+ .../java/org/exist/storage/lock/ManagedLock.java   |  36 ++----
+ .../src/main/java/org/exist/util/Collations.java   |  64 +++-------
+ .../org/exist/util/serializer/AdaptiveWriter.java  |  28 ++---
+ .../org/exist/validation/ValidationReportItem.java |  22 +---
+ .../main/java/org/exist/webstart/JnlpWriter.java   |  21 +---
+ .../main/java/org/exist/xmldb/DatabaseImpl.java    |  78 ++++--------
+ .../main/java/org/exist/xmldb/LocalCollection.java |  18 +--
+ .../java/org/exist/xmldb/RemoteResourceSet.java    |  30 ++---
+ .../main/java/org/exist/xmlrpc/TupleParser.java    |  22 ++--
+ .../main/java/org/exist/xquery/Cardinality.java    |  57 +++------
+ .../java/org/exist/xquery/GeneralComparison.java   |  19 +--
+ .../main/java/org/exist/xquery/LocationStep.java   |  94 ++++++---------
+ .../main/java/org/exist/xquery/NodeComparison.java |  19 +--
+ .../src/main/java/org/exist/xquery/SimpleStep.java |  32 ++---
+ .../java/org/exist/xquery/ValueComparison.java     |  16 +--
+ .../exist/xquery/functions/fn/FnFormatDates.java   |  46 +++----
+ .../xquery/functions/fn/transform/Delivery.java    |  14 +--
+ .../xquery/functions/integer/WordPicture.java      |  17 +--
+ .../main/java/org/exist/xquery/update/Rename.java  |  18 +--
+ .../org/exist/xquery/util/NumberFormatter.java     |  29 ++---
+ .../org/exist/xquery/util/SerializerUtils.java     |  38 ++----
+ .../exist/xquery/value/AbstractDateTimeValue.java  |  40 +++---
+ .../java/org/exist/xquery/value/AnyURIValue.java   |  49 +++-----
+ .../java/org/exist/xquery/value/AtomicValue.java   |  30 ++---
+ .../java/org/exist/xquery/value/BinaryValue.java   |  52 +++-----
+ .../java/org/exist/xquery/value/BooleanValue.java  |  59 ++++-----
+ .../org/exist/xquery/value/DateTimeStampValue.java |  13 +-
+ .../java/org/exist/xquery/value/DateTimeValue.java |  68 ++++-------
+ .../java/org/exist/xquery/value/DateValue.java     |  63 ++++------
+ .../exist/xquery/value/DayTimeDurationValue.java   |  42 +++----
+ .../java/org/exist/xquery/value/DecimalValue.java  | 115 ++++++------------
+ .../java/org/exist/xquery/value/EmptySequence.java |  13 +-
+ .../java/org/exist/xquery/value/FloatValue.java    |  18 ++-
+ .../java/org/exist/xquery/value/GDayValue.java     |  22 ++--
+ .../org/exist/xquery/value/GMonthDayValue.java     |  22 ++--
+ .../java/org/exist/xquery/value/GMonthValue.java   |  22 ++--
+ .../org/exist/xquery/value/GYearMonthValue.java    |  22 ++--
+ .../java/org/exist/xquery/value/GYearValue.java    |  22 ++--
+ .../java/org/exist/xquery/value/IntegerValue.java  |  60 +++------
+ .../java/org/exist/xquery/value/NumericValue.java  |  26 ++--
+ .../exist/xquery/value/OrderedDurationValue.java   |  25 ++--
+ .../java/org/exist/xquery/value/QNameValue.java    |  34 ++----
+ .../java/org/exist/xquery/value/StringValue.java   |  26 ++--
+ .../java/org/exist/xquery/value/TimeValue.java     |  40 +++---
+ .../src/main/java/org/exist/xquery/value/Type.java |  13 +-
+ .../org/exist/xquery/value/UntypedAtomicValue.java |  26 ++--
+ .../exist/xquery/value/YearMonthDurationValue.java |  39 +++---
+ .../src/main/java/org/exist/xupdate/Rename.java    |  18 +--
+ .../java/org/exist/storage/StartupLockingTest.java |  32 ++---
+ .../org/exist/util/sorters/PlainArrayChecker.java  |  29 ++---
+ .../java/org/exist/xquery/RestBinariesTest.java    |  15 +--
+ 79 files changed, 923 insertions(+), 1818 deletions(-)
+commit 1f7b87604dadac9d762f7934b0d025f72f177673
+Author: Dannes Wessels <dizzzz@gmail.com>
+Date:   Thu Nov 30 19:39:00 2023 +0100
+
+    [refactor] Java8 - use lamda's
+
+ .../exist/xquery/functions/request/GetData.java    |  2 +-
+ .../java/org/exist/dom/persistent/NodeTest.java    | 11 +++-----
+ .../org/exist/storage/FluentBrokerAPITest.java     | 16 +++++------
+ .../exist/storage/RemoveRootCollectionTest.java    |  2 +-
+ .../storage/txn/ConcurrentTransactionsTest.java    |  2 +-
+ .../org/exist/util/sorters/PlainArrayChecker.java  | 32 ++++++----------------
+ ...AccountManagementFunctionRemoveAccountTest.java | 16 +++--------
+ .../GroupManagementFunctionRemoveGroupTest.java    | 12 ++------
+ .../exist/xquery/functions/xmldb/DbStoreTest.java  | 16 +++++------
+ 9 files changed, 38 insertions(+), 71 deletions(-)
+commit af8182ebc4632b1bb7763ef2005da08195cfed4b
+Author: Dannes Wessels <dizzzz@gmail.com>
+Date:   Thu Nov 30 19:37:12 2023 +0100
+
+    [refactor] Remove unused imports
+
+ exist-core/src/main/java/org/exist/backup/BackupWriter.java      | 1 -
+ exist-core/src/main/java/org/exist/backup/FileSystemWriter.java  | 1 -
+ .../org/exist/backup/restore/CollectionDeferredPermission.java   | 4 ----
+ .../java/org/exist/backup/restore/listener/RestoreListener.java  | 2 --
+ exist-core/src/main/java/org/exist/client/EnterKeyAdapter.java   | 1 -
+ exist-core/src/main/java/org/exist/client/UploadDialog.java      | 2 --
+ .../src/main/java/org/exist/client/security/ModeDisplay.java     | 1 -
+ .../src/main/java/org/exist/dom/memtree/MemTreeBuilder.java      | 1 -
+ exist-core/src/main/java/org/exist/launcher/LauncherWrapper.java | 3 ---
+ exist-core/src/main/java/org/exist/launcher/ServiceManager.java  | 2 --
+ .../src/main/java/org/exist/launcher/ServiceManagerFactory.java  | 1 -
+ exist-core/src/main/java/org/exist/launcher/UtilityPanel.java    | 3 ---
+ .../src/main/java/org/exist/launcher/WindowsServiceManager.java  | 1 -
+ .../src/main/java/org/exist/management/impl/LockTableMXBean.java | 1 -
+ exist-core/src/main/java/org/exist/numbering/DLN.java            | 2 +-
+ .../java/org/exist/protocolhandler/xmlrpc/XmlrpcInputStream.java | 1 -
+ .../org/exist/protocolhandler/xmlrpc/XmlrpcOutputStream.java     | 1 -
+ .../main/java/org/exist/scheduler/impl/QuartzSchedulerImpl.java  | 1 -
+ .../src/main/java/org/exist/security/EffectiveSubject.java       | 1 -
+ exist-core/src/main/java/org/exist/storage/IndexSpec.java        | 1 -
+ exist-core/src/main/java/org/exist/storage/NativeBroker.java     | 6 ------
+ .../src/main/java/org/exist/storage/ValueIndexFactory.java       | 1 -
+ .../main/java/org/exist/storage/lock/ManagedDocumentLock.java    | 1 -
+ .../main/java/org/exist/util/serializer/AbstractSerializer.java  | 2 --
+ exist-core/src/main/java/org/exist/xmldb/LocalCollection.java    | 1 -
+ exist-core/src/main/java/org/exist/xmldb/MapResourceSet.java     | 1 -
+ .../src/main/java/org/exist/xmldb/RemoteResourceIterator.java    | 3 ---
+ exist-core/src/main/java/org/exist/xmldb/RemoteResourceSet.java  | 1 -
+ exist-core/src/main/java/org/exist/xmldb/ResourceSetHelper.java  | 1 -
+ .../src/main/java/org/exist/xmlrpc/AbstractCachedResult.java     | 2 --
+ .../main/java/org/exist/xmlrpc/XmldbRequestProcessorFactory.java | 1 -
+ .../java/org/exist/xmlrpc/function/XmlRpcCollectionFunction.java | 1 -
+ .../src/main/java/org/exist/xquery/AbstractExpression.java       | 2 --
+ exist-core/src/main/java/org/exist/xquery/ArrowOperator.java     | 1 -
+ exist-core/src/main/java/org/exist/xquery/ClosureVariable.java   | 2 --
+ .../src/main/java/org/exist/xquery/DefaultExpressionVisitor.java | 1 -
+ exist-core/src/main/java/org/exist/xquery/InlineFunction.java    | 1 -
+ exist-core/src/main/java/org/exist/xquery/OpNumeric.java         | 1 -
+ exist-core/src/main/java/org/exist/xquery/OrderByClause.java     | 1 -
+ .../src/main/java/org/exist/xquery/TryCatchExpression.java       | 2 --
+ exist-core/src/main/java/org/exist/xquery/ValueComparison.java   | 2 --
+ exist-core/src/main/java/org/exist/xquery/XQueryWatchDog.java    | 1 -
+ .../java/org/exist/xquery/functions/fn/FnDefaultLanguage.java    | 2 --
+ .../java/org/exist/xquery/functions/fn/FunHigherOrderFun.java    | 2 --
+ .../src/main/java/org/exist/xquery/functions/fn/FunNilled.java   | 2 --
+ .../java/org/exist/xquery/functions/fn/transform/Convert.java    | 1 -
+ .../java/org/exist/xquery/functions/fn/transform/Options.java    | 3 ---
+ .../main/java/org/exist/xquery/functions/request/GetData.java    | 1 -
+ .../main/java/org/exist/xquery/functions/util/LogFunction.java   | 1 -
+ exist-core/src/main/java/org/exist/xquery/update/Delete.java     | 1 -
+ exist-core/src/main/java/org/exist/xquery/update/Update.java     | 1 -
+ exist-core/src/main/java/org/exist/xquery/util/DocUtils.java     | 1 -
+ exist-core/src/main/java/org/exist/xquery/util/HTTPUtils.java    | 3 ---
+ .../main/java/org/exist/xquery/value/OrderedValueSequence.java   | 2 --
+ exist-core/src/main/java/org/exist/xquery/value/Sequence.java    | 1 -
+ exist-core/src/main/java/org/exist/xquery/value/StringValue.java | 1 -
+ exist-core/src/main/java/org/exist/xquery/value/TimeUtils.java   | 2 --
+ exist-core/src/main/java/org/exist/xquery/value/TimeValue.java   | 1 -
+ .../src/main/java/org/exist/xquery/value/ValueSequence.java      | 1 -
+ exist-core/src/main/java/org/exist/xslt/EXistURIResolver.java    | 1 -
+ .../main/java/org/exist/xslt/StylesheetResolverAndCompiler.java  | 1 -
+ exist-core/src/main/java/org/exist/xslt/TemplatesFactory.java    | 5 -----
+ .../main/java/org/exist/xslt/TransformerFactoryAllocator.java    | 1 -
+ .../src/test/java/org/exist/dom/memtree/MemtreeBuilderTest.java  | 2 --
+ exist-core/src/test/java/org/exist/http/RESTServiceTest.java     | 5 -----
+ .../src/test/java/org/exist/security/AbstractAccountTest.java    | 1 -
+ exist-core/src/test/java/org/exist/security/ApiException.java    | 3 ---
+ .../test/java/org/exist/security/FnCollectionSecurityTest.java   | 5 -----
+ .../test/java/org/exist/security/SimpleACLPermissionTest.java    | 1 -
+ exist-core/src/test/java/org/exist/storage/DataBackupTest.java   | 1 -
+ .../test/java/org/exist/storage/MoveOverwriteCollectionTest.java | 1 -
+ exist-core/src/test/java/org/exist/storage/NativeBrokerTest.java | 2 --
+ exist-core/src/test/java/org/exist/storage/RenameTest.java       | 1 -
+ .../src/test/java/org/exist/storage/StoreResourceTest.java       | 1 -
+ .../test/java/org/exist/storage/blob/BlobStoreRecoveryTest.java  | 1 -
+ exist-core/src/test/java/org/exist/storage/btree/BTreeTest.java  | 2 --
+ exist-core/src/test/java/org/exist/util/MimeTableTest.java       | 1 -
+ .../java/org/exist/util/io/MemoryContentsInputStreamTest.java    | 1 -
+ .../test/java/org/exist/util/serializer/SerializerPoolTest.java  | 1 -
+ .../src/test/java/org/exist/util/sorters/ComparatorChecker.java  | 5 -----
+ .../src/test/java/org/exist/util/sorters/SortMethodChecker.java  | 4 ----
+ .../src/test/java/org/exist/xmldb/LocalCollectionTest.java       | 1 -
+ exist-core/src/test/java/org/exist/xquery/JavaFunctionsTest.java | 7 -------
+ .../java/org/exist/xquery/functions/request/GetData2Test.java    | 2 --
+ .../xquery/functions/securitymanager/GetPermissionsTest.java     | 1 -
+ .../exist/xquery/functions/transform/TransformFromPkgTest.java   | 3 ---
+ .../java/org/exist/xquery/functions/util/BaseConverterTest.java  | 9 ---------
+ .../test/java/org/exist/xquery/update/IndexIntegrationTest.java  | 1 -
+ .../test/java/org/exist/xquery/value/NumericOpPromotionTest.java | 1 -
+ 89 files changed, 1 insertion(+), 162 deletions(-)
+commit 0d392bd9254a1d23532fd14dca9e46dd77b5cec3
+Author: Dannes Wessels <dizzzz@gmail.com>
+Date:   Thu Nov 30 19:29:50 2023 +0100
+
+    [ignore] upgrade nekohtml to newer and maintained version from https://github.com/codelibs/nekohtml/
+
+ exist-ant/src/test/resources-filtered/conf.xml                 |  4 ++--
+ exist-core/pom.xml                                             | 10 +++++-----
+ exist-core/src/test/resources-filtered/conf.xml                |  4 ++--
+ .../resources-filtered/org/exist/storage/statistics/conf.xml   |  4 ++--
+ .../org/exist/xquery/functions/transform/conf.xml              |  4 ++--
+ .../org/exist/storage/ConcurrentBrokerPoolTest.conf.xml        |  2 +-
+ exist-core/src/test/resources/org/exist/xmldb/allowAnyUri.xml  |  4 ++--
+ exist-distribution/src/main/config/conf.xml                    |  4 ++--
+ .../contentextraction/src/test/resources-filtered/conf.xml     |  4 ++--
+ extensions/debuggee/src/test/resources-filtered/conf.xml       |  4 ++--
+ extensions/expath/src/test/resources-filtered/conf.xml         |  4 ++--
+ extensions/exquery/restxq/src/test/resources-filtered/conf.xml |  4 ++--
+ .../src/test/resources-filtered/conf.xml                       |  4 ++--
+ extensions/indexes/lucene/src/test/resources-filtered/conf.xml |  4 ++--
+ extensions/indexes/ngram/src/test/resources-filtered/conf.xml  |  4 ++--
+ extensions/indexes/range/src/test/resources-filtered/conf.xml  |  4 ++--
+ extensions/indexes/sort/src/test/resources-filtered/conf.xml   |  4 ++--
+ .../indexes/spatial/src/test/resources-filtered/conf.xml       |  4 ++--
+ extensions/modules/cache/src/test/resources-filtered/conf.xml  |  4 ++--
+ .../cache/src/test/resources-filtered/lazy-cache-conf.xml      |  4 ++--
+ .../cache/src/test/resources-filtered/non-lazy-cache-conf.xml  |  4 ++--
+ .../modules/compression/src/test/resources-filtered/conf.xml   |  4 ++--
+ .../modules/counter/src/test/resources-filtered/conf.xml       |  4 ++--
+ .../expathrepo-trigger-test/src/test/resources/conf.xml        |  4 ++--
+ .../modules/expathrepo/src/test/resources-filtered/conf.xml    |  4 ++--
+ extensions/modules/file/src/test/resources-filtered/conf.xml   |  4 ++--
+ extensions/modules/image/src/test/resources-filtered/conf.xml  |  4 ++--
+ extensions/modules/mail/src/test/resources-filtered/conf.xml   |  4 ++--
+ .../persistentlogin/src/test/resources-filtered/conf.xml       |  4 ++--
+ extensions/modules/sql/src/test/resources-filtered/conf.xml    |  4 ++--
+ .../modules/xmldiff/src/test/resources-filtered/conf.xml       |  4 ++--
+ extensions/modules/xslfo/src/test/resources-filtered/conf.xml  |  4 ++--
+ extensions/webdav/src/test/resources-filtered/conf.xml         |  4 ++--
+ extensions/xqdoc/src/test/resources-filtered/conf.xml          |  4 ++--
+ 34 files changed, 70 insertions(+), 70 deletions(-)
+commit bba88c4398bda3fd613e2cd33fe533f80486f6ec
+Merge: 6610ecde11 1648f6154f
+Author: Dannes Wessels <dizzzz@users.noreply.github.com>
+Date:   Thu Nov 30 13:15:23 2023 +0100
+
+    Merge pull request #5144 from eXist-db/dependabot/maven/com.evolvedbinary.appbundler-appbundler-maven-plugin-3.1.0
+    
+    build(deps): bump com.evolvedbinary.appbundler:appbundler-maven-plugin from 3.0.0 to 3.1.0
+commit 6610ecde11bceaf8c50dd276d771582e2f324957
+Merge: 17275cd9c4 8e80ebfd37
+Author: Adam Retter <adam.retter@googlemail.com>
+Date:   Thu Nov 30 08:27:25 2023 +0100
+
+    Merge pull request #5145 from eXist-db/dependabot/maven/commons-io-commons-io-2.15.1
+    
+    build(deps): bump commons-io:commons-io from 2.15.0 to 2.15.1
+commit 17275cd9c4e151f18d6cd7585dd09141fbf56fc5
+Merge: f35075a28f b646614e7c
+Author: Patrick Reinhart <patrick@reini.net>
+Date:   Wed Nov 29 21:11:12 2023 +0100
+
+    Merge pull request #5020 from eXist-db/dependabot/maven/org.apache.xmlgraphics-fop-2.9
+    
+    build(deps): bump org.apache.xmlgraphics:fop from 2.8 to 2.9
