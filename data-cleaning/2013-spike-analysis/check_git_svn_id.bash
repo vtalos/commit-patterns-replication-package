@@ -1,7 +1,24 @@
 #!/bin/bash
-# This script counts the number of commits with "git-svn-id" in the commit
-# message for the year selected and the next
-# for all the projects in the projects-accepted.txt file.
+
+# This script checks the number of commits with "git-svn-id" in the commit message for a given year and the next year for a list of repositories.
+# It is used to detect and remove possible automated commits that are imported from SVN repositories.
+# It takes the year as a command line argument.
+# The script reads the list of repository names from the file "projects-accepted.txt" located in the same directory as the script.
+# The repositories are assumed to be located in the directory "/home/repos/github".
+# The script creates a file "check_git_svn_id.txt" in the current working directory to store the results.
+
+# Usage: check_git_svn_id.bash <year>
+
+# Parameters:
+#   <year> - The year for which to check the commits with "git-svn-id" in the commit message.
+
+# Example usage:
+#   $ check_git_svn_id.bash 2021
+
+# Example output in "check_git_svn_id.txt":
+#   repository1: 10 5 5
+#   repository2: 20 15 5
+#   repository3: 5 10 -5
 
 set -eu
 DATA_LOCATION=$(pwd)

@@ -7,7 +7,6 @@ mycore-org/mycore: 0 0 0 1217
 iterate-ch/cyberduck: 33 6 27 3381
 apache/myfaces-tobago: 6 4 2 466
 netxms/netxms: 52 45 7 1255
-devkitpro/newlib: 26 17 9 681
 samba-team/samba: 98 193 -95 4430
 gcc-mirror/gcc: 213 279 -66 6113
 andrerh/wine: 322 401 -79 5714
@@ -18,7 +17,6 @@ artifexsoftware/ghostpdl: 9 23 -14 754
 clusterlabs/pacemaker: 17 13 4 1445
 rtems/rtems: 26 2 24 1214
 picolibc/picolibc: 26 17 9 681
-pfsense/freebsd-src: 474 330 144 8818
 cygwin/cygwin: 26 17 9 681
 bminor/newlib: 26 17 9 681
 genericmappingtools/gmt: 124 75 49 1758
@@ -66,7 +64,6 @@ cgal/cgal: 105 43 62 5022
 osgeo/gdal: 62 60 2 1069
 kde/kstars: 33 44 -11 378
 root-project/root: 69 46 23 3331
-opensuse/kernel-source: 11 11 0 496
 rhinstaller/anaconda: 2 9 -7 1565
 cctbx/cctbx_project: 236 174 62 2230
 reactos/reactos: 199 188 11 3127
@@ -100,7 +97,6 @@ dolibarr/dolibarr: 194 186 8 5209
 suse/kernel-source: 11 11 0 496
 wikimedia/mediawiki: 278 372 -94 5778
 wordpress/wordpress-develop: 175 173 2 3231
-markjaquith/wordpress: 171 173 -2 3115
 wordpress/wordpress: 171 173 -2 3115
 babelfish-for-postgresql/postgresql_modified_for_babelfish: 61 84 -23 1307
 keyfactor/ejbca-ce: 3 2 1 1523
