@@ -20,7 +20,6 @@ Dependencies:
 Example:
     python hourly_frequencies CommitPercentagesPerHour.csv 2004 2023
 """
-
 import csv
 import numpy as np
 import matplotlib.pyplot as plt

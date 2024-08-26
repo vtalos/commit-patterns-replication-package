@@ -18,7 +18,6 @@ Dependencies:
 Example:
     python weekdays_to_weekends_ratio.py commit_data.csv
 """
-
 import matplotlib.pyplot as plt
 import sys
 import numpy as np

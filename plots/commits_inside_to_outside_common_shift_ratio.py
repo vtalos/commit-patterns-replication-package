@@ -18,7 +18,6 @@ Dependencies:
 Example:
     python commits_inside_to_outside_common_shift_ratio.py commits_data.csv
 """
-
 import matplotlib.pyplot as plt
 import sys
 import numpy as np

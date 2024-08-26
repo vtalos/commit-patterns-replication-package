@@ -7,7 +7,6 @@ which are then used to aggregate the data accordingly.
 Usage:
     python hourly_stacked_bar_chart.py <filename>
 """
-
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
