@@ -36,17 +36,17 @@ This repository contains the replication package for the research paper **"TGIF:
 
 ### Data Cleaning
 
-1. Navigate to the `data-cleaning/find-duplicates` directory.
+1. Return to the base directory and then navigate to the `data-cleaning/find-duplicates` directory.
 2. Run `find_duplicates.py` to identify duplicate projects.
 3. Manually inspect the identified duplicates and remove one of each duplicate from the accepted projects text file.
 
+> **TODO:** Add the steps for the `2013-spike-analysis` and `timezone-reliability-assessment` directories.
+
 ### Writing Data to CSV
 
-1. Return to the base directory and then navigate to the `data-cleaning/write-data-in-csv` directory.
+1. Return to the base directory and then navigate to the `write-data-in-csv` directory.
 2. Generate commit counts and proportions per day by running `commit_count_per_day.py`.
 3. Generate commit counts and proportions per hour by running `commit_count_per_hour.py`.
-
-> **TODO:** Add the steps for the `2013-spike-analysis` and `timezone-reliability-assessment` directories.
 
 ## Statistical Analysis & Plots
 
@@ -61,13 +61,13 @@ This repository contains the replication package for the research paper **"TGIF:
 
 1. Visit [Scopus](https://www.scopus.com/).
 2. Perform the first search:
-    - **Search within:** language - **Search Documents:** English
+    - **Search within:** `language` - **Search Documents:** `English`
     - Click **'Analyze results'**
     - Select year range to analyze: **2000 to 2023**
     - Click **'Export' -> 'Export the data to a CSV file'-> 'Export'**
 3. Perform the second search:
     - **Search within:** `Article title, Abstract, Keywords` - **Search Documents:** `"wellness" OR "well-being" OR "work-life balance"`
-      **and within:** language - **Search Documents:** English
+      **and within:** `language` - **Search Documents:** `English`
     - Click **'Analyze results'**
     - Select year range to analyze: **2000 to 2023**
     - Click **'Export' -> 'Export the data to a CSV file'-> 'Export'**
