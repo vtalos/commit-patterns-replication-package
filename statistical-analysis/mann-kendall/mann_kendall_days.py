@@ -18,8 +18,6 @@ Arguments:
     filename: The path to the CSV file containing commit data.
     day_of_week: The day of the week to analyze (0=Monday, 6=Sunday).
 """
-
-
 import pymannkendall as mk
 import sys
 import argparse

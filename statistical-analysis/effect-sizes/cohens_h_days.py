@@ -1,3 +1,27 @@
+"""
+This script calculates Cohen's h, a measure of effect size, between two time periods
+for a specific day of the week based on commit percentages provided in a CSV file.
+
+The script reads the commit percentages for a specified day and two time periods from the CSV file.
+It then calculates Cohen's h to quantify the difference in commit percentages between these periods.
+
+Usage:
+    python cohens_h_days.py <filename.csv> <first_period> <second_period> <day_of_week>
+
+Cohen's h is interpreted as:
+- Small effect size if h < 0.2
+- Medium effect size if h < 0.5
+- Large effect size if h >= 0.5
+
+Arguments:
+- filename: The CSV file to get the data from.
+- period1: The first time period to compare.
+- period2: The second time period to compare.
+- day: The day of the week for which the comparison is to be made.
+
+Usage example:
+python cohens_h_days.py CommitPercentagesPerDay.csv 2004 2023 Monday
+"""
 import sys
 import argparse
 import csv

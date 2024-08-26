@@ -1,3 +1,29 @@
+"""
+This script calculates Cohen's h, a measure of effect size, between two years for a specific hour block
+based on commit percentages provided in a CSV file.
+
+The script reads the commit percentages for a specified time block (defined by start and end hours) and
+two years from the CSV file. It then calculates Cohen's h to quantify the difference in commit percentages
+between these years.
+
+Usage:
+    python cohens_h_hours.py <filename.csv> <start_hour> <end_hour> <first_period> <second_period>
+
+Cohen's h is interpreted as:
+- Small effect size if h < 0.2
+- Medium effect size if h < 0.5
+- Large effect size if h >= 0.5
+
+Arguments:
+- filename: The CSV file to get the data from.
+- start_hour: The starting hour of the time block (24-hour format).
+- end_hour: The ending hour of the time block (24-hour format).
+- year1: The first year to compare.
+- year2: The second year to compare.
+
+Usage example:
+python cohens_h_hours.py CommitPercentagesPerHour.csv 9 17 2004 2023
+"""
 import sys
 import argparse
 import csv
