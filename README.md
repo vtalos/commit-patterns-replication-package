@@ -61,13 +61,13 @@ This repository contains the replication package for the research paper **"TGIF:
 
 1. Visit [Scopus](https://www.scopus.com/).
 2. Perform the first search:
-    - **Search within:** language - **Search Documents:** English
+    - **Search within:** `language` - **Search Documents:** `English`
     - Click **'Analyze results'**
     - Select year range to analyze: **2000 to 2023**
     - Click **'Export' -> 'Export the data to a CSV file'-> 'Export'**
 3. Perform the second search:
     - **Search within:** `Article title, Abstract, Keywords` - **Search Documents:** `"wellness" OR "well-being" OR "work-life balance"`
-      **and within:** language - **Search Documents:** English
+      **and within:** `language` - **Search Documents:** `English`
     - Click **'Analyze results'**
     - Select year range to analyze: **2000 to 2023**
     - Click **'Export' -> 'Export the data to a CSV file'-> 'Export'**
