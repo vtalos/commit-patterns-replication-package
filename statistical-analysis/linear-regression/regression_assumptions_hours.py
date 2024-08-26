@@ -1,3 +1,30 @@
+"""
+This script checks whether the assumptions of linear regression are met for a specific hourly time block of commit data.
+
+The script reads commit data from a CSV file, focuses on a specific hour of the day (defined by the time block argument), performs an Ordinary Least Squares (OLS) regression, and checks the following assumptions:
+1. **Linearity:** The relationship between the independent (time periods) and dependent variables (frequencies) is linear.
+2. **Independence of Residuals:** The residuals (errors) are independent (checked using the Durbin-Watson statistic).
+3. **Homoscedasticity:** The residuals have constant variance (checked using a plot of residuals vs. predicted values).
+4. **Normality of Residuals:** The residuals are normally distributed (checked using a histogram and a Q-Q plot).
+
+Usage:
+    python regression_assumptions_hours.py <filename.csv> <time_block>
+
+Arguments:
+- filename: The CSV file to get the data from.
+- time_block: The hourly time block (index) to focus on for the linear regression assumptions check.
+
+Output:
+- Scatter plot of time periods vs. frequencies to check linearity.
+- Durbin-Watson statistic to check for independence of residuals.
+- Plot of residuals vs. predicted values to check homoscedasticity.
+- Histogram of residuals and Q-Q plot to check for normality.
+
+Usage example:
+python regression_assumptions_hours.py CommitCountsPerHour.csv 10
+
+Where `10` refers to the 10th hourly block in the data (10 AM).
+"""
 import csv
 from itertools import tee
 import numpy as np
@@ -77,4 +104,3 @@ residuals_standardized = (residuals - residuals.mean()) / residuals.std()
 stats.probplot(residuals_standardized, dist="norm", plot=plt)
 plt.title("Normal Q-Q Plot")
 plt.show()
-

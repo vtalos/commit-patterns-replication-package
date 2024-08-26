@@ -1,3 +1,30 @@
+"""
+This script checks whether the assumptions of linear regression are met for a set of data based on the number of commits for a specified day of the week.
+
+The script reads commit data from a CSV file, performs an Ordinary Least Squares (OLS) regression, and checks the following assumptions:
+1. **Linearity:** The relationship between the independent and dependent variables is linear.
+2. **Independence of Residuals:** The residuals (errors) are independent (checked using the Durbin-Watson statistic).
+3. **Homoscedasticity:** The residuals have constant variance (checked using a plot of residuals vs. predicted values).
+4. **Normality of Residuals:** The residuals are normally distributed (checked using a histogram and a Q-Q plot).
+
+Usage:
+    python regression_assumptions_days.py <filename.csv> <day>
+
+Arguments:
+- filename: The CSV file to get the data from.
+- day: The day of the week for which the linear regression is to be implemented.
+
+Output:
+- Scatter plot of time periods vs. frequencies to check linearity.
+- Durbin-Watson statistic to check for independence of residuals.
+- Plot of residuals vs. predicted values to check homoscedasticity.
+- Histogram of residuals and Q-Q plot to check for normality.
+
+Usage example:
+python regression_assumptions_days.py CommitCountsPerDay.csv 3
+
+Where `3` corresponds to the day of the week (days are indexed from 0=Monday).
+"""
 import csv
 from itertools import tee
 import numpy as np
