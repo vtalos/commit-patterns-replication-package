@@ -1,3 +1,32 @@
+"""
+This script reads data from two CSV files, calculates the percentage increase in publications year-over-year for both total publications and work-life balance-related publications, and then compares their average percentage increases.
+
+The script performs the following steps:
+1. **Read and Process Data:** 
+   - Reads the data from `total_publications.csv` and `work_life_balance_publications.csv`.
+   - Stores the number of publications for each year in reversed order (i.e., from oldest to newest).
+
+2. **Calculate Percentage Increase:**
+   - Calculates the year-over-year percentage increase in publications for both total publications and work-life balance publications.
+
+3. **Calculate Average Percentage Increase:**
+   - Computes the average percentage increase over the entire time period for both sets of publications.
+
+4. **Compare and Output Results:**
+   - Prints the average percentage increase for each category.
+   - Compares the two averages and prints which category shows a bigger average percentage increase.
+
+Assumptions:
+- The second column of the CSV files contains the number of publications for each year.
+
+Output:
+- Average percentage increase for total publications.
+- Average percentage increase for work-life balance publications.
+- A comparison of the two averages.
+
+Usage:
+Simply run the script. Ensure the CSV files `total_publications.csv` and `work_life_balance_publications.csv` are in the same directory as the script.
+"""
 import csv
 
 # Initialize a list to hold the data
