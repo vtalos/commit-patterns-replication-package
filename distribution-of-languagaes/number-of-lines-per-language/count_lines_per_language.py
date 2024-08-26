@@ -10,32 +10,25 @@ the total number of files, blank lines, comment lines, and code lines per progra
 across all the projects.
 
 Requirements:
--------------
-- Python 3.x
-- `cloc` command-line tool (must be installed and available in your system's PATH)
+    - Python 3.x
+    - `cloc` command-line tool (must be installed and available in your system's PATH)
 
-Directory Structure:
---------------------
-- `projects-accepted-revised.txt`: A text file containing a list of project paths relative 
-  to the `REPO_LOCATION` directory. Each line should correspond to one project.
-
-- `REPO_LOCATION`: The base directory where the repositories are located.
-
+Input Files:
+    - projects-accepted.txt: Text file with one repository name per line.
 
 Usage:
-------
-1. Use the list of projects in a text file named `projects-accepted-revised.txt`.
-2. Set the `REPO_LOCATION` variable to the directory containing the projects.
-3. Run the script.
-4. The script will generate a CSV file for each project in the current working directory.
-5. After processing all projects, the script will output aggregated statistics for all 
+
+- Use the list of projects in a text file named `projects-accepted.txt`.
+- Set the `REPO_LOCATION` variable to the directory containing the projects.
+- Run the script.
+- The script will checkout the last commit of 2023 for each project
+- Cloc is used to generate a CSV file for each project in the current working directory.
+- After processing all projects, the script will output aggregated statistics for all 
    languages found across the projects.
 
 Output:
--------
-The script outputs the aggregated line-of-code statistics to the console, summarizing the 
-total number of files, blank lines, comment lines, and code lines per programming language 
-across all the processed projects.
+    The script outputs the aggregated line-of-code statistics to the console, summarizing the 
+    code lines per programming language across all the processed projects.
 """
 
 import csv
@@ -94,7 +87,7 @@ def calculate_lines_per_language(csv_files):
 REPO_LOCATION= os.getcwd()
 total_counts = defaultdict(lambda: {"files": 0, "blank": 0, "comment": 0, "code": 0})
 csv_files=[]
-with open('projects-accepted-revised.txt', 'r') as f:
+with open('projects-accepted.txt', 'r') as f:
         projects = f.readlines()
         for project in projects:
             project = project.strip()

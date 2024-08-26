@@ -40,13 +40,17 @@ This repository contains the replication package for the research paper **"TGIF:
 2. Run `find_duplicates.py` to identify duplicate projects.
 3. Manually inspect the identified duplicates and remove one of each duplicate from the accepted projects text file.
 
-> **TODO:** Add the steps for the `2013-spike-analysis` and `timezone-reliability-assessment` directories.
 
 ### Writing Data to CSV
 
 1. Return to the base directory and then navigate to the `write-data-in-csv` directory.
 2. Generate commit counts and proportions per day by running `commit_count_per_day.py`.
 3. Generate commit counts and proportions per hour by running `commit_count_per_hour.py`.
+
+### Data Cleaning after generating the CSVs
+4. Return to the base directory and then navigate to the `data-cleaning/2013-spike-analysis` directory/
+5. Run `rejected-mariadb-commits.bash` to find the commits that must be removed.
+6. Manualy remove those commits from the 4 CSV files at the `write-data-in-csv/csv-files` directory.
 
 ## Statistical Analysis & Plots
 

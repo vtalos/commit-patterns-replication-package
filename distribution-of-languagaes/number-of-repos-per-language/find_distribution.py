@@ -1,5 +1,25 @@
 import csv
-import matplotlib.pyplot as plt
+
+"""
+Repository Language Analyzer
+
+This script counts the number of repositories per programming language for the accepted projects.
+
+Requirements:
+    - Python 3.x
+
+Input Files:
+    - projects-accepted.txt: Text file with one repository name per line.
+    - ghs_results.csv: CSV file with repository details, where:
+        - Column 2 (row[1]) contains repository names.
+        - Column 8 (row[7]) contains the main programming language.
+
+Output:
+    - Prints a dictionary showing the count of repositories per programming language.
+
+Example Output:
+    {'Python': 15, 'JavaScript': 7, 'Java': 3, 'Ruby': 2}
+"""
 
 def count_unique_values(list):
     count_dict = {}
@@ -11,7 +31,7 @@ def count_unique_values(list):
     return count_dict
 
 repos=[]
-with open("projects-accepted-revised.txt") as file1:
+with open("projects-accepted.txt") as file1:
     lines = file1.readlines()
     for line in lines:
         repos.append(line.strip())
