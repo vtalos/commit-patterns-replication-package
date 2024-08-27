@@ -17,7 +17,6 @@ Dependencies:
 Example:
     python contributors_plot.py results.txt
 """
-
 import matplotlib.pyplot as plt
 import sys
 

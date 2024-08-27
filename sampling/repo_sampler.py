@@ -23,9 +23,8 @@ Arguments:
     gh_token (str): GitHub personal access token for authentication of API calls.
 
 Example:
-    python ghs_repo_sampler.py data/ghs_results.csv <github_token>
+    python ghs_repo_sampler.py ghs_results.csv <github_token>
 """
-
 import csv
 import requests
 import time

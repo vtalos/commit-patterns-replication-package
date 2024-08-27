@@ -1,5 +1,3 @@
-import csv
-
 """
 Repository Language Analyzer
 
@@ -20,6 +18,7 @@ Output:
 Example Output:
     {'Python': 15, 'JavaScript': 7, 'Java': 3, 'Ruby': 2}
 """
+import csv
 
 def count_unique_values(list):
     count_dict = {}

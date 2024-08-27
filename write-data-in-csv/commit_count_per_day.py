@@ -1,3 +1,10 @@
+"""
+This script counts the number of commits made on each day of the week over specified time intervals for a set of Git repositories. 
+It can either output the total commit counts or the proportion of commits per day relative to the total commits in the interval.
+
+Usage:
+    python commit_count_per_day.py <start_year> <end_year> <interval> <contents> <repos> <repos_path>
+"""
 from collections import defaultdict
 from git import Repo
 import argparse

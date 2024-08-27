@@ -1,7 +1,4 @@
 """
-cloc Aggregator Script
-======================
-
 This script automates the process of generating and aggregating line-of-code (LOC) statistics 
 for the sample. It uses the `cloc` (Count Lines of Code) tool to analyze the 
 source code in each project and outputs a CSV file containing statistics for each project. 
@@ -30,7 +27,6 @@ Output:
     The script outputs the aggregated line-of-code statistics to the console, summarizing the 
     code lines per programming language across all the processed projects.
 """
-
 import csv
 from collections import defaultdict
 import os
