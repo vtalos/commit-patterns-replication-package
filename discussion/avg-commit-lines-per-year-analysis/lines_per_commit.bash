@@ -22,7 +22,7 @@ for year in {2004..2023}; do
         total_lines=$((total_lines + lines_per_project))
         total_commits=$((total_commits + commits_per_project))
         echo "name: $name year: $year lines_per_project: $lines_per_project commits_per_project: $commits_per_project"
-    done < "$DATA_LOCATION/projects-accepted-revised.txt"
+    done < "$DATA_LOCATION/projects-accepted.txt"
     # write the results about each project to the file
     echo "year: $year total lines: $total_lines total commits: $total_commits"
     average_lines_per_commit=$(echo "scale=2; $total_lines / $total_commits" | bc)

@@ -1,9 +1,25 @@
 """
-This script reads a list of projects from the "projects-accepted.txt" file. 
-Each project is represented as a string that includes the repository name. The 
-script identifies duplicate repositories (those that appear more than once) 
-and outputs them in a sorted order based on a specified criterion. The output 
-lists the duplicates with an enumerated index.
+Script to remove duplicate repository names from a project list.
+
+Description:
+    This script reads a list of projects from the "projects-accepted.txt" file.
+    Each project is represented as a string that includes the repository name in the format "owner/repository".
+    The script identifies repositories that appear more than once in the list and outputs these duplicates.
+
+Usage:
+    script_name.py
+
+Arguments:
+    None. The script reads from a predefined "projects-accepted.txt" file.
+
+Returns:
+    The script prints an enumerated list of duplicate repositories, sorted by the owner name.
+
+Dependencies:
+    - Python 3.x
+
+Example:
+    python find_duplicates.py
 """
 # Open and read the file containing the project list
 with open("projects-accepted.txt") as file:

@@ -11,7 +11,7 @@ for year in {2004..2023}; do
         cd "$dir_name" || continue
         contributors_per_year=$(git log --after="$year-01-01" --before="$year-12-31" --format='%ae' | sort -u | wc -l) 
         contributors_per_year_all_repos=$((contributors_per_year_all_repos + contributors_per_year)) 
-    done <"$DATA_LOCATION/projects-accepted-revised.txt"
+    done <"$DATA_LOCATION/projects-accepted.txt"
     echo "$year: $contributors_per_year_all_repos"
     echo "$year: $contributors_per_year_all_repos" >> "$DATA_LOCATION/all_contributors_per_year.txt" 
 done
