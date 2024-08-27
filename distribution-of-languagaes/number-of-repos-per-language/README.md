@@ -1,7 +1,7 @@
 # Number of Repositories per Language
 
-* [`find_distribution.py`](find_distribution.py) counts the number of repositories per programming language for the accepted projects.
-    Run `python find_distribution.py`
+* [`find_distribution.py`](find_distribution.py) counts the number of repositories per programming language for the accepted projects.   
+  Run `python find_distribution.py`
 
 * [`projects-accepted.txt`](projects-accepted.txt) contains the projects that have been accepted by `../sampling/repo_sampler.py` and is not duplicate.
 
