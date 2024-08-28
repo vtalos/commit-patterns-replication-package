@@ -4,4 +4,4 @@
   Run `python early_year_variations.py`
 
 * [`count_timezone_commits.bash`](count_timezone_commits.bash) calculates the number of commits per timezone for a given year.   
-    Run `python count_timezone_commits.bash <year>`
+    Run `bash count_timezone_commits.bash <year>`
