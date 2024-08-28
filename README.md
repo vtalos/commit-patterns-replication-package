@@ -92,7 +92,7 @@ This repository contains the replication package for the research paper **"TGIF:
 ### Number of Contributors Analysis
 
 1. Navigate to the `discussion/contributors-number` directory.
-2. Run `all_contributors.bash`.
+2. Run `all_contributors_per_year.bash`.
 3. Run `contributors_plot.py`.
 
 ### Average Commit Lines per Year Analysis
