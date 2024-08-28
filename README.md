@@ -12,6 +12,9 @@ This repository contains the replication package for the research paper **"TGIF:
 4. [Statistical Analysis & Plots](#statistical-analysis--plots)
 5. [Discussion](#discussion)
    - [Work-Life Balance Analysis](#work-life-balance-analysis)
+   - [Number of Contributors Analysis](#number-of-contributors-analysis)
+   - [Average Commit Lines per Year Analysis](#average-commit-lines-per-year-analysis)
+   - [FreeBSD Demographics Analysis](#freebsd-demographics-analysis)
 6. [Distribution of Programming Languages](#distribution-of-programming-languages)
 
 ---
@@ -78,7 +81,21 @@ This repository contains the replication package for the research paper **"TGIF:
 
 4. In the `discussion/work-life-balance-approach` directory, run `publication-analysis.py`.
 
-> **TODO:** Add the steps for the remaining directories in the `discussion` folder.
+### Number of Contributors Analysis
+
+1. Navigate to the `discussion/contributors-number` directory.
+2. Run `all_contributors.bash`.
+3. Run `contributors_plot.py`.
+
+### Average Commit Lines per Year Analysis
+
+1. Navigate to the `discussion/avg-commit-lines-per-year-analysis` directory.
+2. Run `lines_per_commit.bash`.
+3. Run `lines_per_commit_plot.py`.
+
+### FreeBSD Demographics Analysis
+
+1. Navigate to the `discussion/FreeBSD-demographics-analysis` directory and run the scripts.
 
 ## Distribution of Programming Languages
 

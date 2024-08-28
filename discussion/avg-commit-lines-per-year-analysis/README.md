@@ -7,5 +7,5 @@
 
 * [`lines_per_commit.txt`](lines_per_commit.txt) contains the number of lines per commit for each year for all the projects in the projects-accepted.txt file.
 
-* [`lines_per_commit_ploy.py`](lines_per_commit_ploy.py) visualizes the content of lines_per_commit.txt using Matplotlib.   
-  Run `python lines_per_commit_ploy.py`
+* [`lines_per_commit_plot.py`](lines_per_commit_plot.py) visualizes the content of lines_per_commit.txt using Matplotlib.   
+  Run `python lines_per_commit_plot.py`

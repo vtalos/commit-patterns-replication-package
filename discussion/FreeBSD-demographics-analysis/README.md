@@ -1,8 +1,9 @@
 # Calculate Changes in FreeBSD Developer Age
 
-* [`freebsd-age.sh`](freebsd-age.sh) calculates the average FreeBSD developer age in the end of 2007 (the year the developer list was added) and in the end of 2023.
+* [`freebsd-age.sh`](freebsd-age.sh) calculates the average FreeBSD developer age in the end of 2007 (the year the developer list was added) and in the end of 2023.   
+  Run `bash freebsd-age.sh`
 
-* [`commiters-src.dot`](commiters-src.dot) lists all FreeBSD src committers and describe the mentor-mentee relationships between them.
+* [`committers-src.dot`](committers-src.dot) lists all FreeBSD src committers and describe the mentor-mentee relationships between them.
 
 * [`most_used_timezone_per_year.py`](most_used_timezone_per_year.py) calculates the number of commits per year per timezone, excluding UTC-0.   
   Run `python most_used_timezone_per_year.py repos_path start_year end_year`
