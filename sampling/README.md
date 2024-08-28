@@ -11,3 +11,4 @@ every 6-month interval has at least (average number of commits per 6 months) / 5
 * [`projects-accepted.txt`](projects-accepted.txt) contains the projects that have been accepted by `repo_sampler.py`.
 
 * [`fetch-projects.sh`](fetch-projects.sh) clone bare projects from  `projects-accepted.txt`.
+  Run `sh fetch-projects.sh`
