@@ -26,7 +26,7 @@ def parse_arguments():
     parser.add_argument('interval', type=int, help='How many years a single interval contains')
     parser.add_argument('contents', type=str, choices=["proportions", "total"],
                         help='The contents of the CSV (proportions or total)')
-    parser.add_argument('repos', type=str, help='Directory containing repository names')
+    parser.add_argument('repos', type=str, help='File containing repository names')
     parser.add_argument('repos_path', type=str, help='The path for the file that contains the cloned repos')
     args = parser.parse_args()
 
