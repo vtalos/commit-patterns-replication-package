@@ -51,7 +51,7 @@ This repository contains the replication package for the research paper **"TGIF:
 3. Generate commit counts and proportions per hour by running `commit_count_per_hour.py`.
 
 ### Data Cleaning after generating the CSVs
-4. Return to the base directory and then navigate to the `data-cleaning/2013-spike-analysis` directory/
+4. Return to the base directory and then navigate to the `data-cleaning/2013-spike-analysis` directory.
 5. Run `rejected-mariadb-commits.bash` to find the commits that must be removed.
 6. Manualy remove those commits from the 4 CSV files at the `write-data-in-csv/csv-files` directory.
 
