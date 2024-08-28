@@ -2,7 +2,7 @@
 Script to plot the number of contributors from results.txt for each year.
 
 Usage:
-    contributors_plot.py <filename.txt>
+    python contributors_plot.py <filename.txt>
 
 Arguments:
     <filename.txt>: txt file containing the number of contributors for each year for all of the sample,
@@ -15,7 +15,7 @@ Dependencies:
     - matplotlib
     - sys
 Example:
-    python contributors_plot.py results.txt
+    python contributors_plot.py all_contributors_per_year.txt
 """
 import matplotlib.pyplot as plt
 import sys
@@ -34,12 +34,12 @@ with open(filename, 'r') as file:
 #set font sizes, ticks and plot the data
 fig, ax = plt.subplots()
 plt.plot(years, contributors_per_year, linestyle='-', marker='o', color='blue', linewidth=5, markersize=15)
-ax.set_xlabel('Year', fontsize = 35)
-ax.set_ylabel('Number of Contributors', fontsize = 35)
+ax.set_xlabel('Year', fontsize = 20)
+ax.set_ylabel('Number of Contributors', fontsize = 20)
 plt.xticks(range(2004, 2024, 2), rotation = 45)
 plt.yticks(range(4000, 9000, 1000))
 for label in (ax.get_xticklabels() + ax.get_yticklabels()):
-        label.set_fontsize(35)
+        label.set_fontsize(20)
 plt.grid(True)
 plt.show()
 

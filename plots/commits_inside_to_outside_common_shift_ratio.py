@@ -16,7 +16,7 @@ Dependencies:
     - pandas
 
 Example:
-    python commits_inside_to_outside_common_shift_ratio.py commits_data.csv
+    python commits_inside_to_outside_common_shift_ratio.py ../write-data-in-csv/csv-files/CommitCountsPerHour.csv
 """
 import matplotlib.pyplot as plt
 import sys

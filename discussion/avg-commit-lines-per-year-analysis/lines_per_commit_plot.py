@@ -3,7 +3,7 @@ Script to plot the evolution of average number of inserted lines per commit
 for each year for our sample.
 
 Usage:
-    contributors_plot.py <filename.txt>
+    python lines_per_commit_plot.py <filename.txt>
 
 Arguments:
     <filename.txt>: txt file containing the average of inserted line per commits
@@ -16,7 +16,7 @@ Dependencies:
     - matplotlib
     - sys
 Example:
-    python contributors_plot.py lines_per_commit.txt
+    python lines_per_commit_plot.py lines_per_commit.txt
 """
 import matplotlib.pyplot as plt
 import sys
@@ -41,12 +41,12 @@ print(lines_to_commits_ratio_per_year)
 fig, ax = plt.subplots()
 
 plt.plot(years, lines_to_commits_ratio_per_year, linestyle='-', marker='o', color='blue', linewidth=5, markersize=15)
-ax.set_xlabel('Year', fontsize = 35)
-ax.set_ylabel('Lines to Commits Ratio', fontsize = 35)
+ax.set_xlabel('Year', fontsize = 20)
+ax.set_ylabel('Lines to Commits Ratio', fontsize = 20)
 plt.xticks(range(2004, 2024, 2), rotation = 45)
 
 for label in (ax.get_xticklabels() + ax.get_yticklabels()):
-        label.set_fontsize(35)
+        label.set_fontsize(20)
 
 plt.grid(True)
 plt.show()

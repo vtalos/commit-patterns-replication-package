@@ -18,7 +18,7 @@ Dependencies:
     - csv
 
 Example:
-    python hourly_frequencies CommitPercentagesPerHour.csv 2004 2023
+    python hourly_frequencies ../write-data-in-csv/csv-files/CommitPercentagesPerHour.csv 2004 2023
 """
 import csv
 import numpy as np
@@ -74,19 +74,19 @@ def hourly_frequencies(hours, period_hours1, period_hours2, period_name1, period
     rects1 = ax.bar(x - width/2, period_hours1, width, label=period_name1)
     rects2 = ax.bar(x + width/2, period_hours2, width, label=period_name2)
 
-    ax.set_ylabel('Commits (%)', fontsize=35)
-    ax.set_xlabel('Hour', fontsize=35)
+    ax.set_ylabel('Commits (%)', fontsize=20)
+    ax.set_xlabel('Hour', fontsize=20)
     ax.set_xticks(x)
     ax.set_xticklabels(hours, rotation=45)
 
-    ax.legend(fontsize=30)
+    ax.legend(fontsize=20)
 
     # Set tick font size
     labels = ["" if i % 2 == 1 else hours[i] for i in range(len(hours))]
     ax.set_xticklabels(labels)
 
     for label in (ax.get_xticklabels() + ax.get_yticklabels()):
-        label.set_fontsize(35)
+        label.set_fontsize(20)
 
     fig.tight_layout()
 
