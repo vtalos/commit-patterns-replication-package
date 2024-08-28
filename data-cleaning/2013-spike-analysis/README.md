@@ -10,7 +10,7 @@ for a given year and the next year for a list of repositories.
 * [`find-rejected-mariadb-commits.bash`](find-rejected-mariadb-commits.bash) counts false mariadb commits.   
   Run `bash find-rejected-mariadb-commits.bash`
 
-* [`check_git_svn_id.txt`](check_git_svn_id.txt-projects.txt) contains the number of commits containing 'git-svn-id' for a year,
+* [`check_git_svn_id.txt`](check_git_svn_id.txt) contains the number of commits containing 'git-svn-id' for a year,
 compared to the next year (2013 in this file).
 
 * [`check_spike.txt`](check_spike.txt) contains the number of commits, next year commits, and the difference between the two years for each project for 23:00-23:59, as well as the total number of commits for the rest of the day (2013 in this file).
