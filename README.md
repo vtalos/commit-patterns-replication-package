@@ -8,7 +8,9 @@ This repository contains the replication package for the research paper **"TGIF:
 2. [Sampling](#sampling)
 3. [Data Cleaning & Writing Data to CSV Files](#data-cleaning--writing-data-to-csv-files)
     - [Data Cleaning](#data-cleaning)
-    - [Writing Data to CSV](#writing-data-to-csv)
+    - [Assess Timezone Reliability](#assess-timezone-reliability)
+    - [Write Data to CSV](#write-data-to-csv)
+    - [Data Cleaning After Generating the CSVs](#data-cleaning-after-generating-the-csvs)
 4. [Statistical Analysis & Plots](#statistical-analysis--plots)
 5. [Discussion](#discussion)
    - [Work-Life Balance Analysis](#work-life-balance-analysis)
@@ -43,17 +45,23 @@ This repository contains the replication package for the research paper **"TGIF:
 2. Run `find_duplicates.py` to identify duplicate projects.
 3. Manually inspect the identified duplicates and remove one of each duplicate from the accepted projects text file.
 
+### Assess Timezone Reliability
 
-### Writing Data to CSV
+1. Return to the base directory and then navigate to the `data-cleaning/timezone-reliability-assessment` directory.
+2. Run `count_timezone_commits.bash` for every desired year to calculate the number of commits per timezone.
+3. Run `early_year_variations.py` to calculate variation metrics.
+
+### Write Data to CSV
 
 1. Return to the base directory and then navigate to the `write-data-in-csv` directory.
 2. Generate commit counts and proportions per day by running `commit_count_per_day.py`.
 3. Generate commit counts and proportions per hour by running `commit_count_per_hour.py`.
 
-### Data Cleaning after generating the CSVs
-4. Return to the base directory and then navigate to the `data-cleaning/2013-spike-analysis` directory.
-5. Run `rejected-mariadb-commits.bash` to find the commits that must be removed.
-6. Manualy remove those commits from the 4 CSV files at the `write-data-in-csv/csv-files` directory.
+### Data Cleaning After Generating the CSVs
+
+1. Return to the base directory and then navigate to the `data-cleaning/2013-spike-analysis` directory.
+2. Run `rejected-mariadb-commits.bash` to find the commits that must be removed.
+3. Manualy remove those commits from the 4 CSV files at the `write-data-in-csv/csv-files` directory.
 
 ## Statistical Analysis & Plots
 
