@@ -1,7 +1,7 @@
 # Calculate Changes in FreeBSD Developer Age
 
-* [`freebsd-age.sh`](freebsd-age.sh) calculates the average FreeBSD developer age in the end of 2007 (the year the developer list was added) and in the end of 2023.   
-  Run `bash freebsd-age.sh`
+* [`freebsd-age.bash`](freebsd-age.bash) calculates the average FreeBSD developer age in the end of 2007 (the year the developer list was added) and in the end of 2023.   
+  Run `bash freebsd-age.bash <freeBSD_repo_directory>`
 
 * [`committers-src.dot`](committers-src.dot) lists all FreeBSD src committers and describe the mentor-mentee relationships between them.
 

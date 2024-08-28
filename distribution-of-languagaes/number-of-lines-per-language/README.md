@@ -6,4 +6,4 @@
 * [`projects-accepted.txt`](projects-accepted.txt) contains the projects that have been accepted by `../sampling/repo_sampler.py` and is not duplicate.
 
 * [`fetch-projects.sh`](fetch-projects.sh) clones projects from  `projects-accepted.txt` but does not use --bare.   
-  Run `bash fetch-projects.sh`
+  Run `sh fetch-projects.sh`

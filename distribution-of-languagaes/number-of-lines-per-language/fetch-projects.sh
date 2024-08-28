@@ -26,7 +26,7 @@ while read name ; do
     user_name=$(dirname $name)
     mkdir -p $user_name
     cd $user_name
-    git clone --single-branch --filter=blob:none https://github.com/$name $(basename $name)
+    git clone --single-branch https://github.com/$name $(basename $name)
   fi
   echo $name >>$DATA_LOCATION/projects-fetched.txt
 done
