@@ -24,8 +24,6 @@ Dependencies:
 Example:
     python demographics.py commiters-src.dot
 """
-
-
 from datetime import datetime
 import sys
 

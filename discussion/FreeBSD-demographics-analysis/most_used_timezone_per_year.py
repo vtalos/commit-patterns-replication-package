@@ -21,7 +21,6 @@ Output:
 Example:
     python script_name.py /path/to/repo 2019 2023
 """
-
 from collections import defaultdict
 from git import Repo
 import argparse
