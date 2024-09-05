@@ -117,7 +117,7 @@ def plot_data(data_blocks, time_labels, periods):
     time_labels (list of str): List of time labels for the legend.
     periods (list of str): List of period labels.
     """
-    data_blocks_normalized = data_blocks / data_blocks.sum(axis=0)
+    data_blocks_normalized = (data_blocks / data_blocks.sum(axis=0))*100
 
     fig, ax = plt.subplots()
 
