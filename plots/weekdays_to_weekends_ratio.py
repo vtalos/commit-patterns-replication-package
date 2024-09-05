@@ -45,15 +45,15 @@ years = data.columns[1:].astype(int)
 
 # Plotting
 fig, ax = plt.subplots()
-ax.set_xlabel('Year', fontsize=20)
-ax.set_ylabel('Ratio', fontsize=20)
+ax.set_xlabel('Year', fontsize=9)
+ax.set_ylabel('Ratio', fontsize=9)
 ax.set_xticks(range(2004, 2024, 2))
 ax.set_xticklabels(range(2004, 2024, 2), rotation=45)
-ax.plot(years, ratio, linestyle='-', marker='o', color='blue', linewidth=5, markersize=15)
+ax.plot(years, ratio, linestyle='-', marker='o', color='blue', linewidth=3, markersize=8)
 
 # Set tick font size
 for label in (ax.get_xticklabels() + ax.get_yticklabels()):
-    label.set_fontsize(20)
+    label.set_fontsize(9)
 
 plt.grid(True)
-plt.show()
+plt.savefig('weekdays_to_weekends_ratio.pdf', format='pdf', bbox_inches='tight', pad_inches=0)

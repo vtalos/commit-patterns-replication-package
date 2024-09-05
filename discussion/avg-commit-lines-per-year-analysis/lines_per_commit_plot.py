@@ -40,15 +40,13 @@ print(lines_to_commits_ratio_per_year)
 # Set font sizes, ticks and plot the data
 fig, ax = plt.subplots()
 
-plt.plot(years, lines_to_commits_ratio_per_year, linestyle='-', marker='o', color='blue', linewidth=5, markersize=15)
-ax.set_xlabel('Year', fontsize = 20)
-ax.set_ylabel('Lines to Commits Ratio', fontsize = 20)
+plt.plot(years, lines_to_commits_ratio_per_year, linestyle='-', marker='o', color='blue', linewidth=3, markersize=8)
+ax.set_xlabel('Year', fontsize = 9)
+ax.set_ylabel('Lines to Commits Ratio', fontsize = 9)
 plt.xticks(range(2004, 2024, 2), rotation = 45)
 
 for label in (ax.get_xticklabels() + ax.get_yticklabels()):
-        label.set_fontsize(20)
+        label.set_fontsize(9)
 
 plt.grid(True)
-plt.show()
-
-        
+plt.savefig(f'inserted_lines_per_commit.pdf', format='pdf', bbox_inches='tight', pad_inches=0)     

@@ -76,8 +76,8 @@ def freq_for_weekends():
         rect = ax.bar(x_shift, day[i+5], width, label=days[i+5])
         rects.append(rect)
 
-    ax.set_ylabel('Frequencies', fontsize=20)
-    ax.set_xlabel('Periods', fontsize=20)
+    ax.set_ylabel('Frequencies', fontsize=9)
+    ax.set_xlabel('Periods', fontsize=9)
     ax.set_xticks(x)
     ax.set_xticklabels(periods)
     ax.legend()
@@ -88,7 +88,7 @@ def freq_for_weekends():
     
     # Set tick font size
     for label in (ax.get_xticklabels() + ax.get_yticklabels()):
-        label.set_fontsize(20)
+        label.set_fontsize(9)
 
     # Format y-axis to show values in thousands
     ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, pos: f'{int(x/1000)}'))
@@ -104,8 +104,8 @@ def total_commits_per_period():
     fig, ax = plt.subplots()
     rects.append(ax.bar(x, sum_period, width))
 
-    ax.set_ylabel('Total Commits (Thousands)', fontsize=20)
-    ax.set_xlabel('Period', fontsize=20)
+    ax.set_ylabel('Total Commits (Thousands)', fontsize=9)
+    ax.set_xlabel('Period', fontsize=9)
     ax.set_xticks(x)
 
     # Set xtick labels with empty strings for every other label
@@ -114,7 +114,7 @@ def total_commits_per_period():
     
     # Set tick font size
     for label in (ax.get_xticklabels() + ax.get_yticklabels()):
-        label.set_fontsize(20)
+        label.set_fontsize(9)
 
     # Format y-axis to show values in thousands
     ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, pos: f'{int(x/1000)}'))
@@ -123,8 +123,8 @@ def total_commits_per_period():
 if plot == "freq_for_weekends":
     periods = periods[1:]
     freq_for_weekends()
+    plt.savefig('weekend_commits_per_period.pdf', format='pdf', bbox_inches='tight', pad_inches=0)
 else:
     periods = periods[1:]
     total_commits_per_period()
-
-plt.show()
+    plt.savefig('total_commits_per_period.pdf', format='pdf', bbox_inches='tight', pad_inches=0)

@@ -128,8 +128,8 @@ def plot_data(data_blocks, time_labels, periods):
         ax.bar(range(len(periods)), data_block, bottom=bottom, color=colors[i], width=0.85, label=time_labels[i])
         bottom += data_block
 
-    plt.xlabel('Year', fontsize=20)
-    plt.ylabel('Commits (%)', fontsize=20)
+    plt.xlabel('Year', fontsize=9)
+    plt.ylabel('Commits (%)', fontsize=9)
 
     labels = ["" if i % 2 == 1 else periods[i] for i in range(len(periods))]
     ax.set_xticks(range(len(labels)))
@@ -139,11 +139,11 @@ def plot_data(data_blocks, time_labels, periods):
     plt.xticks(rotation=35)
 
     for label in (ax.get_xticklabels() + ax.get_yticklabels()):
-        label.set_fontsize(20)
+        label.set_fontsize(9)
 
-    ax.legend(fontsize=20, loc='center right', bbox_to_anchor=(1, 0.4), facecolor='white', framealpha=1)
+    ax.legend(fontsize=10, loc='center right', bbox_to_anchor=(1, 0.4), facecolor='white', framealpha=1)
 
-    plt.show()
+    plt.savefig('stacked_bar_chart.pdf', format='pdf', bbox_inches='tight', pad_inches=0)
 
 def main(filename):
     """
