@@ -1,8 +1,5 @@
 # Plots
 
-* [`commits_inside_to_outside_common_shift_ratio.py`](commits_inside_to_outside_common_shift_ratio.py) calculates and plots the ratio of commits made inside the common work shift (9 AM - 5 PM) to those made outside of it, over multiple years.  
-  Run `python commits_inside_to_outside_common_shift_ratio.py <filename.csv>`
-
 * [`daily_stacked_bar_chart.py`](daily_stacked_bar_chart.py) reads commit data from a CSV file and generates a stacked bar chart showing the number or proportion of commits for selected days of the week (e.g., Monday to Sunday) across different periods (e.g., years).  
   Run `python daily_stacked_bar_chart.py <filename.csv>`
 
