@@ -1,6 +1,7 @@
 """
 This script counts the number of commits made on each day of the week over specified time intervals for a set of Git repositories. 
 It can either output the total commit counts or the proportion of commits per day relative to the total commits in the interval.
+The script now also produces separate files for each repository in addition to the combined results.
 
 Usage:
     python commit_count_per_day.py <start_year> <end_year> <interval> <contents> <repos> <repos_path>
@@ -65,12 +66,16 @@ def count_commits(repo_list, repos_path, start_year, interval, num_of_periods):
         num_of_periods (int): The total number of periods calculated.
 
     Returns:
-        defaultdict: A dictionary with commit counts for each day and period.
+        tuple: A tuple containing:
+            - defaultdict: Combined commit counts for all repositories
+            - dict: Individual commit counts for each repository
     """
-    commit_counts = defaultdict(lambda: [0] * num_of_periods)
+    combined_commit_counts = defaultdict(lambda: [0] * num_of_periods)
+    individual_commit_counts = {}
     days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
     for repository in repo_list:
+        repo_commit_counts = defaultdict(lambda: [0] * num_of_periods)
         non_utc0_commits = defaultdict(bool)
         print(f"Processing repository: {repository}")
         repo_path = os.path.join(repos_path, repository)
@@ -85,11 +90,15 @@ def count_commits(repo_list, repos_path, start_year, interval, num_of_periods):
                 day_index = commit.authored_datetime.weekday()
                 interval_index = (commit.authored_datetime.year - start_year) // interval
                 if 0 <= interval_index < num_of_periods:
-                    commit_counts[day_index][interval_index] += 1
+                    # Add to both combined and individual counts
+                    combined_commit_counts[day_index][interval_index] += 1
+                    repo_commit_counts[day_index][interval_index] += 1
 
-    return commit_counts
+        individual_commit_counts[repository] = repo_commit_counts
 
-def write_counts(args, commit_counts, days_of_week):
+    return combined_commit_counts, individual_commit_counts
+
+def write_counts(args, commit_counts, days_of_week, filename_prefix="CommitCountsPerDay"):
     """
     Write commit counts to a CSV file.
 
@@ -97,8 +106,12 @@ def write_counts(args, commit_counts, days_of_week):
         args (argparse.Namespace): The parsed command-line arguments.
         commit_counts (dict): The dictionary with commit counts.
         days_of_week (list): The list of days in the week.
+        filename_prefix (str): Prefix for the output filename.
+    
+    Returns:
+        str: The filename that was written to.
     """
-    filename = 'CommitCountsPerDay.csv'
+    filename = f'{filename_prefix}.csv'
     with open(filename, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
         header_row = generate_header_row(args.start_year, args.end_year, args.interval)
@@ -107,8 +120,9 @@ def write_counts(args, commit_counts, days_of_week):
         for day_index, day in enumerate(days_of_week):
             writer.writerow([day] + [str(count) for count in commit_counts[day_index]])
     print(f"Commit counts written to {filename}")
+    return filename
 
-def write_proportions(args, commit_counts, days_of_week, num_of_periods):
+def write_proportions(args, commit_counts, days_of_week, num_of_periods, filename_prefix="CommitPercentagesPerDay"):
     """
     Write commit proportions to a CSV file.
 
@@ -117,8 +131,12 @@ def write_proportions(args, commit_counts, days_of_week, num_of_periods):
         commit_counts (dict): The dictionary with commit counts.
         days_of_week (list): The list of days in the week.
         num_of_periods (int): The total number of periods calculated.
+        filename_prefix (str): Prefix for the output filename.
+    
+    Returns:
+        str: The filename that was written to.
     """
-    filename = 'CommitPercentagesPerDay.csv'
+    filename = f'{filename_prefix}.csv'
     with open(filename, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
         header_row = generate_header_row(args.start_year, args.end_year, args.interval)
@@ -133,6 +151,32 @@ def write_proportions(args, commit_counts, days_of_week, num_of_periods):
                 percentages.append(percentage)
             writer.writerow([day] + percentages)
     print(f"Commit proportions written to {filename}")
+    return filename
+
+def write_individual_repo_files(args, individual_commit_counts, days_of_week, num_of_periods):
+    """
+    Write separate CSV files for each repository.
+
+    Args:
+        args (argparse.Namespace): The parsed command-line arguments.
+        individual_commit_counts (dict): Dictionary with commit counts for each repository.
+        days_of_week (list): The list of days in the week.
+        num_of_periods (int): The total number of periods calculated.
+    """
+    # Create a directory for individual repository files
+    output_dir = "individual_repos"
+    os.makedirs(output_dir, exist_ok=True)
+    
+    for repo_name, commit_counts in individual_commit_counts.items():
+        # Sanitize repository name for filename
+        safe_repo_name = "".join(c for c in repo_name if c.isalnum() or c in ('-', '_')).rstrip()
+        
+        if args.contents == 'proportions':
+            filename_prefix = os.path.join(output_dir, f"{safe_repo_name}_CommitPercentagesPerDay")
+            write_proportions(args, commit_counts, days_of_week, num_of_periods, filename_prefix)
+        else:
+            filename_prefix = os.path.join(output_dir, f"{safe_repo_name}_CommitCountsPerDay")
+            write_counts(args, commit_counts, days_of_week, filename_prefix)
 
 def generate_header_row(start_year, end_year, interval):
     """
@@ -159,12 +203,22 @@ def main():
     repo_list = read_repo_list(args.repos)
     days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     num_of_periods = (args.end_year - args.start_year + 1) // args.interval
-    commit_counts = count_commits(repo_list, args.repos_path, args.start_year, args.interval, num_of_periods)
+    
+    # Get both combined and individual commit counts
+    combined_commit_counts, individual_commit_counts = count_commits(
+        repo_list, args.repos_path, args.start_year, args.interval, num_of_periods
+    )
 
+    # Write combined results (original functionality)
     if args.contents == 'proportions':
-        write_proportions(args, commit_counts, days_of_week, num_of_periods)
+        write_proportions(args, combined_commit_counts, days_of_week, num_of_periods)
     else:
-        write_counts(args, commit_counts, days_of_week)
+        write_counts(args, combined_commit_counts, days_of_week)
+
+    # Write individual repository files
+    print(f"\nWriting individual repository files...")
+    write_individual_repo_files(args, individual_commit_counts, days_of_week, num_of_periods)
+    print(f"Individual repository files written to 'individual_repos/' directory")
 
 if __name__ == "__main__":
     main()
