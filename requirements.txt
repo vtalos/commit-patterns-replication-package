@@ -1,0 +1,9 @@
+gitpython
+numpy
+statsmodels
+scipy
+itertools
+pymannkendall
+matplotlib
+dateutil
+pandas
