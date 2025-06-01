@@ -57,7 +57,7 @@ def count_commits_per_interval(repo_path):
     
     # Get all commits sorted by date (oldest first)
     all_commits = list(repo.iter_commits())
-    all_commits.reverse()  # Now oldest first
+    all_commits.reverse()
     
     # Track when each contributor first makes a non-UTC+0 commit
     contributor_activation = {}  # email -> datetime when they first made non-UTC+0 commit
