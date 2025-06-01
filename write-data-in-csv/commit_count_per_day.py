@@ -81,7 +81,7 @@ def count_commits(repo_list, repos_path, start_year, interval, num_of_periods):
         repo_path = os.path.join(repos_path, repository)
         repo = Repo(repo_path)
 
-        for commit in repo.iter_commits():
+        for commit in reversed(list(repo.iter_commits())):
             contributor = commit.author.email
             if commit.authored_datetime.strftime('%z') != "+0000":
                 non_utc0_commits[contributor] = True

@@ -23,17 +23,17 @@ for repository in repo_list:
     print(f"Processing repository: {repository}")
     repo_path = os.path.join(repos_path, repository)
     repo = Repo(repo_path)
-    for commit in repo.iter_commits():
+    commits = reversed(list(repo.iter_commits()))
+    for commit in commits:
         contributor = commit.author.email
         timezone = commit.authored_datetime.strftime('%z')
-        print(commit.authored_datetime.tzinfo.dst(), timezone)
+        
         if timezone != "+0000":
             non_utc0_commits[contributor] = True
         
         if non_utc0_commits[contributor]:
             timezone_commits[timezone] += 1
     # find the timezone with the most commits
-    print(f"Timezone commits for {repository}: {timezone_commits}")
     if timezone_commits:
         most_commits_tz = max(timezone_commits, key=timezone_commits.get) 
         print(f"Most common timezone for {repository}: {most_commits_tz} with {timezone_commits[most_commits_tz]} commits")
