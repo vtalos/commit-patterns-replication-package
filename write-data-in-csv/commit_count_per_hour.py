@@ -120,7 +120,6 @@ def count_commits(repo_list, repos_path, start_year, interval, num_of_periods):
                 non_utc_offsets.sort(key=lambda x: x[0])  # Sort by datetime, earliest first
                 best_offset = non_utc_offsets[0][1]
                 contributor_best_timezone[contributor] = parse_timezone_offset(best_offset)
-                print(f"  Contributor {contributor}: using timezone {best_offset} (from oldest non-UTC commit)")
         
         # Second pass: count commits using corrected timezones
         print(f"  Second pass: counting commits with timezone corrections...")
