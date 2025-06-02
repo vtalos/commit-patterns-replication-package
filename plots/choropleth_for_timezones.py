@@ -4,23 +4,24 @@ import pytz
 import datetime
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-
+import matplotlib.cm as cm
+import matplotlib.colors as mcolors
 # Most common UTC offsets of commit per repository
 data = [
-    ("+0100", 10),
-    ("+1000", 1),
-    ("+0200", 51),
-    ("+0300", 4),
-    ("+0000", 5),
-    ("-0500", 2),
-    ("-1000", 1),
-    ("+0800", 2),
-    ("-0400", 14),
-    ("-0700", 9),
-    ("-0600", 2),
-    ("+1100", 1),
-    ("+0530", 1),
-    ("+0900", 1)
+    ("+0100",9),
+    ("+1000",1),
+    ("+0200",51),
+    ("+0300",5),
+    ("+0000",5),
+    ("-0500",3),
+    ("-1000",1),
+    ("+0800",2),
+    ("-0400",14),
+    ("-0700",9),
+    ("-0600",1),
+    ("+1100",1),
+    ("+0530",1),
+    ("+0900",1),
 ]
 df = pd.DataFrame(data, columns=["offset", "repo_count"])
 
@@ -61,12 +62,10 @@ gdf['has_dst'] = gdf['tzid'].apply(has_dst)
 gdf = gdf.merge(df, left_on='winter_offset', right_on='offset', how='left')
 
 # --- Step 5: Set categorical colors for repo_count ---
-repo_counts = sorted(df['repo_count'].unique())
-colors = [
-    "#e41a1c", "#377eb8", "#4daf4a", "#984ea3",
-    "#ff7f00", "#ffff33", "#a65628", "#f781bf", "#999999", "#1b9e77", "#d95f02"
-]
-color_dict = {rc: colors[i % len(colors)] for i, rc in enumerate(repo_counts)}
+repo_counts = df['repo_count']
+cmap = cm.get_cmap('tab20', len(repo_counts))  # 'tab20' supports up to 20 unique colors
+
+color_dict = {rc: mcolors.to_hex(cmap(i)) for i, rc in enumerate(repo_counts)}
 gdf['color'] = gdf['repo_count'].map(color_dict)
 gdf['color'] = gdf['color'].fillna('lightgrey')  # color for regions with no data
 

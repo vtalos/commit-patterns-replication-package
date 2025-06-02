@@ -2,8 +2,8 @@ gitpython
 numpy
 statsmodels
 scipy
-itertools
 pymannkendall
 matplotlib
-dateutil
+python-dateutil
 pandas
+geopandas
