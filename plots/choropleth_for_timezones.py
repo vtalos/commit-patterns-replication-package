@@ -6,24 +6,11 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import matplotlib.cm as cm
 import matplotlib.colors as mcolors
-# Most common UTC offsets of commit per repository
-data = [
-    ("+0100",9),
-    ("+1000",1),
-    ("+0200",51),
-    ("+0300",5),
-    ("+0000",5),
-    ("-0500",3),
-    ("-1000",1),
-    ("+0800",2),
-    ("-0400",14),
-    ("-0700",9),
-    ("-0600",1),
-    ("+1100",1),
-    ("+0530",1),
-    ("+0900",1),
-]
-df = pd.DataFrame(data, columns=["offset", "repo_count"])
+import os
+
+# Use os.path.join for cross-platform compatibility
+most_common_offset = os.path.join('..', 'data-cleaning', 'common_timezones', 'most_common_timezone.txt')
+df = pd.read_csv(most_common_offset, sep=',', header=None, names=['timezone', 'count'])
 
 # --- Step 1: Load timezone polygons (GeoJSON) ---
 gdf = gpd.read_file('timezones.geojson')
@@ -59,14 +46,14 @@ def has_dst(tzid):
 gdf['has_dst'] = gdf['tzid'].apply(has_dst)
 
 # --- Step 4: Merge repo counts into the GeoDataFrame using winter_offset ---
-gdf = gdf.merge(df, left_on='winter_offset', right_on='offset', how='left')
+gdf = gdf.merge(df, left_on='winter_offset', right_on='timezone', how='left')
 
-# --- Step 5: Set categorical colors for repo_count ---
-repo_counts = df['repo_count']
+# --- Step 5: Set categorical colors for count ---
+repo_counts = sorted(df['count'].unique())
 cmap = cm.get_cmap('tab20', len(repo_counts))  # 'tab20' supports up to 20 unique colors
 
 color_dict = {rc: mcolors.to_hex(cmap(i)) for i, rc in enumerate(repo_counts)}
-gdf['color'] = gdf['repo_count'].map(color_dict)
+gdf['color'] = gdf['count'].map(color_dict)
 gdf['color'] = gdf['color'].fillna('lightgrey')  # color for regions with no data
 
 # --- Step 6: Plot the map ---
