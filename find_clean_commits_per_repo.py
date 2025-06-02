@@ -18,13 +18,14 @@ with open(args.repos, 'r') as file:
 
 repos_path = args.repos_path
 most_common_timezone = defaultdict(int)
+if args.compare:
+    most_common_timezone2004 = defaultdict(int)
+    most_common_timezone2023 = defaultdict(int)
 for repository in repo_list:
     timezone_commits = defaultdict(int)
     if args.compare:
         timezone_commits2004 = defaultdict(int)
         timezone_commits_2023 = defaultdict(int)
-        most_common_timezone2004 = defaultdict(int)
-        most_common_timezone2023 = defaultdict(int)
     non_utc0_commits = defaultdict(bool)
     print(f"Processing repository: {repository}")
     repo_path = os.path.join(repos_path, repository)
@@ -37,7 +38,7 @@ for repository in repo_list:
             year = commit.authored_datetime.year
             if timezone != "+0000":
                 non_utc0_commits[contributor] = True
-            if non_utc0_commits[contributor]:
+            if non_utc0_commits[contributor] and year>=2004 and year<=2023:
                 timezone_commits[timezone] += 1
     if args.compare:
         for commit in commits:
