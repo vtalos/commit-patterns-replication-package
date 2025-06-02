@@ -8,10 +8,22 @@ import matplotlib.cm as cm
 import matplotlib.colors as mcolors
 import os
 
+def normalize_offset(x):
+    # x είναι string όπως '100', '-700', '0', '1100'
+    x = str(x)
+    if x.startswith('-'):
+        sign = '-'
+        body = x[1:]
+    else:
+        sign = '+'
+        body = x if x != '0' else '0000'
+    # Add leading zeros
+    body = body.zfill(4)
+    return f"{sign}{body}"
+
 # Use os.path.join for cross-platform compatibility
 most_common_offset = os.path.join('..', 'data-cleaning', 'common_timezones', 'most_common_timezone.txt')
 df = pd.read_csv(most_common_offset, sep=',', header=None, names=['timezone', 'count'])
-
 # --- Step 1: Load timezone polygons (GeoJSON) ---
 gdf = gpd.read_file('timezones.geojson')
 
@@ -46,6 +58,14 @@ def has_dst(tzid):
 gdf['has_dst'] = gdf['tzid'].apply(has_dst)
 
 # --- Step 4: Merge repo counts into the GeoDataFrame using winter_offset ---
+# Ensure both columns are strings for merge
+gdf['winter_offset'] = gdf['winter_offset'].astype(str)
+
+df['timezone'] = df['timezone'].apply(normalize_offset)
+df['timezone'] = df['timezone'].astype(str)
+print("winter_offset sample:", gdf['winter_offset'].unique())
+print("timezone sample:", df['timezone'].unique())
+
 gdf = gdf.merge(df, left_on='winter_offset', right_on='timezone', how='left')
 
 # --- Step 5: Set categorical colors for count ---
@@ -90,13 +110,6 @@ patches.append(hatch_patch)
 patches.append(mpatches.Patch(color='lightgrey', label='No data'))
 
 ax.legend(handles=patches, loc='lower left', frameon=True, fontsize=11, title="Most Common Repo Timezones")
-
-ax.set_title(
-    "Repo Distribution by Standard (Winter) UTC Offset\n"
-    "Color: Number of repos for each standard offset.\n"
-    "Striped areas: Regions observing Daylight Saving Time (DST)",
-    fontsize=18, fontweight='bold'
-)
 ax.axis('off')
 
 plt.tight_layout()
