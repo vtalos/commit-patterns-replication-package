@@ -128,7 +128,6 @@ def count_commits(repo_list, repos_path, start_year, interval, num_of_periods):
         
         # Second pass: count commits using corrected timezones
         print(f"  Second pass: counting commits with timezone corrections...")
-        commits_processed = 0
         
         for commit in reversed(all_commits):
             contributor = commit.author.email
@@ -151,10 +150,6 @@ def count_commits(repo_list, repos_path, start_year, interval, num_of_periods):
                     # Add to both combined and individual counts
                     combined_commit_counts[day_index][interval_index] += 1
                     repo_commit_counts[day_index][interval_index] += 1
-
-                commits_processed += 1
-                if commits_processed % 1000 == 0:
-                    print(f"    Processed {commits_processed}/{len(all_commits)} commits...")
 
         individual_commit_counts[repository] = repo_commit_counts
         print(f"  Completed processing {repository}")
