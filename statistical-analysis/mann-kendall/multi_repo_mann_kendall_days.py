@@ -177,6 +177,11 @@ class MetaAnalyzer:
         
         # Count significant results
         n_significant = np.sum(p_values < self.alpha)
+        
+        # Count significant positive and negative trends
+        n_positive_significant = np.sum((p_values < self.alpha) & (taus > 0))
+        n_negative_significant = np.sum((p_values < self.alpha) & (taus < 0))
+
         n_positive = np.sum(taus > 0)
         n_negative = np.sum(taus < 0)
         
@@ -190,8 +195,10 @@ class MetaAnalyzer:
             'ci_lower': ci_lower,
             'ci_upper': ci_upper,
             'n_significant': n_significant,
-            'n_positive_trend': n_positive,
-            'n_negative_trend': n_negative,
+            'n_positive_trend': n_positive, # Total positive trends (significant or not)
+            'n_negative_trend': n_negative, # Total negative trends (significant or not)
+            'n_positive_significant_trend': n_positive_significant, # Significant positive trends
+            'n_negative_significant_trend': n_negative_significant, # Significant negative trends
             'proportion_significant': n_significant / len(valid_results),
             'individual_results': valid_results,
             'mean_percentage': np.mean([r['mean_pct'] for r in valid_results]),
@@ -238,8 +245,8 @@ class MetaAnalyzer:
                     interpretation = self._interpret_result(result)
                     
                     f.write(f"{result['day']:<12} {result['n_repositories']:<8} "
-                           f"{result['weighted_tau']:<12.4f} {result['combined_p_value']:<12.4f} "
-                           f"{result['i_squared']:<8.3f} {interpretation:<20}\n")
+                            f"{result['weighted_tau']:<12.4f} {result['combined_p_value']:<12.4f} "
+                            f"{result['i_squared']:<8.3f} {interpretation:<20}\n")
                     
                     if result['combined_p_value'] < self.alpha:
                         significant_days.append((result['day'], result))
@@ -261,7 +268,7 @@ class MetaAnalyzer:
                 for day_name, result in significant_days:
                     trend_direction = "increasing" if result['weighted_tau'] > 0 else "decreasing"
                     f.write(f"- {day_name}: {trend_direction} trend (τ = {result['weighted_tau']:.4f}, "
-                           f"p = {result['combined_p_value']:.4f})\n")
+                            f"p = {result['combined_p_value']:.4f})\n")
             else:
                 f.write("No statistically significant temporal trends detected across days of the week.\n")
             
@@ -297,9 +304,11 @@ class MetaAnalyzer:
         f.write(f"  95% CI for effect size: [{result['ci_lower']:.4f}, {result['ci_upper']:.4f}]\n")
         f.write(f"  I² (heterogeneity): {result['i_squared']:.3f}\n")
         f.write(f"  Repositories with significant trends: {result['n_significant']}/{result['n_repositories']} "
-               f"({result['proportion_significant']:.1%})\n")
-        f.write(f"  Positive trends: {result['n_positive_trend']}, "
-               f"Negative trends: {result['n_negative_trend']}\n")
+                f"({result['proportion_significant']:.1%})\n")
+        f.write(f"  Significant positive trends: {result['n_positive_significant_trend']}\n") # Added line
+        f.write(f"  Significant negative trends: {result['n_negative_significant_trend']}\n") # Added line
+        f.write(f"  Total positive trends (all p-values): {result['n_positive_trend']}\n") # Added line
+        f.write(f"  Total negative trends (all p-values): {result['n_negative_trend']}\n") # Added line
         f.write(f"  Mean commit percentage: {result['mean_percentage']:.2f}% ± {result['std_percentage']:.2f}%\n")
         
         interpretation = self._interpret_result(result)
@@ -319,6 +328,8 @@ class MetaAnalyzer:
                     'Combined_P_Value': result['combined_p_value'],
                     'I_Squared': result['i_squared'],
                     'N_Significant': result['n_significant'],
+                    'N_Positive_Significant_Trend': result['n_positive_significant_trend'], # Added to CSV summary
+                    'N_Negative_Significant_Trend': result['n_negative_significant_trend'], # Added to CSV summary
                     'Proportion_Significant': result['proportion_significant'],
                     'Mean_Percentage': result['mean_percentage'],
                     'Std_Percentage': result['std_percentage'],

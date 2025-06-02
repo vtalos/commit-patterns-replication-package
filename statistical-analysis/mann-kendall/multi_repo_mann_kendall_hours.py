@@ -80,7 +80,7 @@ class RepositoryAnalyzer:
                 else:
                     # Wraparound range (e.g., 22-6 for night hours)
                     total = (np.sum(self.data[self.time_block_start:, period_idx]) + 
-                            np.sum(self.data[:self.time_block_end+1, period_idx]))
+                             np.sum(self.data[:self.time_block_end+1, period_idx]))
             else:
                 # Single hour
                 total = self.data[self.time_block_start, period_idx]
@@ -154,7 +154,8 @@ class MetaAnalyzer:
         elif self.time_block_start < self.time_block_end:
             return f"{self.time_block_start:02d}:00-{self.time_block_end+1:02d}:00"
         else:
-            return f"{self.time_block_start:02d}:00-00:00 and 00:00-{self.time_block_end+1:02d}:00"
+            # This handles wraparound, e.g., 22-06
+            return f"{self.time_block_start:02d}:00-24:00 and 00:00-{self.time_block_end+1:02d}:00"
     
     def perform_meta_analysis(self):
         """Perform meta-analysis across all repositories."""
@@ -222,6 +223,11 @@ class MetaAnalyzer:
         
         # Count significant results
         n_significant = np.sum(p_values < self.alpha)
+        
+        # Count significant positive and negative trends
+        n_positive_significant = np.sum((p_values < self.alpha) & (taus > 0))
+        n_negative_significant = np.sum((p_values < self.alpha) & (taus < 0))
+
         n_positive = np.sum(taus > 0)
         n_negative = np.sum(taus < 0)
         
@@ -235,8 +241,10 @@ class MetaAnalyzer:
             'ci_lower': ci_lower,
             'ci_upper': ci_upper,
             'n_significant': n_significant,
-            'n_positive_trend': n_positive,
-            'n_negative_trend': n_negative,
+            'n_positive_trend': n_positive, # Total positive trends (significant or not)
+            'n_negative_trend': n_negative, # Total negative trends (significant or not)
+            'n_positive_significant_trend': n_positive_significant, # Significant positive trends
+            'n_negative_significant_trend': n_negative_significant, # Significant negative trends
             'proportion_significant': n_significant / len(valid_results),
             'individual_results': valid_results,
             'mean_percentage': np.mean([r['mean_pct'] for r in valid_results]),
@@ -275,9 +283,11 @@ class MetaAnalyzer:
             f.write(f"  95% CI for effect size: [{result['ci_lower']:.4f}, {result['ci_upper']:.4f}]\n")
             f.write(f"  I² (heterogeneity): {result['i_squared']:.3f}\n")
             f.write(f"  Repositories with significant trends: {result['n_significant']}/{result['n_repositories']} "
-                   f"({result['proportion_significant']:.1%})\n")
-            f.write(f"  Positive trends: {result['n_positive_trend']}, "
-                   f"Negative trends: {result['n_negative_trend']}\n")
+                    f"({result['proportion_significant']:.1%})\n")
+            f.write(f"  Significant positive trends: {result['n_positive_significant_trend']}\n") # Added line
+            f.write(f"  Significant negative trends: {result['n_negative_significant_trend']}\n") # Added line
+            f.write(f"  Total positive trends (all p-values): {result['n_positive_trend']}\n") # Added line
+            f.write(f"  Total negative trends (all p-values): {result['n_negative_trend']}\n") # Added line
             f.write(f"  Mean commit percentage: {result['mean_percentage']:.2f}% ± {result['std_percentage']:.2f}%\n")
             
             interpretation = self._interpret_result(result)
@@ -295,7 +305,7 @@ class MetaAnalyzer:
                     trend_desc = "Not significant"
                     
                 f.write(f"{repo_result['repo']:<30} {repo_result['tau']:<12.4f} "
-                       f"{repo_result['p_value']:<12.4f} {trend_desc:<15}\n")
+                        f"{repo_result['p_value']:<12.4f} {trend_desc:<15}\n")
             
             # Overall conclusions
             f.write(f"\nOVERALL CONCLUSIONS:\n")
@@ -305,7 +315,7 @@ class MetaAnalyzer:
                 trend_direction = "increasing" if result['weighted_tau'] > 0 else "decreasing"
                 f.write(f"Significant temporal trend detected for time range {result['time_range']}:\n")
                 f.write(f"- {trend_direction.capitalize()} trend (τ = {result['weighted_tau']:.4f}, "
-                       f"p = {result['combined_p_value']:.4f})\n")
+                        f"p = {result['combined_p_value']:.4f})\n")
             else:
                 f.write(f"No statistically significant temporal trend detected for time range {result['time_range']}.\n")
             
@@ -347,6 +357,8 @@ class MetaAnalyzer:
             'Combined_P_Value': result['combined_p_value'],
             'I_Squared': result['i_squared'],
             'N_Significant': result['n_significant'],
+            'N_Positive_Significant_Trend': result['n_positive_significant_trend'], # Added to CSV summary
+            'N_Negative_Significant_Trend': result['n_negative_significant_trend'], # Added to CSV summary
             'Proportion_Significant': result['proportion_significant'],
             'Mean_Percentage': result['mean_percentage'],
             'Std_Percentage': result['std_percentage'],
@@ -363,7 +375,7 @@ class MetaAnalyzer:
         if self.meta_result is None:
             print("Error: No meta-analysis results to visualize")
             return False
-        
+            
         try:
             # Get time series data from first repository (for periods)
             if not self.repo_analyzers:
@@ -388,28 +400,28 @@ class MetaAnalyzer:
             
             # Plot mean with error bars
             plt.errorbar(range(len(periods)), mean_time_series, yerr=std_time_series, 
-                        marker='o', linestyle='-', linewidth=2, markersize=8, capsize=5)
+                         marker='o', linestyle='-', linewidth=2, markersize=8, capsize=5)
             
             # Add trend line if significant
             if self.meta_result['combined_p_value'] < self.alpha:
                 z = np.polyfit(range(len(periods)), mean_time_series, 1)
                 p = np.poly1d(z)
                 plt.plot(range(len(periods)), p(range(len(periods))), 
-                        'r--', linewidth=2, alpha=0.8, label='Trend Line')
+                         'r--', linewidth=2, alpha=0.8, label='Trend Line')
                 plt.legend()
             
             plt.xlabel('Year', fontsize=14)
             plt.ylabel('Commits (%)', fontsize=14)
             plt.title(f'Temporal Trend Analysis: {self.meta_result["time_range"]}\n'
-                     f'Meta-analysis across {self.meta_result["n_repositories"]} repositories', 
-                     fontsize=16)
+                      f'Meta-analysis across {self.meta_result["n_repositories"]} repositories', 
+                      fontsize=16)
             plt.grid(True, alpha=0.3)
             
             # Set x-axis labels
             step = max(1, len(periods) // 10)  # Show at most 10 labels
             plt.xticks(range(0, len(periods), step), 
-                      [periods[i] for i in range(0, len(periods), step)], 
-                      rotation=45)
+                       [periods[i] for i in range(0, len(periods), step)], 
+                       rotation=45)
             
             plt.tight_layout()
             plt.savefig(output_file, dpi=300, bbox_inches='tight')
@@ -480,7 +492,7 @@ def main():
     # Perform meta-analysis
     if meta_analyzer.perform_meta_analysis():
         # Generate outputs
-        time_range_safe = meta_analyzer.get_time_range_description().replace(":", "_").replace("-", "_")
+        time_range_safe = meta_analyzer.get_time_range_description().replace(":", "_").replace("-", "_").replace(" ", "_")
         report_file = os.path.join(args.output_dir, f"meta_analysis_hours_{time_range_safe}_report.txt")
         csv_file = os.path.join(args.output_dir, f"meta_analysis_hours_{time_range_safe}_summary.csv")
         
