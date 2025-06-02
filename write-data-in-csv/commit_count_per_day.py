@@ -125,9 +125,6 @@ def count_commits(repo_list, repos_path, start_year, interval, num_of_periods):
                 best_offset = non_utc_offsets[0][1]
                 contributor_best_timezone[contributor] = parse_timezone_offset(best_offset)
                 print(f"  Contributor {contributor}: using timezone {best_offset} (from oldest non-UTC commit)")
-            else:
-                # If contributor only has UTC commits, keep UTC
-                contributor_best_timezone[contributor] = timezone.utc
         
         # Second pass: count commits using corrected timezones
         print(f"  Second pass: counting commits with timezone corrections...")
@@ -135,26 +132,29 @@ def count_commits(repo_list, repos_path, start_year, interval, num_of_periods):
         
         for commit in reversed(all_commits):
             contributor = commit.author.email
-            best_timezone = contributor_best_timezone[contributor]
-            
-            # Get the original UTC datetime
-            original_datetime = commit.authored_datetime.replace(tzinfo=timezone.utc)
-            
-            # Convert to the contributor's best known timezone
-            corrected_datetime = original_datetime.astimezone(best_timezone)
-            
-            # Get the day of week from the corrected time
-            day_index = corrected_datetime.weekday()
-            interval_index = (corrected_datetime.year - start_year) // interval
-            
-            if 0 <= interval_index < num_of_periods:
-                # Add to both combined and individual counts
-                combined_commit_counts[day_index][interval_index] += 1
-                repo_commit_counts[day_index][interval_index] += 1
-            
-            commits_processed += 1
-            if commits_processed % 1000 == 0:
-                print(f"    Processed {commits_processed}/{len(all_commits)} commits...")
+            # If the contributor has only UTC +0 commits he is not in the keys of contributor_timezones
+            if contributor in contributor_best_timezone:
+                
+                best_timezone = contributor_best_timezone[contributor]
+
+                # Get the original UTC datetime
+                original_datetime = commit.authored_datetime.replace(tzinfo=timezone.utc)
+
+                # Convert to the contributor's best known timezone
+                corrected_datetime = original_datetime.astimezone(best_timezone)
+
+                # Get the day of week from the corrected time
+                day_index = corrected_datetime.weekday()
+                interval_index = (corrected_datetime.year - start_year) // interval
+
+                if 0 <= interval_index < num_of_periods:
+                    # Add to both combined and individual counts
+                    combined_commit_counts[day_index][interval_index] += 1
+                    repo_commit_counts[day_index][interval_index] += 1
+
+                commits_processed += 1
+                if commits_processed % 1000 == 0:
+                    print(f"    Processed {commits_processed}/{len(all_commits)} commits...")
 
         individual_commit_counts[repository] = repo_commit_counts
         print(f"  Completed processing {repository}")
