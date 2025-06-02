@@ -130,12 +130,11 @@ def count_commits(repo_list, repos_path, start_year, interval, num_of_periods):
             if contributor in contributor_best_timezone:
                 
                 best_timezone = contributor_best_timezone[contributor]
-
-                # Get the original UTC datetime
-                original_datetime = commit.authored_datetime.replace(tzinfo=timezone.utc)
-
-                # Convert to the contributor's best known timezone
-                corrected_datetime = original_datetime.astimezone(best_timezone)
+                offset_str = commit.authored_datetime.strftime('%z')
+                if offset_str == "+0000":
+                    corrected_datetime = commit.authored_datetime.replace(tzinfo=best_timezone)
+                else:
+                    corrected_datetime = commit.authored_datetime                
                 hour_index = corrected_datetime.hour
                 interval_index = (corrected_datetime.year - start_year) // interval
                 if 0 <= interval_index < num_of_periods:
@@ -228,10 +227,14 @@ def write_individual_repo_files(args, individual_commit_counts, num_of_periods):
         individual_commit_counts (dict): Dictionary with commit counts for each repository.
         num_of_periods (int): The total number of periods calculated.
     """
-    # Create a directory for individual repository files
-    output_dir = "individual_repos"
-    os.makedirs(output_dir, exist_ok=True)
-    
+    base_dir = "individual_repos"
+    if args.contents == 'proportions':
+        type_subfolder = "CommitPercentagesPerHour"
+    else:
+        type_subfolder = "CommitCountsPerHour"
+
+    output_dir = os.path.join(base_dir, type_subfolder)
+    os.makedirs(output_dir, exist_ok=True)    
     for repo_name, commit_counts in individual_commit_counts.items():
         # Sanitize repository name for filename
         safe_repo_name = "".join(c for c in repo_name if c.isalnum() or c in ('-', '_')).rstrip()

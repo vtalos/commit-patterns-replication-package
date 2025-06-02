@@ -135,12 +135,12 @@ def count_commits(repo_list, repos_path, start_year, interval, num_of_periods):
                 
                 best_timezone = contributor_best_timezone[contributor]
 
-                # Get the original UTC datetime
-                original_datetime = commit.authored_datetime.replace(tzinfo=timezone.utc)
-
                 # Convert to the contributor's best known timezone
-                corrected_datetime = original_datetime.astimezone(best_timezone)
-
+                offset_str = commit.authored_datetime.strftime('%z')
+                if offset_str == "+0000":
+                    corrected_datetime = commit.authored_datetime.replace(tzinfo=best_timezone)
+                else:
+                    corrected_datetime = commit.authored_datetime
                 # Get the day of week from the corrected time
                 day_index = corrected_datetime.weekday()
                 interval_index = (corrected_datetime.year - start_year) // interval
@@ -220,8 +220,14 @@ def write_individual_repo_files(args, individual_commit_counts, days_of_week, nu
         days_of_week (list): The list of days in the week.
         num_of_periods (int): The total number of periods calculated.
     """
-    # Create a directory for individual repository files
-    output_dir = "individual_repos"
+    base_dir = "individual_repos"
+
+    if args.contents == 'proportions':
+        type_subfolder = "CommitPercentagesPerDay"
+    else:
+        type_subfolder = "CommitCountsPerDay"
+
+    output_dir = os.path.join(base_dir, type_subfolder)
     os.makedirs(output_dir, exist_ok=True)
     
     for repo_name, commit_counts in individual_commit_counts.items():
