@@ -2,6 +2,8 @@ import pandas as pd
 from scipy.stats import kruskal
 import argparse
 import sys
+from scipy.stats import mannwhitneyu
+from itertools import combinations
 
 # Avoid UnicodeEncodeError on Windows
 import os
@@ -9,7 +11,7 @@ if os.name == 'nt':
     sys.stdout.reconfigure(encoding='utf-8')
 
 # Parse command-line arguments
-parser = argparse.ArgumentParser(description="Perform Kruskal-Wallis test with Bonferroni correction.")
+parser = argparse.ArgumentParser(description="Perform Kruskal-Wallis test and then Mann-Whitney with correction factor")
 parser.add_argument("filename", help="Path to the CSV file")
 args = parser.parse_args()
 
@@ -26,23 +28,21 @@ groups = [list(row) for row in data]
 # Number of groups (days)
 n = len(groups)
 
-# Total pairwise comparisons: nC2
-total_comparisons = n * (n - 1) // 2
 alpha = 0.05
-alpha_adj = alpha / total_comparisons  # Bonferroni correction
 
-print(f"Number of groups (n) = {n}")
-print(f"Total pairwise comparisons = {total_comparisons}")
-print(f"Using Bonferroni-adjusted alpha = {alpha_adj:.5f}\n")
+stat, p = kruskal(*groups)
+print(f"Kruskal-Wallis: H = {stat:.3f}, p = {p:.4f}")
 
-# Perform pairwise Kruskal-Wallis tests
-for i in range(n):
-    for j in range(i + 1, n):
-        stat, p_value = kruskal(groups[i], groups[j])
-        print(f"Comparing {day_labels[i]} vs. {day_labels[j]}:")
-        print(f"  H statistic = {stat:.4f}")
-        print(f"  raw p-value = {p_value:.6f}")
-        if p_value < alpha_adj:
-            print(f"  --> Reject H₀ at α_adj={alpha_adj:.5f}: significant difference.\n")
-        else:
-            print(f"  --> Fail to reject H₀ at α_adj={alpha_adj:.5f}: no significant difference.\n")
+if p < 0.05:
+    pairs = list(combinations(range(n), 2))
+    alpha_adj = alpha / len(pairs)
+    print("\nPost-hoc pairwise (Mann-Whitney U):") 
+    print(f"Number of groups (n) = {n}")
+    print(f"Total pairwise comparisons = {len(pairs)}")
+    print(f"Using Bonferroni-adjusted alpha = {alpha_adj:.5f}\n")
+
+    for i, j in pairs:
+        stat_mw, p_mw = mannwhitneyu(groups[i], groups[j], alternative='two-sided')
+        print(f"{day_labels[i]} vs {day_labels[j]}: p = {p_mw:.4f} | Significant: {p_mw < alpha_adj}")
+else:
+    print("There is not statistical significant (post-hoc tests not needed).")
