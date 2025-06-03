@@ -5,20 +5,27 @@ This script addresses the hierarchical nature of commit data by:
 1. Performing Mann-Kendall tests separately for each repository
 2. Aggregating results using meta-analysis techniques
 3. Providing overall trend assessments with proper statistical inference
+4. Including detailed group statistics based on repository metadata (e.g., type, size)
 
-The script reads multiple CSV files (one per repository) containing commit data
-across hours of the day over multiple years, performs individual Mann-Kendall tests,
-and then combines the results to provide overall trend conclusions.
+The script reads a list of repository names from a text file, then looks for corresponding
+CSV files (one per repository) containing commit data across hours of the day over multiple years.
+It performs individual Mann-Kendall tests, and then combines the results to provide overall
+trend conclusions. It also leverages a separate metadata CSV to provide aggregate statistics
+for different groups of repositories (e.g., significant trends vs. non-significant,
+corporate vs. volunteering).
 
 Usage:
-    python multi_repo_mann_kendall_hours.py <directory_path> <time_block_start> <time_block_end> [--output_dir <output_directory>] [--alpha <significance_level>]
+    python multi_repo_mann_kendall_hours.py <directory_path> <time_block_start> <time_block_end> <repo_list_txt> <repo_metadata_csv> [--output_dir <output_directory>] [--alpha <significance_level>] [--plot]
 
 Arguments:
-    directory_path: Directory containing CSV files (one per repository)
-    time_block_start: The starting hour block for analysis (0=00:00-01:00, 23=23:00-00:00)
-    time_block_end: The ending hour block for analysis (inclusive)
-    --output_dir: Directory to save output files (default: current directory)
-    --alpha: Significance level for tests (default: 0.05)
+    directory_path: Directory containing CSV files (one per repository), typically named like 'ownername_CommitPercentagesPerHour.csv'.
+    time_block_start: The starting hour block for analysis (0=00:00-01:00, 23=23:00-00:00).
+    time_block_end: The ending hour block for analysis (inclusive).
+    repo_list_txt: Path to a text file containing one repository 'owner/name' per line.
+    repo_metadata_csv: Path to the CSV file with repository metadata (e.g., 'repository' for owner/name, 'type' for corporate/volunteering, 'size_kb', 'contributors', 'commits', 'stars', 'language').
+    --output_dir: Directory to save output files (default: current directory).
+    --alpha: Significance level for tests (default: 0.05).
+    --plot: Generate visualization plot (optional).
 """
 import os
 import sys
@@ -35,16 +42,43 @@ from pathlib import Path
 import warnings
 warnings.filterwarnings('ignore')
 
-import os
+# Ensure stdout encoding is utf-8 for broad compatibility
 if os.name == 'nt':
     sys.stdout.reconfigure(encoding='utf-8')
+
+def clean_repo_name_for_filename_and_lookup(repo_identifier):
+    """
+    Cleans a repository identifier string to a consistent format suitable
+    for filename creation and metadata lookup.
+    Handles 'owner/name', 'ownername_CommitPercentagesPerDay.csv', 'ownername_CommitPercentagesPerHour.csv'
+    or just 'ownername'.
+    Removes slashes, dots, and common suffixes. Converts to lowercase.
+    Examples:
+    - 'eclipse-platform/eclipse.platform.swt' -> 'eclipseplatformeclipseplatformswt'
+    - 'eclipse-platformeclipseplatformswt_CommitPercentagesPerHour' -> 'eclipseplatformeclipseplatformswt'
+    """
+    cleaned_name = repo_identifier.replace('/', '')
+    cleaned_name = cleaned_name.replace('.', '')
+    # Remove common suffixes from generated filenames if they exist
+    # Convert to lowercase before checking suffix for case-insensitivity
+    lower_cleaned_name = cleaned_name.lower()
+    
+    if '_commitpercentagesperday' in lower_cleaned_name:
+        cleaned_name = lower_cleaned_name.replace('_commitpercentagesperday', '')
+    if '_commitpercentagesperhour' in lower_cleaned_name: # NEW SUFFIX
+        cleaned_name = lower_cleaned_name.replace('_commitpercentagesperhour', '')
+    
+    return cleaned_name.strip().lower() # Ensure final output is always lowercase
 
 class RepositoryAnalyzer:
     """Handles analysis for individual repositories."""
     
     def __init__(self, filepath, time_block_start, time_block_end):
         self.filepath = filepath
-        self.repo_name = Path(filepath).stem
+        # Extract base name from filepath and clean it for consistent matching
+        self.original_filename_stem = Path(filepath).stem # e.g., 'eclipse-platformeclipse.platform.swt_CommitPercentagesPerHour'
+        self.cleaned_repo_name = clean_repo_name_for_filename_and_lookup(self.original_filename_stem) # e.g., 'eclipseplatformeclipseplatformswt'
+        self.repo_name = self.cleaned_repo_name # Use this cleaned name for reporting
         self.time_block_start = time_block_start
         self.time_block_end = time_block_end
         self.data = None
@@ -79,6 +113,7 @@ class RepositoryAnalyzer:
                     total = np.sum(self.data[self.time_block_start:self.time_block_end+1, period_idx])
                 else:
                     # Wraparound range (e.g., 22-6 for night hours)
+                    # Sum from start to 23, and from 0 to end
                     total = (np.sum(self.data[self.time_block_start:, period_idx]) + 
                              np.sum(self.data[:self.time_block_end+1, period_idx]))
             else:
@@ -101,7 +136,8 @@ class RepositoryAnalyzer:
         
         # Handle missing or invalid data
         valid_data = np.array([x for x in time_series_data if not np.isnan(x)])
-        if len(valid_data) < 3:
+        if len(valid_data) < 3: # Mann-Kendall needs at least 3 data points
+            # print(f"DEBUG: Not enough valid data points ({len(valid_data)}) for Mann-Kendall test for {self.repo_name}.")
             return False
             
         try:
@@ -124,12 +160,13 @@ class RepositoryAnalyzer:
 class MetaAnalyzer:
     """Handles meta-analysis across repositories."""
     
-    def __init__(self, time_block_start, time_block_end, alpha=0.05):
+    def __init__(self, time_block_start, time_block_end, alpha=0.05, repo_metadata_df=None):
         self.time_block_start = time_block_start
         self.time_block_end = time_block_end
         self.alpha = alpha
         self.repo_analyzers = []
         self.meta_result = None
+        self.repo_metadata_df = repo_metadata_df # Store the full metadata DataFrame
         
     def add_repository(self, filepath):
         """Add a repository for analysis."""
@@ -165,6 +202,9 @@ class MetaAnalyzer:
             
         print(f"Performing meta-analysis on {len(self.repo_analyzers)} repositories...")
         print(f"Time range: {self.get_time_range_description()}")
+
+        if self.repo_metadata_df is None:
+            print("Warning: Repository metadata CSV not loaded. Group statistics will not be generated.")
         
         valid_results = []
         
@@ -172,7 +212,8 @@ class MetaAnalyzer:
             result = analyzer.result
             if result is not None and result['p_value'] is not None:
                 valid_results.append({
-                    'repo': analyzer.repo_name,
+                    'repo': analyzer.repo_name, # This is the cleaned repo name from analyzer
+                    'repo_cleaned_name_for_lookup': analyzer.cleaned_repo_name, # Key for metadata join
                     'tau': result['tau'],
                     'p_value': result['p_value'],
                     'n': result['data_points'],
@@ -205,16 +246,20 @@ class MetaAnalyzer:
         
         # Combined p-value using Fisher's method
         try:
-            chi2_stat = -2 * np.sum(np.log(p_values))
-            combined_p = 1 - stats.chi2.cdf(chi2_stat, 2 * len(p_values))
-        except:
+            # Filter out p-values that are exactly 0 or 1, which cause issues with log
+            # Add a small epsilon to 0 p-values, subtract epsilon from 1 p-values
+            p_values_for_fisher = np.clip(p_values, 1e-300, 1 - 1e-15) # Smallest float is around 1e-308
+            chi2_stat = -2 * np.sum(np.log(p_values_for_fisher))
+            combined_p = 1 - stats.chi2.cdf(chi2_stat, 2 * len(p_values_for_fisher))
+        except Exception as e:
+            print(f"Warning: Error calculating combined p-value (Fisher's method): {e}. Setting to NaN.")
             combined_p = np.nan
             
         # Heterogeneity assessment (I²)
         mean_effect = np.mean(effect_sizes)
         Q = np.sum(weights * (effect_sizes - mean_effect)**2)
-        df = len(effect_sizes) - 1
-        I_squared = max(0, (Q - df) / Q) if Q > 0 else 0
+        df_heterogeneity = len(effect_sizes) - 1 # Renamed to avoid conflict with pandas df
+        I_squared = max(0, (Q - df_heterogeneity) / Q) if Q > 0 else 0
         
         # Confidence interval for weighted effect
         se_weighted = 1 / np.sqrt(np.sum(weights))
@@ -274,32 +319,16 @@ class MetaAnalyzer:
             f.write("RESULTS:\n")
             f.write("-" * 40 + "\n\n")
             
-            result = self.meta_result
+            # Call the detailed analysis method for the single time block result
+            self._write_detailed_hour_analysis(f, self.meta_result)
             
-            f.write(f"TIME RANGE: {result['time_range']}\n")
-            f.write(f"  Repositories analyzed: {result['n_repositories']}\n")
-            f.write(f"  Weighted Kendall's τ: {result['weighted_tau']:.4f}\n")
-            f.write(f"  Combined p-value: {result['combined_p_value']:.4f}\n")
-            f.write(f"  95% CI for effect size: [{result['ci_lower']:.4f}, {result['ci_upper']:.4f}]\n")
-            f.write(f"  I² (heterogeneity): {result['i_squared']:.3f}\n")
-            f.write(f"  Repositories with significant trends: {result['n_significant']}/{result['n_repositories']} "
-                    f"({result['proportion_significant']:.1%})\n")
-            f.write(f"  Significant positive trends: {result['n_positive_significant_trend']}\n") # Added line
-            f.write(f"  Significant negative trends: {result['n_negative_significant_trend']}\n") # Added line
-            f.write(f"  Total positive trends (all p-values): {result['n_positive_trend']}\n") # Added line
-            f.write(f"  Total negative trends (all p-values): {result['n_negative_trend']}\n") # Added line
-            f.write(f"  Mean commit percentage: {result['mean_percentage']:.2f}% ± {result['std_percentage']:.2f}%\n")
-            
-            interpretation = self._interpret_result(result)
-            f.write(f"  Interpretation: {interpretation}\n\n")
-            
-            # Individual repository results
+            # Individual repository results (still useful to have)
             f.write("INDIVIDUAL REPOSITORY RESULTS:\n")
             f.write("-" * 40 + "\n")
             f.write(f"{'Repository':<30} {'Kendall τ':<12} {'P-value':<12} {'Trend':<15}\n")
             f.write("-" * 80 + "\n")
             
-            for repo_result in result['individual_results']:
+            for repo_result in self.meta_result['individual_results']:
                 trend_desc = "Increasing" if repo_result['tau'] > 0 else "Decreasing"
                 if repo_result['p_value'] >= self.alpha:
                     trend_desc = "Not significant"
@@ -311,18 +340,18 @@ class MetaAnalyzer:
             f.write(f"\nOVERALL CONCLUSIONS:\n")
             f.write("-" * 40 + "\n")
             
-            if result['combined_p_value'] < self.alpha:
-                trend_direction = "increasing" if result['weighted_tau'] > 0 else "decreasing"
-                f.write(f"Significant temporal trend detected for time range {result['time_range']}:\n")
-                f.write(f"- {trend_direction.capitalize()} trend (τ = {result['weighted_tau']:.4f}, "
-                        f"p = {result['combined_p_value']:.4f})\n")
+            if self.meta_result['combined_p_value'] < self.alpha:
+                trend_direction = "increasing" if self.meta_result['weighted_tau'] > 0 else "decreasing"
+                f.write(f"Significant temporal trend detected for time range {self.meta_result['time_range']}:\n")
+                f.write(f"- {trend_direction.capitalize()} trend (τ = {self.meta_result['weighted_tau']:.4f}, "
+                        f"p = {self.meta_result['combined_p_value']:.4f})\n")
             else:
-                f.write(f"No statistically significant temporal trend detected for time range {result['time_range']}.\n")
+                f.write(f"No statistically significant temporal trend detected for time range {self.meta_result['time_range']}.\n")
             
             f.write(f"\nHeterogeneity assessment suggests ")
-            if result['i_squared'] < 0.25:
+            if self.meta_result['i_squared'] < 0.25:
                 f.write("low heterogeneity between repositories.\n")
-            elif result['i_squared'] < 0.50:
+            elif self.meta_result['i_squared'] < 0.50:
                 f.write("moderate heterogeneity between repositories.\n")
             else:
                 f.write("high heterogeneity between repositories.\n")
@@ -342,6 +371,87 @@ class MetaAnalyzer:
                 return "Significant decreasing trend"
         else:
             return "No significant trend"
+
+    def _write_detailed_hour_analysis(self, f, result):
+        """Write detailed analysis for a specific hour range and group stats."""
+        f.write(f"TIME RANGE: {result['time_range']}\n")
+        f.write(f"  Repositories analyzed: {result['n_repositories']}\n")
+        f.write(f"  Weighted Kendall's τ: {result['weighted_tau']:.4f}\n")
+        f.write(f"  Combined p-value: {result['combined_p_value']:.4f}\n")
+        f.write(f"  95% CI for effect size: [{result['ci_lower']:.4f}, {result['ci_upper']:.4f}]\n")
+        f.write(f"  I² (heterogeneity): {result['i_squared']:.3f}\n")
+        f.write(f"  Repositories with significant trends: {result['n_significant']}/{result['n_repositories']} "
+                        f"({result['proportion_significant']:.1%})\n")
+        f.write(f"  Significant positive trends: {result['n_positive_significant_trend']}\n")
+        f.write(f"  Significant negative trends: {result['n_negative_significant_trend']}\n")
+        f.write(f"  Total positive trends (all p-values): {result['n_positive_trend']}\n")
+        f.write(f"  Total negative trends (all p-values): {result['n_negative_trend']}\n")
+        f.write(f"  Mean commit percentage: {result['mean_percentage']:.2f}% ± {result['std_percentage']:.2f}%\n")
+        
+        interpretation = self._interpret_result(result)
+        f.write(f"  Interpretation: {interpretation}\n\n")
+
+        # --- Group Statistics based on Significance ---
+        if self.repo_metadata_df is not None:
+            f.write("  GROUP STATISTICS BY TREND SIGNIFICANCE:\n")
+            grouped_repos = {
+                'significant_increase': [],
+                'significant_decrease': [],
+                'non_significant': []
+            }
+
+            for individual_repo_result in result['individual_results']:
+                repo_cleaned_name_for_lookup = individual_repo_result['repo_cleaned_name_for_lookup']
+                p_value = individual_repo_result['p_value']
+                tau = individual_repo_result['tau']
+
+                if p_value < self.alpha:
+                    if tau > 0:
+                        grouped_repos['significant_increase'].append(repo_cleaned_name_for_lookup)
+                    else: # tau < 0
+                        grouped_repos['significant_decrease'].append(repo_cleaned_name_for_lookup)
+                else:
+                    grouped_repos['non_significant'].append(repo_cleaned_name_for_lookup)
+
+            for group_name, repo_cleaned_names_list in grouped_repos.items():
+                if repo_cleaned_names_list:
+                    # Filter metadata DataFrame for repos in the current group
+                    group_df = self.repo_metadata_df[
+                        self.repo_metadata_df['cleaned_repo_name_for_matching'].isin(repo_cleaned_names_list)
+                    ]
+                    
+                    if not group_df.empty:
+                        num_repos = len(group_df)
+                        total_size_kb = group_df['size_kb'].sum() if 'size_kb' in group_df.columns else 0
+                        total_contributors = group_df['contributors'].sum() if 'contributors' in group_df.columns else 0
+                        total_commits = group_df['commits'].sum() if 'commits' in group_df.columns else 0
+                        total_stars = group_df['stars'].sum() if 'stars' in group_df.columns else 0
+                        unique_languages = group_df['language'].dropna().unique().tolist() if 'language' in group_df.columns else [] # Dropna to handle NaNs
+                        
+                        # Count specific types
+                        num_volunteering = 0
+                        num_corporate = 0
+                        if 'type' in group_df.columns:
+                            num_volunteering = (group_df['type'].astype(str).str.lower() == 'volunteering').sum()
+                            num_corporate = (group_df['type'].astype(str).str.lower() == 'corporate').sum()
+                        
+                        f.write(f"    - {group_name.replace('_', ' ').title()} ({num_repos} Repositories):\n")
+                        f.write(f"      Total Size (KB): {total_size_kb:,.0f}\n")
+                        f.write(f"      Total Contributors: {total_contributors:,.0f}\n")
+                        f.write(f"      Total Commits: {total_commits:,.0f}\n")
+                        f.write(f"      Total Stars: {total_stars:,.0f}\n")
+                        f.write(f"      Languages: {', '.join(unique_languages) if unique_languages else 'N/A'}\n")
+                        f.write(f"      Types: Volunteering: {num_volunteering}, Corporate: {num_corporate}\n")
+                    else:
+                        f.write(f"    - {group_name.replace('_', ' ').title()} (0 Repositories - Mismatch or missing metadata for this subgroup, or metadata filtering issue)\n")
+                        f.write(f"      Attempted to match: {repo_cleaned_names_list}\n")
+                        f.write(f"      Available in metadata: {self.repo_metadata_df['cleaned_repo_name_for_matching'].values.tolist()}\n")
+
+                else:
+                    f.write(f"    - {group_name.replace('_', ' ').title()} (0 Repositories)\n")
+            f.write("\n")
+        else:
+            f.write("  GROUP STATISTICS NOT AVAILABLE (Repository metadata not provided).\n\n")
     
     def save_summary_csv(self, output_file="meta_analysis_hours_summary.csv"):
         """Save summary statistics to CSV."""
@@ -357,8 +467,8 @@ class MetaAnalyzer:
             'Combined_P_Value': result['combined_p_value'],
             'I_Squared': result['i_squared'],
             'N_Significant': result['n_significant'],
-            'N_Positive_Significant_Trend': result['n_positive_significant_trend'], # Added to CSV summary
-            'N_Negative_Significant_Trend': result['n_negative_significant_trend'], # Added to CSV summary
+            'N_Positive_Significant_Trend': result['n_positive_significant_trend'],
+            'N_Negative_Significant_Trend': result['n_negative_significant_trend'],
             'Proportion_Significant': result['proportion_significant'],
             'Mean_Percentage': result['mean_percentage'],
             'Std_Percentage': result['std_percentage'],
@@ -381,7 +491,7 @@ class MetaAnalyzer:
             if not self.repo_analyzers:
                 return False
                 
-            periods = self.repo_analyzers[0].periods
+            periods = self.repo_analyzers[0].periods # Assuming all repos have the same periods (years)
             
             # Calculate mean time series across repositories
             all_time_series = []
@@ -390,23 +500,34 @@ class MetaAnalyzer:
                     all_time_series.append(analyzer.result['time_series'])
             
             if not all_time_series:
+                print("Warning: No valid time series data to plot.")
                 return False
                 
-            mean_time_series = np.mean(all_time_series, axis=0)
-            std_time_series = np.std(all_time_series, axis=0)
+            # Ensure all time series have the same length before converting to array
+            min_len = min(len(ts) for ts in all_time_series)
+            all_time_series_aligned = [ts[:min_len] for ts in all_time_series]
+            
+            if len(periods) < min_len:
+                print("Warning: Periods array is shorter than aligned time series data. Adjusting periods.")
+                periods_aligned = periods # Use original periods if smaller
+            else:
+                periods_aligned = periods[:min_len] # Align periods to the shortest time series
+
+            mean_time_series = np.mean(all_time_series_aligned, axis=0)
+            std_time_series = np.std(all_time_series_aligned, axis=0)
             
             # Create plot
             plt.figure(figsize=(12, 8))
             
             # Plot mean with error bars
-            plt.errorbar(range(len(periods)), mean_time_series, yerr=std_time_series, 
+            plt.errorbar(range(len(periods_aligned)), mean_time_series, yerr=std_time_series, 
                          marker='o', linestyle='-', linewidth=2, markersize=8, capsize=5)
             
             # Add trend line if significant
-            if self.meta_result['combined_p_value'] < self.alpha:
-                z = np.polyfit(range(len(periods)), mean_time_series, 1)
+            if self.meta_result['combined_p_value'] is not None and self.meta_result['combined_p_value'] < self.alpha:
+                z = np.polyfit(range(len(periods_aligned)), mean_time_series, 1)
                 p = np.poly1d(z)
-                plt.plot(range(len(periods)), p(range(len(periods))), 
+                plt.plot(range(len(periods_aligned)), p(range(len(periods_aligned))), 
                          'r--', linewidth=2, alpha=0.8, label='Trend Line')
                 plt.legend()
             
@@ -418,9 +539,9 @@ class MetaAnalyzer:
             plt.grid(True, alpha=0.3)
             
             # Set x-axis labels
-            step = max(1, len(periods) // 10)  # Show at most 10 labels
-            plt.xticks(range(0, len(periods), step), 
-                       [periods[i] for i in range(0, len(periods), step)], 
+            step = max(1, len(periods_aligned) // 10)  # Show at most 10 labels
+            plt.xticks(range(0, len(periods_aligned), step), 
+                       [periods_aligned[i] for i in range(0, len(periods_aligned), step)], 
                        rotation=45)
             
             plt.tight_layout()
@@ -442,6 +563,8 @@ def parse_arguments():
     parser.add_argument("directory", help="Directory containing CSV files (one per repository)")
     parser.add_argument("time_block_start", type=int, help="Starting hour block (0-23)")
     parser.add_argument("time_block_end", type=int, help="Ending hour block (0-23, inclusive)")
+    parser.add_argument("repo_list_txt", help="Path to a text file containing one repository 'owner/name' per line.")
+    parser.add_argument("repo_metadata_csv", help="Path to the CSV file with repository metadata (e.g., size_kb, contributors)")
     parser.add_argument("--output_dir", default=".", help="Output directory for results")
     parser.add_argument("--alpha", type=float, default=0.05, help="Significance level")
     parser.add_argument("--plot", action="store_true", help="Generate visualization plot")
@@ -460,33 +583,82 @@ def main():
     if not (0 <= args.time_block_start <= 23) or not (0 <= args.time_block_end <= 23):
         print("Error: Time blocks must be between 0 and 23")
         sys.exit(1)
+
+    # Validate repo list TXT
+    if not Path(args.repo_list_txt).is_file():
+        print(f"Error: Repository list TXT not found at {args.repo_list_txt}")
+        sys.exit(1)
+
+    # Validate metadata CSV
+    if not Path(args.repo_metadata_csv).is_file():
+        print(f"Error: Repository metadata CSV not found at {args.repo_metadata_csv}")
+        sys.exit(1)
     
     # Create output directory if it doesn't exist
     os.makedirs(args.output_dir, exist_ok=True)
+
+    # 1. Load repository metadata and clean names consistently for matching
+    repo_metadata_df = pd.read_csv(args.repo_metadata_csv)
+    # Apply cleaning to the 'repository' column from metadata to match cleaned filenames
+    repo_metadata_df['cleaned_repo_name_for_matching'] = repo_metadata_df['repository'].apply(clean_repo_name_for_filename_and_lookup)
     
-    # Initialize meta-analyzer
-    meta_analyzer = MetaAnalyzer(args.time_block_start, args.time_block_end, alpha=args.alpha)
-    
-    # Process all CSV files in directory
-    csv_files = list(Path(args.directory).glob("*.csv"))
-    
-    if not csv_files:
-        print(f"No CSV files found in {args.directory}")
+    # 2. Read repository names from the TXT file
+    repos_to_analyze = []
+    try:
+        with open(args.repo_list_txt, 'r', encoding='utf-8') as f:
+            for line in f:
+                repo_identifier = line.strip()
+                if repo_identifier and not repo_identifier.startswith('#'): # Ignore empty lines and comments
+                    repos_to_analyze.append(repo_identifier)
+        if not repos_to_analyze:
+            print(f"Error: No repository names found in {args.repo_list_txt}")
+            sys.exit(1)
+    except Exception as e:
+        print(f"Error reading repository list from {args.repo_list_txt}: {e}")
         sys.exit(1)
-    
-    print(f"Found {len(csv_files)} CSV files")
+
+    print(f"Found {len(repos_to_analyze)} repositories in {args.repo_list_txt}.")
+
+    # Initialize meta-analyzer, passing the metadata DataFrame
+    meta_analyzer = MetaAnalyzer(args.time_block_start, args.time_block_end, alpha=args.alpha, repo_metadata_df=repo_metadata_df)
     
     successful_loads = 0
-    for csv_file in csv_files:
-        if meta_analyzer.add_repository(csv_file):
-            successful_loads += 1
+    # Process only the CSV files that correspond to the repositories in the list
+    for repo_full_name in repos_to_analyze:
+        # Construct the expected filename for the CSV
+        # Assuming the CSV filenames are like "ownername_CommitPercentagesPerHour.csv"
+        # from "owner/name" in repo_list.txt
+        cleaned_repo_name_for_filename = clean_repo_name_for_filename_and_lookup(repo_full_name)
+        
+        # --- IMPORTANT CHANGE HERE ---
+        csv_filename_pattern = f"{cleaned_repo_name_for_filename}_CommitPercentagesPerHour.csv" 
+        
+        # Look for the exact file in the directory
+        csv_file_path = Path(args.directory) / csv_filename_pattern
+        
+        if csv_file_path.is_file():
+            # Get the cleaned name from the file's stem (e.g., "ownername_CommitPercentagesPerHour" -> "ownername")
+            cleaned_name_from_file_stem = clean_repo_name_for_filename_and_lookup(csv_file_path.stem)
+            print(f"DEBUG: Cleaned name from CSV filename '{csv_file_path.name}': '{cleaned_name_from_file_stem}'")
+
+            # Check if this repository exists in the metadata using the consistently cleaned name
+            if cleaned_name_from_file_stem in repo_metadata_df['cleaned_repo_name_for_matching'].values:
+                print(f"DEBUG: Found metadata for '{cleaned_name_from_file_stem}'. Attempting to add repository.")
+                if meta_analyzer.add_repository(csv_file_path):
+                    successful_loads += 1
+                else:
+                    print(f"Failed to process commit data for: {csv_file_path.name} (Mann-Kendall error or insufficient data points)")
+            else:
+                print(f"Skipping {csv_file_path.name}: No metadata found in {args.repo_metadata_csv} "
+                      f"for cleaned name '{cleaned_name_from_file_stem}'.")
+                print(f"DEBUG: Available cleaned metadata names: {repo_metadata_df['cleaned_repo_name_for_matching'].values.tolist()}")
         else:
-            print(f"Failed to process: {csv_file}")
+            print(f"Skipping {repo_full_name}: Corresponding CSV file '{csv_filename_pattern}' not found in {args.directory}.")
     
-    print(f"Successfully loaded {successful_loads} repositories")
+    print(f"Successfully loaded {successful_loads} repositories with available commit data and metadata.")
     
     if successful_loads < 2:
-        print("Error: Need at least 2 repositories for meta-analysis")
+        print("Error: Need at least 2 repositories with both commit data and metadata for meta-analysis.")
         sys.exit(1)
     
     # Perform meta-analysis
@@ -515,7 +687,7 @@ def main():
         print(f"Weighted Kendall's τ: {result['weighted_tau']:.4f}")
         print(f"Combined p-value: {result['combined_p_value']:.4f}")
         
-        if result['combined_p_value'] < args.alpha:
+        if result['combined_p_value'] is not None and result['combined_p_value'] < args.alpha:
             trend = "increasing" if result['weighted_tau'] > 0 else "decreasing"
             print(f"Result: Significant {trend} trend detected")
         else:

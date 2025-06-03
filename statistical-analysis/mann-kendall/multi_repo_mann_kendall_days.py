@@ -1,23 +1,3 @@
-"""
-Meta-Analysis Script for Mann-Kendall Trend Tests on Multi-Repository Commit Data
-
-This script addresses the hierarchical nature of commit data by:
-1. Performing Mann-Kendall tests separately for each repository
-2. Aggregating results using meta-analysis techniques
-3. Providing overall trend assessments with proper statistical inference
-
-The script reads multiple CSV files (one per repository) containing commit data
-across days of the week over multiple years, performs individual Mann-Kendall tests,
-and then combines the results to provide overall trend conclusions.
-
-Usage:
-    python multi_repo_mann_kendall_days.py <directory_path> [--output_dir <output_directory>] [--alpha <significance_level>]
-
-Arguments:
-    directory_path: Directory containing CSV files (one per repository)
-    --output_dir: Directory to save output files (default: current directory)
-    --alpha: Significance level for tests (default: 0.05)
-"""
 import os
 import sys
 import argparse
@@ -33,19 +13,33 @@ from pathlib import Path
 import warnings
 warnings.filterwarnings('ignore')
 
-import os
+# Ensure stdout encoding is utf-8 for broad compatibility
 if os.name == 'nt':
     sys.stdout.reconfigure(encoding='utf-8')
 
 # Day names for reporting
 DAY_NAMES = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
+def clean_repo_name_for_filename(repo_name_owner_slash_name):
+    """
+    Converts 'owner/name' to 'ownername' format for filename matching.
+    Also strips leading/trailing whitespace and converts to lowercase
+    for robust, case-insensitive matching.
+    Critically, it now removes dots ('.') to match the CSV naming convention.
+    """
+    # Replace '/' first, then '.', then strip and lower
+    cleaned_name = repo_name_owner_slash_name.replace('/', '')
+    cleaned_name = cleaned_name.replace('.', '') # ADDED THIS LINE to remove dots
+    return cleaned_name.strip().lower()
+
 class RepositoryAnalyzer:
     """Handles analysis for individual repositories."""
     
-    def __init__(self, filepath):
+    def __init__(self, filepath, original_repo_identifier):
         self.filepath = filepath
-        self.repo_name = Path(filepath).stem
+        # Use the robust cleaned name consistently for internal logic and metadata lookup
+        self.cleaned_repo_name = clean_repo_name_for_filename(original_repo_identifier)
+        self.original_repo_identifier = original_repo_identifier # e.g., 'eclipse-platform/eclipse.platform.ui'
         self.data = None
         self.periods = None
         self.results = {}
@@ -82,7 +76,7 @@ class RepositoryAnalyzer:
                 'std_percentage': np.std(valid_data)
             }
         except Exception as e:
-            print(f"Error analyzing {self.repo_name}, day {day_idx}: {e}")
+            print(f"Error analyzing {self.original_repo_identifier}, day {day_idx}: {e}")
             return None
     
     def analyze_all_days(self):
@@ -99,14 +93,15 @@ class RepositoryAnalyzer:
 class MetaAnalyzer:
     """Handles meta-analysis across repositories."""
     
-    def __init__(self, alpha=0.05):
+    def __init__(self, alpha=0.05, repo_metadata_df=None):
         self.alpha = alpha
         self.repo_analyzers = []
         self.meta_results = {}
+        self.repo_metadata_df = repo_metadata_df # Store the full metadata DataFrame
         
-    def add_repository(self, filepath):
+    def add_repository(self, filepath, original_repo_identifier):
         """Add a repository for analysis."""
-        analyzer = RepositoryAnalyzer(filepath)
+        analyzer = RepositoryAnalyzer(filepath, original_repo_identifier)
         if analyzer.analyze_all_days():
             self.repo_analyzers.append(analyzer)
             return True
@@ -115,7 +110,6 @@ class MetaAnalyzer:
     def calculate_effect_size(self, tau):
         """Calculate effect size from Kendall's tau."""
         # Convert tau to Cohen's d equivalent for meta-analysis
-        # Using approximation: d ≈ 2 * tau / sqrt(1 - tau²)
         if abs(tau) >= 1:
             return np.sign(tau) * 3  # Cap extreme values
         return 2 * tau / np.sqrt(1 - tau**2)
@@ -128,7 +122,8 @@ class MetaAnalyzer:
             result = analyzer.results.get(day_idx)
             if result is not None and result['p_value'] is not None:
                 valid_results.append({
-                    'repo': analyzer.repo_name,
+                    'repo_cleaned_name': analyzer.cleaned_repo_name, # Use the consistent cleaned name
+                    'original_repo': analyzer.original_repo_identifier, # Original identifier
                     'tau': result['tau'],
                     'p_value': result['p_value'],
                     'n': result['data_points'],
@@ -167,8 +162,8 @@ class MetaAnalyzer:
         # Heterogeneity assessment (I²)
         mean_effect = np.mean(effect_sizes)
         Q = np.sum(weights * (effect_sizes - mean_effect)**2)
-        df = len(effect_sizes) - 1
-        I_squared = max(0, (Q - df) / Q) if Q > 0 else 0
+        df_heterogeneity = len(effect_sizes) - 1 # Renamed to avoid conflict with pandas df
+        I_squared = max(0, (Q - df_heterogeneity) / Q) if Q > 0 else 0
         
         # Confidence interval for weighted effect
         se_weighted = 1 / np.sqrt(np.sum(weights))
@@ -200,7 +195,7 @@ class MetaAnalyzer:
             'n_positive_significant_trend': n_positive_significant, # Significant positive trends
             'n_negative_significant_trend': n_negative_significant, # Significant negative trends
             'proportion_significant': n_significant / len(valid_results),
-            'individual_results': valid_results,
+            'individual_results': valid_results, # List of dicts, each with 'repo_cleaned_name', 'original_repo', etc.
             'mean_percentage': np.mean([r['mean_pct'] for r in valid_results]),
             'std_percentage': np.std([r['mean_pct'] for r in valid_results])
         }
@@ -209,6 +204,9 @@ class MetaAnalyzer:
         """Perform meta-analysis for all days."""
         print(f"Performing meta-analysis on {len(self.repo_analyzers)} repositories...")
         
+        if self.repo_metadata_df is None:
+            print("Warning: Repository metadata CSV not loaded. Group statistics will not be generated.")
+            
         for day_idx in range(7):
             result = self.meta_analyze_day(day_idx)
             if result:
@@ -251,7 +249,7 @@ class MetaAnalyzer:
                     if result['combined_p_value'] < self.alpha:
                         significant_days.append((result['day'], result))
             
-            f.write("\n" + "DETAILED RESULTS:\n")
+            f.write("\n" + "DETAILED RESULTS AND GROUP STATISTICS:\n")
             f.write("-" * 40 + "\n\n")
             
             for day_idx in range(7):
@@ -296,23 +294,78 @@ class MetaAnalyzer:
             return "No significant trend"
     
     def _write_detailed_day_analysis(self, f, result):
-        """Write detailed analysis for a specific day."""
+        """Write detailed analysis for a specific day and group stats."""
         f.write(f"{result['day'].upper()}:\n")
-        f.write(f"  Repositories analyzed: {result['n_repositories']}\n")
-        f.write(f"  Weighted Kendall's τ: {result['weighted_tau']:.4f}\n")
-        f.write(f"  Combined p-value: {result['combined_p_value']:.4f}\n")
-        f.write(f"  95% CI for effect size: [{result['ci_lower']:.4f}, {result['ci_upper']:.4f}]\n")
-        f.write(f"  I² (heterogeneity): {result['i_squared']:.3f}\n")
-        f.write(f"  Repositories with significant trends: {result['n_significant']}/{result['n_repositories']} "
-                f"({result['proportion_significant']:.1%})\n")
-        f.write(f"  Significant positive trends: {result['n_positive_significant_trend']}\n") # Added line
-        f.write(f"  Significant negative trends: {result['n_negative_significant_trend']}\n") # Added line
-        f.write(f"  Total positive trends (all p-values): {result['n_positive_trend']}\n") # Added line
-        f.write(f"  Total negative trends (all p-values): {result['n_negative_trend']}\n") # Added line
-        f.write(f"  Mean commit percentage: {result['mean_percentage']:.2f}% ± {result['std_percentage']:.2f}%\n")
+        f.write(f"  Repositories analyzed: {result['n_repositories']}\n")
+        f.write(f"  Weighted Kendall's τ: {result['weighted_tau']:.4f}\n")
+        f.write(f"  Combined p-value: {result['combined_p_value']:.4f}\n")
+        f.write(f"  95% CI for effect size: [{result['ci_lower']:.4f}, {result['ci_upper']:.4f}]\n")
+        f.write(f"  I² (heterogeneity): {result['i_squared']:.3f}\n")
+        f.write(f"  Repositories with significant trends: {result['n_significant']}/{result['n_repositories']} "
+                        f"({result['proportion_significant']:.1%})\n")
+        f.write(f"  Significant positive trends: {result['n_positive_significant_trend']}\n")
+        f.write(f"  Significant negative trends: {result['n_negative_significant_trend']}\n")
+        f.write(f"  Total positive trends (all p-values): {result['n_positive_trend']}\n")
+        f.write(f"  Total negative trends (all p-values): {result['n_negative_trend']}\n")
+        f.write(f"  Mean commit percentage: {result['mean_percentage']:.2f}% ± {result['std_percentage']:.2f}%\n")
         
         interpretation = self._interpret_result(result)
-        f.write(f"  Interpretation: {interpretation}\n\n")
+        f.write(f"  Interpretation: {interpretation}\n\n")
+
+        # --- New: Group Statistics based on Significance ---
+        if self.repo_metadata_df is not None:
+            f.write("  GROUP STATISTICS BY TREND SIGNIFICANCE:\n")
+            grouped_repos = {
+                'significant_increase': [],
+                'significant_decrease': [],
+                'non_significant': []
+            }
+
+            for individual_repo_result in result['individual_results']:
+                repo_cleaned_name = individual_repo_result['repo_cleaned_name']
+                p_value = individual_repo_result['p_value']
+                tau = individual_repo_result['tau']
+
+                if p_value < self.alpha:
+                    if tau > 0:
+                        grouped_repos['significant_increase'].append(repo_cleaned_name)
+                    else: # tau < 0
+                        grouped_repos['significant_decrease'].append(repo_cleaned_name)
+                else:
+                    grouped_repos['non_significant'].append(repo_cleaned_name)
+
+            for group_name, repo_cleaned_names in grouped_repos.items():
+                if repo_cleaned_names:
+                    group_df = self.repo_metadata_df[self.repo_metadata_df['cleaned_repo_name'].isin(repo_cleaned_names)]
+                    
+                    if not group_df.empty:
+                        num_repos = len(group_df)
+                        total_size_kb = group_df['size_kb'].sum()
+                        total_contributors = group_df['contributors'].sum()
+                        total_commits = group_df['commits'].sum()
+                        total_stars = group_df['stars'].sum()
+                        unique_languages = group_df['language'].unique().tolist()
+                        
+                        # MODIFIED HERE to count specific types
+                        num_volunteering = (group_df['type'] == 'volunteering').sum()
+                        num_corporate = (group_df['type'] == 'corporate').sum()
+                        # You can add more counts if other types might exist, e.g.,
+                        # num_other_types = len(group_df) - num_volunteering - num_corporate
+                        
+                        f.write(f"    - {group_name.replace('_', ' ').title()} ({num_repos} Repositories):\n")
+                        f.write(f"      Total Size (KB): {total_size_kb:,.0f}\n")
+                        f.write(f"      Total Contributors: {total_contributors:,.0f}\n")
+                        f.write(f"      Total Commits: {total_commits:,.0f}\n")
+                        f.write(f"      Total Stars: {total_stars:,.0f}\n")
+                        f.write(f"      Languages: {', '.join(unique_languages)}\n")
+                        f.write(f"      Types: Volunteering: {num_volunteering}, Corporate: {num_corporate}\n") # MODIFIED THIS LINE
+                    else:
+                        f.write(f"    - {group_name.replace('_', ' ').title()} (0 Repositories - Mismatch or missing metadata for this subgroup)\n")
+                else:
+                    f.write(f"    - {group_name.replace('_', ' ').title()} (0 Repositories)\n")
+            f.write("\n")
+        else:
+            f.write("  GROUP STATISTICS NOT AVAILABLE (Repository metadata not provided).\n\n")
     
     def save_summary_csv(self, output_file="meta_analysis_summary.csv"):
         """Save summary statistics to CSV."""
@@ -328,8 +381,8 @@ class MetaAnalyzer:
                     'Combined_P_Value': result['combined_p_value'],
                     'I_Squared': result['i_squared'],
                     'N_Significant': result['n_significant'],
-                    'N_Positive_Significant_Trend': result['n_positive_significant_trend'], # Added to CSV summary
-                    'N_Negative_Significant_Trend': result['n_negative_significant_trend'], # Added to CSV summary
+                    'N_Positive_Significant_Trend': result['n_positive_significant_trend'],
+                    'N_Negative_Significant_Trend': result['n_negative_significant_trend'],
                     'Proportion_Significant': result['proportion_significant'],
                     'Mean_Percentage': result['mean_percentage'],
                     'Std_Percentage': result['std_percentage'],
@@ -343,9 +396,12 @@ class MetaAnalyzer:
 def parse_arguments():
     """Parse command-line arguments."""
     parser = argparse.ArgumentParser(
-        description="Meta-analysis of Mann-Kendall trend tests across multiple repositories"
+        description="Meta-analysis of Mann-Kendall trend tests across specified repositories, "
+                    "with group statistics from metadata."
     )
-    parser.add_argument("directory", help="Directory containing CSV files (one per repository)")
+    parser.add_argument("repo_list_txt", help="Path to a TXT file containing repository names (owner/name format, one per line)")
+    parser.add_argument("commit_data_dir", help="Directory containing CSV files with commit percentages per day")
+    parser.add_argument("repo_metadata_csv", help="Path to the CSV file with repository metadata (e.g., size_kb, contributors)")
     parser.add_argument("--output_dir", default=".", help="Output directory for results")
     parser.add_argument("--alpha", type=float, default=0.05, help="Significance level")
     return parser.parse_args()
@@ -354,37 +410,71 @@ def main():
     """Main execution function."""
     args = parse_arguments()
     
-    # Validate input directory
-    if not os.path.isdir(args.directory):
-        print(f"Error: {args.directory} is not a valid directory")
+    # Validate input paths
+    if not Path(args.repo_list_txt).is_file():
+        print(f"Error: Repository list file not found at {args.repo_list_txt}")
+        sys.exit(1)
+    if not Path(args.commit_data_dir).is_dir():
+        print(f"Error: Commit data directory not found at {args.commit_data_dir}")
+        sys.exit(1)
+    if not Path(args.repo_metadata_csv).is_file():
+        print(f"Error: Repository metadata CSV not found at {args.repo_metadata_csv}")
         sys.exit(1)
     
     # Create output directory if it doesn't exist
     os.makedirs(args.output_dir, exist_ok=True)
+
+    # 1. Load repository metadata and clean names consistently
+    repo_metadata_df = pd.read_csv(args.repo_metadata_csv)
+    repo_metadata_df['cleaned_repo_name'] = repo_metadata_df['repository'].apply(clean_repo_name_for_filename)
     
-    # Initialize meta-analyzer
-    meta_analyzer = MetaAnalyzer(alpha=args.alpha)
+    # 2. Read list of repositories to analyze
+    repos_to_analyze = []
+    with open(args.repo_list_txt, 'r', encoding='utf-8') as f:
+        for line in f:
+            repo_name = line.strip()
+            if repo_name:
+                repos_to_analyze.append(repo_name)
     
-    # Process all CSV files in directory
-    csv_files = list(Path(args.directory).glob("*.csv"))
-    
-    if not csv_files:
-        print(f"No CSV files found in {args.directory}")
+    if not repos_to_analyze:
+        print("Error: No repositories found in the provided TXT file.")
         sys.exit(1)
+
+    print(f"Found {len(repos_to_analyze)} repositories to analyze from {args.repo_list_txt}")
     
-    print(f"Found {len(csv_files)} CSV files")
+    # Initialize meta-analyzer with metadata
+    meta_analyzer = MetaAnalyzer(alpha=args.alpha, repo_metadata_df=repo_metadata_df)
     
+    # Resolve the commit data directory path once to get a clean absolute path
+    resolved_commit_data_dir = Path(args.commit_data_dir).resolve() 
+    
+    # 3. Process each specified repository
     successful_loads = 0
-    for csv_file in csv_files:
-        if meta_analyzer.add_repository(csv_file):
-            successful_loads += 1
+    for original_repo_identifier in repos_to_analyze:
+        # Clean the name for filename generation
+        cleaned_filename_part = clean_repo_name_for_filename(original_repo_identifier)
+        csv_filename = f"{cleaned_filename_part}_CommitPercentagesPerDay.csv"
+        
+        # Use the resolved directory path for joining
+        commit_csv_filepath = resolved_commit_data_dir / csv_filename
+        
+        if commit_csv_filepath.is_file():
+            # Check if this repository exists in the metadata using the consistently cleaned name
+            if cleaned_filename_part in repo_metadata_df['cleaned_repo_name'].values:
+                if meta_analyzer.add_repository(str(commit_csv_filepath), original_repo_identifier):
+                    successful_loads += 1
+                else:
+                    print(f"Failed to analyze commit data for: {original_repo_identifier} (File: {csv_filename})")
+            else:
+                print(f"Skipping {original_repo_identifier}: No metadata found in {args.repo_metadata_csv} "
+                      f"for cleaned name '{cleaned_filename_part}'.")
         else:
-            print(f"Failed to process: {csv_file}")
+            print(f"Skipping {original_repo_identifier}: Commit data file not found at {commit_csv_filepath}")
     
-    print(f"Successfully loaded {successful_loads} repositories")
+    print(f"Successfully loaded {successful_loads} repositories with available commit data and metadata.")
     
     if successful_loads < 2:
-        print("Error: Need at least 2 repositories for meta-analysis")
+        print("Error: Need at least 2 repositories with both commit data and metadata for meta-analysis.")
         sys.exit(1)
     
     # Perform meta-analysis
@@ -411,12 +501,12 @@ def main():
                 significant_results.append(f"{result['day']} {trend}")
         
         if significant_results:
-            print(f"Significant trends: {', '.join(significant_results)}")
+            print(f"Significant meta-trends: {', '.join(significant_results)}")
         else:
-            print("No significant temporal trends detected")
+            print("No significant overall temporal trends detected")
             
     else:
-        print("Error: Meta-analysis failed")
+        print("Error: Meta-analysis failed or no sufficient data for analysis.")
         sys.exit(1)
 
 if __name__ == "__main__":
