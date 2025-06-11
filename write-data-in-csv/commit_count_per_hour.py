@@ -53,7 +53,7 @@ def read_repo_list(repo_file):
     with open(repo_file, 'r') as file:
         return [line.strip() for line in file.readlines()]
 
-def count_commits(repo_list, repos_path, start_year, interval, num_of_periods):
+def count_commits(repo_list, repos_path, start_year, end_year, interval, num_of_periods):
     """
     Count the number of commits per hour for each repository.
 
@@ -61,6 +61,7 @@ def count_commits(repo_list, repos_path, start_year, interval, num_of_periods):
         repo_list (list): A list of repository names.
         repos_path (str): The path to the directory containing the repositories.
         start_year (int): The starting year for the commit counting.
+        end_year (int): The last year for the commit counting.
         interval (int): The number of years in each interval.
         num_of_periods (int): The total number of periods calculated.
 
@@ -79,8 +80,9 @@ def count_commits(repo_list, repos_path, start_year, interval, num_of_periods):
         repo_path = os.path.join(repos_path, repository)
         repo = Repo(repo_path)
 
-        for commit in reversed(list(repo.iter_commits())):
+        for commit in repo.iter_commits(reverse=True, since=f"{start_year-1}-12-31", until=f"{end_year+1}-01-01"):
             contributor = commit.author.email
+            print(commit.authored_datetime)
             if commit.authored_datetime.strftime('%z') != "+0000":
                 non_utc0_commits[contributor] = True
 
@@ -206,7 +208,7 @@ def main():
     
     # Get both combined and individual commit counts
     combined_commit_counts, individual_commit_counts = count_commits(
-        repo_list, args.repos_path, args.start_year, args.interval, num_of_periods
+        repo_list, args.repos_path, args.start_year, args.end_year, args.interval, num_of_periods
     )
 
     # Write combined results (original functionality)
