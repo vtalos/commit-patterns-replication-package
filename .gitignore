@@ -1,2 +1,3 @@
 timezones.geojson
 venv
+.env
