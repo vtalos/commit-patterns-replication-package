@@ -73,7 +73,6 @@ def count_commits(repo_list, repos_path, start_year, end_year, interval, num_of_
     """
     combined_commit_counts = defaultdict(lambda: [0] * num_of_periods)
     individual_commit_counts = {}
-    days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
     for repository in repo_list:
         repo_commit_counts = defaultdict(lambda: [0] * num_of_periods)
