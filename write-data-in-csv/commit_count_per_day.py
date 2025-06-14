@@ -80,7 +80,7 @@ def count_commits(repo_list, repos_path, start_year, end_year, interval, num_of_
         repo_path = os.path.join(repos_path, repository)
         repo = Repo(repo_path)
 
-        for commit in repo.iter_commits(reverse=True, since=f"{start_year-1}-12-31", until=f"{end_year+1}-01-01"):
+        for commit in repo.iter_commits(reverse=True, since=f"{start_year}-01-01", until=f"{end_year}-12-31"):
             day_index = commit.authored_datetime.weekday()
             interval_index = (commit.authored_datetime.year - start_year) // interval
             if 0 <= interval_index < num_of_periods:
