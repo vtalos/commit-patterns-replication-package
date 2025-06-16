@@ -1872,7 +1872,6 @@ widelands/widelands
 kde/kate
 bitcoin-core/gui
 qt/qtdeclarative
-vsrinivas/fuchsia
 kde/plasma-framework
 sxs-collaboration/spectre
 opendtect/opendtect
