@@ -94,10 +94,13 @@ def prepare_data(period, time_blocks):
         data = []
         for per in period:
             if len(per) > 0:
-                if time_block_start != time_block_end:
+                if time_block_start == time_block_end:
+                    total = per[time_block_start]
+                elif time_block_end > time_block_start:
                     total = sum(per[time_block_start:time_block_end])
                 else:
-                    total = per[time_block_start]
+                    # Wrap around case: e.g., 21 to 1 → [21:24] + [0:1]
+                    total = sum(per[time_block_start:24]) + sum(per[0:time_block_end])
                 data.append(total)
         
         data_blocks.append(data)
@@ -131,9 +134,8 @@ def plot_data(data_blocks, time_labels, periods):
     plt.xlabel('Year', fontsize=9)
     plt.ylabel('Commits (%)', fontsize=9)
 
-    labels = ["" if i % 2 == 1 else periods[i] for i in range(len(periods))]
-    ax.set_xticks(range(len(labels)))
-    ax.set_xticklabels(labels, rotation=45)
+    ax.set_xticks(range(len(periods)))
+    ax.set_xticklabels(periods, rotation=45)
 
     plt.grid(True)
     plt.xticks(rotation=35)

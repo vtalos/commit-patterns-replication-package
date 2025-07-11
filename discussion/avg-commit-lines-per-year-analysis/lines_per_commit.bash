@@ -8,7 +8,7 @@ REPO_LOCATION=/home/repos/github
 
 > "$DATA_LOCATION/lines_per_commit.txt"
 
-for year in {2004..2023}; do
+for year in {2015..2024}; do
     total_lines=0
     total_commits=0
 

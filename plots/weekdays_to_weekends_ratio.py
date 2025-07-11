@@ -47,8 +47,8 @@ years = data.columns[1:].astype(int)
 fig, ax = plt.subplots()
 ax.set_xlabel('Year', fontsize=9)
 ax.set_ylabel('Ratio', fontsize=9)
-ax.set_xticks(range(2004, 2024, 2))
-ax.set_xticklabels(range(2004, 2024, 2), rotation=45)
+ax.set_xticks(years)
+ax.set_xticklabels(years, rotation=45)
 ax.plot(years, ratio, linestyle='-', marker='o', color='blue', linewidth=3, markersize=8)
 
 # Set tick font size

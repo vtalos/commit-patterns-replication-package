@@ -22,7 +22,7 @@ Arguments:
 - year2: The second year to compare.
 
 Usage example:
-python cohens_h_hours.py CommitPercentagesPerHour.csv 9 17 2004 2023
+python cohens_h_hours.py CommitPercentagesPerHour.csv 9 17 2015 2024
 """
 import sys
 import argparse
@@ -49,8 +49,12 @@ def get_commit_percentage_sum(filename, year, start_hour, end_hour):
 
         for row in reader:
             hour = int(row[0].split(':')[0])
-            if start_hour <= hour < end_hour:
-                total_commits += float(row[year_index])
+            if start_hour <= end_hour:
+                if start_hour <= hour < end_hour:
+                    total_commits += float(row[year_index])
+            else:
+                if hour >= start_hour or hour < end_hour:
+                    total_commits += float(row[year_index])
 
         return total_commits
 

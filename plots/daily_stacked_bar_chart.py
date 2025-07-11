@@ -16,7 +16,6 @@ The script will prompt the user to input the days of the week they want to analy
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
-import sys
 import argparse
 from itertools import tee
 
@@ -111,9 +110,8 @@ def plot_data(data_blocks, day_labels, periods):
     plt.xlabel('Year', fontsize=10)
     plt.ylabel('Commits (%)', fontsize=10)
 
-    labels = ["" if i % 2 == 1 else periods[i] for i in range(len(periods))]
-    ax.set_xticks(range(len(labels)))
-    ax.set_xticklabels(labels, rotation=45)
+    ax.set_xticks(range(len(periods)))
+    ax.set_xticklabels(periods, rotation=45)
 
     plt.grid(True)
     plt.xticks(rotation=35)
@@ -121,7 +119,7 @@ def plot_data(data_blocks, day_labels, periods):
     for label in (ax.get_xticklabels() + ax.get_yticklabels()):
         label.set_fontsize(10)
 
-    ax.legend(fontsize=11, loc='upper right')
+    ax.legend(fontsize=11, loc='upper left')
 
     plt.tight_layout()
     plt.savefig('daily_stacked_bar_chart.pdf', format='pdf', bbox_inches='tight', pad_inches=0)

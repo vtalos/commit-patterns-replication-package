@@ -108,9 +108,7 @@ def total_commits_per_period():
     ax.set_xlabel('Period', fontsize=9)
     ax.set_xticks(x)
 
-    # Set xtick labels with empty strings for every other label
-    labels = ["" if i % 2 == 1 else periods[i] for i in range(len(periods))]
-    ax.set_xticklabels(labels, rotation=45)
+    ax.set_xticklabels(periods, rotation=45)
     
     # Set tick font size
     for label in (ax.get_xticklabels() + ax.get_yticklabels()):

@@ -2,7 +2,7 @@
 Script to generate a grouped bar chart showing the frequency of commits for each block of hour within two specific time periods.
 
 Usage:
-    python hourly_frequencies <filename.csv> <period_name1> <period_name2>
+    python hourly_frequencies.py <filename.csv> <period_name1> <period_name2>
 
 Arguments:
     <filename.csv>: CSV file containing commit data.
@@ -18,7 +18,7 @@ Dependencies:
     - csv
 
 Example:
-    python hourly_frequencies ../write-data-in-csv/csv-files/CommitPercentagesPerHour.csv 2004 2023
+    python hourly_frequencies.py ../write-data-in-csv/csv-files/CommitPercentagesPerHour.csv 2004 2023
 """
 import csv
 import numpy as np
