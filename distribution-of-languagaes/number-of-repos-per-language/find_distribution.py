@@ -18,8 +18,8 @@ Output:
 Example Output:
     {'Python': 15, 'JavaScript': 7, 'Java': 3, 'Ruby': 2}
 """
-import csv
-
+import json
+from collections import defaultdict
 def count_unique_values(list):
     count_dict = {}
     for item in list:
@@ -34,15 +34,24 @@ with open("projects-accepted.txt") as file1:
     lines = file1.readlines()
     for line in lines:
         repos.append(line.strip())
-      
+loc = defaultdict(int)
 occurance=[]   
-with open ("ghs_results.csv") as file2:
-    reader = csv.reader(file2)
-    next(reader)
-    for row in reader:
-            #if repo is in accepted projects
-            if row[1] in repos:
-                #add the programming language of project
-                occurance.append(row[7])
+with open ("results.json",encoding="utf-8") as file2:
+    data = json.load(file2)
+for row in data["items"]:
+    if row["name"] in repos:
+        language = row["mainLanguage"]
+        if language:
+            loc[language] += 1
+            occurance.append(language)
+        dicts_of_languages = row["metrics"]
+        for lang in dicts_of_languages:
+            loc[lang["language"]] += lang["codeLines"]
 occurance_dict = count_unique_values(occurance)
+languages = list(occurance_dict.keys())
+for lang in languages:
+    if lang not in loc.keys():
+        del loc[lang]
+sorted_loc = dict(sorted(loc.items(), key=lambda item: item[1], reverse=True))
 print(occurance_dict)
+print(sorted_loc)
