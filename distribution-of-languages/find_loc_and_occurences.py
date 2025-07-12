@@ -53,5 +53,6 @@ for lang in languages:
     if lang not in loc.keys():
         del loc[lang]
 sorted_loc = dict(sorted(loc.items(), key=lambda item: item[1], reverse=True))
-print(occurance_dict)
+sorted_occurance = dict(sorted(occurance_dict.items(), key=lambda item: item[1], reverse=True))
+print(sorted_occurance)
 print(sorted_loc)
