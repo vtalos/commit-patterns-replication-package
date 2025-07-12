@@ -3,7 +3,7 @@
 set -eu
 DATA_LOCATION=$(pwd)
 REPO_LOCATION=/home/repos/github
-for year in {2004..2023}; do
+for year in {2015..2024}; do
     contributors_per_year_all_repos=0 
     while IFS= read -r name ; do
         contributors_per_year=0  

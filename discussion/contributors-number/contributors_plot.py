@@ -36,7 +36,7 @@ fig, ax = plt.subplots()
 plt.plot(years, contributors_per_year, linestyle='-', marker='o', color='blue', linewidth=3, markersize=8)
 ax.set_xlabel('Year', fontsize = 9)
 ax.set_ylabel('Number of Contributors', fontsize = 9)
-plt.xticks(range(2004, 2024, 2), rotation = 45)
+plt.xticks(range(2015, 2025, 2), rotation = 45)
 plt.yticks(range(4000, 9000, 1000))
 for label in (ax.get_xticklabels() + ax.get_yticklabels()):
         label.set_fontsize(9)
