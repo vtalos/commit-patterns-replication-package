@@ -39,7 +39,7 @@ while IFS= read -r name; do
     cd "$dir_name" || continue
 
     for timezone_offset in "${timezones[@]}"; do
-        commits_count=$(git log --after="2003-12-31" --before="2024-01-01" | grep -- "$timezone_offset" | wc -l)
+        commits_count=$(git log --after="2014-12-31" --before="2025-01-01" | grep -- "$timezone_offset" | wc -l)
         commits_by_timezone["$timezone_offset"]=$commits_count
         echo "$timezone_offset: $commits_count" >> "$output_file"
     done

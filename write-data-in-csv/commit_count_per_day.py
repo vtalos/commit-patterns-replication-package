@@ -73,20 +73,27 @@ def count_commits(repo_list, repos_path, start_year, end_year, interval, num_of_
     """
     combined_commit_counts = defaultdict(lambda: [0] * num_of_periods)
     individual_commit_counts = {}
+    days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
     for repository in repo_list:
         repo_commit_counts = defaultdict(lambda: [0] * num_of_periods)
+        non_utc0_commits = defaultdict(bool)
         print(f"Processing repository: {repository}")
         repo_path = os.path.join(repos_path, repository)
         repo = Repo(repo_path)
 
-        for commit in repo.iter_commits(reverse=True, since=f"{start_year}-01-01", until=f"{end_year}-12-31"):
-            day_index = commit.authored_datetime.weekday()
-            interval_index = (commit.authored_datetime.year - start_year) // interval
-            if 0 <= interval_index < num_of_periods:
-                # Add to both combined and individual counts
-                combined_commit_counts[day_index][interval_index] += 1
-                repo_commit_counts[day_index][interval_index] += 1
+        for commit in repo.iter_commits(reverse=True, since=f"{start_year-1}-12-31", until=f"{end_year+1}-01-01"):
+            contributor = commit.author.email
+            if commit.authored_datetime.strftime('%z') != "+0000":
+                non_utc0_commits[contributor] = True
+
+            if non_utc0_commits[contributor]:
+                day_index = commit.authored_datetime.weekday()
+                interval_index = (commit.authored_datetime.year - start_year) // interval
+                if 0 <= interval_index < num_of_periods:
+                    # Add to both combined and individual counts
+                    combined_commit_counts[day_index][interval_index] += 1
+                    repo_commit_counts[day_index][interval_index] += 1
 
         individual_commit_counts[repository] = repo_commit_counts
 
