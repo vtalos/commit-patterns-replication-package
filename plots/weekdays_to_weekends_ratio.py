@@ -43,17 +43,39 @@ ratio = avg_n_of_commits_weekdays / avg_n_of_commits_weekends
 # Extract the years from the column names
 years = data.columns[1:].astype(int)
 
-# Plotting
-fig, ax = plt.subplots()
-ax.set_xlabel('Year', fontsize=9)
-ax.set_ylabel('Ratio', fontsize=9)
+# Plotting with enhanced style
+fig, ax = plt.subplots(figsize=(6, 4), dpi=300)
+
+# Plot the ratio
+ax.plot(
+    years,
+    ratio,
+    linestyle='-',
+    marker='o',
+    color='#1f77b4',
+    linewidth=1.5,
+    markersize=4,
+    label='Weekday to Weekend Commit Ratio'
+)
+
+# Axis Labels
+ax.set_xlabel('Year', fontsize=12, fontname='DejaVu Serif')
+ax.set_ylabel('Ratio', fontsize=12, fontname='DejaVu Serif')
+
+# Ticks and Labels
 ax.set_xticks(years)
-ax.set_xticklabels(years, rotation=45)
-ax.plot(years, ratio, linestyle='-', marker='o', color='blue', linewidth=3, markersize=8)
+ax.set_xticklabels(years, rotation=45, fontsize=10)
+ax.tick_params(axis='y', labelsize=10)
 
-# Set tick font size
-for label in (ax.get_xticklabels() + ax.get_yticklabels()):
-    label.set_fontsize(9)
+# Optional: Add light grid
+ax.grid(True, linestyle='--', linewidth=0.5, alpha=0.7)
 
-plt.grid(True)
-plt.savefig('weekdays_to_weekends_ratio.pdf', format='pdf', bbox_inches='tight', pad_inches=0)
+# Remove top/right spines
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+
+# Tight layout to avoid label cut-off
+plt.tight_layout()
+
+# Save with high resolution
+plt.savefig('weekdays_to_weekends_ratio.pdf', format='pdf', bbox_inches='tight')
