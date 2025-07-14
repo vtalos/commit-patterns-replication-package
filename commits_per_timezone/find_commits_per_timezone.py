@@ -20,12 +20,18 @@ repos_path = args.repos_path
 commits_per_timezone = defaultdict(int)
 for repository in repo_list:
     print(f"Processing repository: {repository}")
+    non_utc0_commits = defaultdict(bool)
     repo_path = os.path.join(repos_path, repository)
     repo = Repo(repo_path)
     commits = repo.iter_commits(reverse=True, since=f"{args.start_year}-01-01", until=f"{args.end_year}-12-31")
     for commit in commits:
-        timezone = commit.authored_datetime.strftime('%z')
-        commits_per_timezone[timezone] += 1
+        contributor = commit.author.email
+        if commit.authored_datetime.strftime('%z') != "+0000":
+            non_utc0_commits[contributor] = True
+
+        if non_utc0_commits[contributor]:
+            timezone = commit.authored_datetime.strftime('%z')
+            commits_per_timezone[timezone] += 1
 with open('commits_per_timezone.txt', 'w') as f:
     for timezone, count in commits_per_timezone.items():
         f.write(f"{timezone},{count}\n")
