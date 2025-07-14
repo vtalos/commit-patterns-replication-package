@@ -18,6 +18,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import argparse
 from itertools import tee
+import matplotlib.ticker as mticker
 
 # Define the days of the week
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -98,31 +99,42 @@ def plot_data(data_blocks, day_labels, periods):
     day_labels (list of str): List of day labels for the legend.
     periods (list of str): List of period labels.
     """
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(6.4, 4.8), dpi=100)
 
     bottom = np.zeros(len(periods))
-    colors = plt.cm.viridis(np.linspace(0, 1, len(day_labels)))
+    
+    # Use tab10 colormap for professional appearance
+    colors = plt.cm.tab10(np.linspace(0, 1, len(day_labels)))
 
     for i, data_block in enumerate(data_blocks):
-        ax.bar(range(len(periods)), data_block, bottom=bottom, color=colors[i], width=0.85, label=day_labels[i])
+        ax.bar(range(len(periods)), data_block, bottom=bottom, color=colors[i], 
+               width=0.85, label=day_labels[i], edgecolor='white', linewidth=0.5)
         bottom += data_block
 
-    plt.xlabel('Year', fontsize=10)
-    plt.ylabel('Commits (%)', fontsize=10)
+    ax.set_xlabel('Year', fontsize=12, fontname='DejaVu Serif')
+    ax.set_ylabel('Commits (%)', fontsize=12, fontname='DejaVu Serif')
 
     ax.set_xticks(range(len(periods)))
-    ax.set_xticklabels(periods, rotation=45)
+    ax.set_xticklabels(periods, rotation=45, ha='center', fontsize=10, fontname='DejaVu Serif')
 
-    plt.grid(True)
-    plt.xticks(rotation=35)
+    # Format y-axis as percentages
+    ax.yaxis.set_major_formatter(mticker.PercentFormatter(decimals=0))
+    ax.tick_params(axis='y', labelsize=10)
 
-    for label in (ax.get_xticklabels() + ax.get_yticklabels()):
-        label.set_fontsize(10)
+    # Professional grid
+    ax.yaxis.grid(True, linestyle='--', linewidth=0.7, alpha=0.7)
+    ax.set_axisbelow(True)
 
-    ax.legend(fontsize=11, loc='upper left')
+    # Clean up spines
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+
+    # Professional legend
+    ax.legend(fontsize=11, loc='upper left', frameon=True, facecolor='white', 
+              framealpha=1, edgecolor='gray')
 
     plt.tight_layout()
-    plt.savefig('daily_stacked_bar_chart.pdf', format='pdf', bbox_inches='tight', pad_inches=0)
+    plt.savefig('daily_stacked_bar_chart.pdf', format='pdf', bbox_inches='tight', pad_inches=0.1)
 
 def main(filename):
     """

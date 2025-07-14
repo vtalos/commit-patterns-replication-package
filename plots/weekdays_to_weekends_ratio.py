@@ -53,8 +53,8 @@ ax.plot(
     linestyle='-',
     marker='o',
     color='#1f77b4',
-    linewidth=1.5,
-    markersize=4,
+    linewidth=3,
+    markersize=6,
     label='Weekday to Weekend Commit Ratio'
 )
 

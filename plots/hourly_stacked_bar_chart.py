@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 from itertools import tee
 import sys
 import statsmodels.api as sm
+import matplotlib.ticker as mticker
 
 def block_to_time(block, is_end=False):
     """
@@ -28,7 +29,7 @@ def block_to_time(block, is_end=False):
     """
     hours = block % 24
     if is_end:
-        hours -= 1
+        hours = (hours - 1) % 24  # Use modulo to handle wrap-around
         return f"{hours:02d}:59"
     else:
         return f"{hours:02d}:00"
@@ -122,30 +123,42 @@ def plot_data(data_blocks, time_labels, periods):
     """
     data_blocks_normalized = (data_blocks / data_blocks.sum(axis=0))*100
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(6.4, 4.8), dpi=100)
 
     bottom = np.zeros(len(periods))
-    colors = plt.cm.viridis(np.linspace(0, 1, len(time_labels)))
+    
+    # Use professional color scheme
+    colors = plt.cm.tab10(np.linspace(0, 1, len(time_labels)))
 
     for i, data_block in enumerate(data_blocks_normalized):
-        ax.bar(range(len(periods)), data_block, bottom=bottom, color=colors[i], width=0.85, label=time_labels[i])
+        ax.bar(range(len(periods)), data_block, bottom=bottom, color=colors[i], 
+               width=0.85, label=time_labels[i], edgecolor='white', linewidth=0.5)
         bottom += data_block
 
-    plt.xlabel('Year', fontsize=9)
-    plt.ylabel('Commits (%)', fontsize=9)
+    ax.set_xlabel('Year', fontsize=12, fontname='DejaVu Serif')
+    ax.set_ylabel('Commits (%)', fontsize=12, fontname='DejaVu Serif')
 
     ax.set_xticks(range(len(periods)))
-    ax.set_xticklabels(periods, rotation=45)
+    ax.set_xticklabels(periods, rotation=45, ha='center', fontsize=10, fontname='DejaVu Serif')
 
-    plt.grid(True)
-    plt.xticks(rotation=35)
+    # Format y-axis as percentages
+    ax.yaxis.set_major_formatter(mticker.PercentFormatter(decimals=0))
+    ax.tick_params(axis='y', labelsize=10)
 
-    for label in (ax.get_xticklabels() + ax.get_yticklabels()):
-        label.set_fontsize(9)
+    # Professional grid
+    ax.yaxis.grid(True, linestyle='--', linewidth=0.7, alpha=0.7)
+    ax.set_axisbelow(True)
 
-    ax.legend(fontsize=10, loc='center right', bbox_to_anchor=(1, 0.4), facecolor='white', framealpha=1)
+    # Clean up spines
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
 
-    plt.savefig('stacked_bar_chart.pdf', format='pdf', bbox_inches='tight', pad_inches=0)
+    # Professional legend
+    ax.legend(fontsize=10, loc='center right', bbox_to_anchor=(1, 0.4), 
+              facecolor='white', framealpha=1, frameon=True, edgecolor='gray')
+
+    plt.tight_layout()
+    plt.savefig('stacked_bar_chart.pdf', format='pdf', bbox_inches='tight', pad_inches=0.1)
 
 def main(filename):
     """
