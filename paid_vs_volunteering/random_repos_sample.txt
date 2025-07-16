@@ -1,0 +1,250 @@
+auth0/docs, company
+hashicorp/terraform-website, company
+bareos/bareos, company
+ucscgenomebrowser/kent, volunteering
+openra/openra, volunteering
+sourcegraph/sourcegraph-public-snapshot, company
+jessfraz/tor, volunteering
+crablang/crab, volunteering
+openstack/cinder, volunteering
+geoserver/geoserver, volunteering
+allyourcodebase/ffmpeg, volunteering
+genom-project/android_kernel_xiaomi_vince-4.9, volunteering
+crdroidandroid/android_kernel_xiaomi_surya, volunteering
+onlyoffice/docspace, company
+dena/declang, volunteering
+acidanthera/audk, volunteering
+opencollective/opencollective-api, company
+cyber-dojo/web, volunteering
+mastodon/mastodon, volunteering
+gentoo/prefix, volunteering
+stanfordlegion/legion, volunteering
+yunionio/cloudpods, company
+intel/zephyr, company
+vaadin/framework, company
+joycechu/openwrt_meson, volunteering
+ccd0/4chan-x, volunteering
+crdroidandroid/android_build, volunteering
+automattic/jetpack, company
+ballerina-platform/ballerina-lang, company
+help-me-mom/ng-mocks, volunteering
+pipewire/pipewire, volunteering
+inovexcorp/mobi, company
+code-saturne/code_saturne, company
+siliconcompiler/siliconcompiler, volunteering
+omega8cc/boa, company
+radixdlt/babylon-node, company
+AMDESE/qemu, volunteering
+prefecthq/prefect, company
+renesas-rcar/linux-bsp, volunteering
+eclipse-openj9/openj9, company
+helenos/helenos, volunteering
+LineageOS/android_build, volunteering
+spack/spack, volunteering
+cyanogenmod/android_frameworks_support, volunteering
+ilg-archived/qemu, volunteering
+espressif/newlib-esp32, company
+magarena/magarena, volunteering
+shashlik/shashlik-build, volunteering
+dxx-rebirth/dxx-rebirth, volunteering
+mikhailprivalov/l2, volunteering
+oe4t/linux-tegra-4.9
+linode/docs
+noobaa/noobaa-core
+openstreetmap/id
+spryker/spryker-core
+qemu/qemu
+loomio/loomio
+gooddata/gooddata-ui-sdk
+facebook/buck2
+sushi-labs/sushiswap
+JuliaLang/METADATA.jl
+radiantblockchain/radiant-node
+expressionengine/expressionengine
+openjdk/jdk
+frappe/webshop
+wesnoth/wesnoth
+commaai/openpilot
+ROCm/rocMLIR
+openjdk/jdk-sandbox
+NixOS/nixpkgs
+steedos/steedos-platform
+mezonai/mezon
+gentoo-mirror/guru
+yui/yui3
+wikimedia/mediawiki-extensions-visualeditor
+qt-creator/qt-creator
+xwp/wordpress-develop
+ferrocene/ferrocene
+runelite/runelite
+xiaomi-msm8998/kernel_xiaomi_msm8998
+MidnightCommander/mc-old
+biolab/orange3
+Robbbert/mameui
+davidramiro/marlin-ai3m-2.0.x
+orcid/orcid-source
+netbox-community/netbox
+vassalengine/vassal
+entware/entware-packages
+peercoin/peercoin
+neomutt/neomutt
+metamask/eth-phishing-detect
+cyanogenmod/android_libcore
+ngsolve/ngsolve
+lss-manager/lssm-v.4
+pentoo/pentoo-overlay
+llvm-mirror/lldb
+unvanquished/unvanquished
+dependabot/dependabot-core
+cirruslogic/linux-drivers
+freecodecamp/freecodecamp
+acl2/acl2
+RMC-14/RMC-14
+goauthentik/authentik
+dragonflybsd/dragonflybsd
+wiredtiger/wiredtiger
+bitcoin/bitcoin
+vegaprotocol/vega
+aosp-mirror/platform_packages_providers_mediaprovider
+openvswitch/ovs
+wikimedia/mediawiki
+opensearch-project/opensearch
+nvaccess/nvda
+shiftmediaproject/gnutls
+jahia/jahia
+lineageos/android_art
+veil-project/veil
+0xproject/0x-monorepo
+dfe-digital/get-into-teaching-app
+i-novus-llc/n2o-framework
+bgerp/bgerp
+Partmedia/mining-station-14
+64kramsystem/qemu-pinning
+spurious/sdl-mirror
+grapheneos/kernel_msm-coral
+easylist/easylistgermany
+openmc-dev/openmc
+joomla-projects/gsoc19_page-builder
+z88dk/z88dk
+flux-framework/flux-core
+ilios/ilios
+intel-media-ci/ffmpeg
+decenomy/fls
+wolfssl/wolfssl
+THU-DSP-LAB/llvm-project
+vaadin/flow
+openswoole/swoole-src
+django-cms/django-cms
+shikimori/shikimori
+bioperl/bioperl-live
+qtumproject/qtum-electrum
+tukui-org/ElvUI
+rucio/rucio
+spikeinterface/spikeinterface
+intel/BigDL
+kde/amarok
+telegramdesktop/tdesktop
+cubicerp/cubicerp
+valvesoftware/wine
+sonydevworld/spresense-nuttx
+golang/go
+sherpya/android-busybox
+ome/openmicroscopy
+chapuni/llvm-project
+openvix/enigma2
+edgeapp/edge-react-gui
+ow2-proactive/scheduling
+nebadon2025/opensimulator
+bitcoin-core/gui
+maurossi/mesa
+jhipster/jhipster-lite
+eclipse-xtext/xtext
+telecominfraproject/opencellular
+nrfconnect/sdk-nrf
+kudproject/kernel_msm-3.18
+finnishtransportagency/digiroad2
+chunkeey/lede-ipq40xx
+graylog2/graylog2-server
+linux-shield/kernel
+hyperic/hq
+openjdk/jdk13u-dev
+gentoo/kde
+genesi/linux-legacy
+osgp/open-smart-grid-platform
+Illarion-eV/Illarion-Content
+pipedreamhq/pipedream
+gitlabhq/omnibus-gitlab
+liberapay/liberapay.com
+coolya/android_kernel_samsung
+quarkusio/quarkus
+security-onion-solutions/securityonion
+confluentinc/rest-utils
+fengguang/lkp-tests
+gandi/ktrill
+duality-solutions/dynamic
+GitoxideLabs/gitoxide
+joomla-projects/custom-fields
+jetbrains/intellij-kotlin
+mongodb/mongo
+ROCm/ROCgdb
+orioledb/postgres
+rfidresearchgroup/proxmark3
+rob006-software/flarum-translations
+zkoss/zk
+osrf/gazebo
+docgroup/ace_tao
+nasa/cumulus
+tue-robotics/tue_robocup
+kaltura/server
+linux4sam/buildroot-at91
+zatosource/zato
+matecat/matecat
+great-expectations/great_expectations
+zopefoundation/zope
+strapdata/elassandra
+janeliascicomp/workstation
+programmevitam/vitam
+opencart/opencart
+digitalinnovationone/dio-lab-open-source
+hpcng/singularity
+Alfresco/alfresco-community-share
+premid/localization
+island-is/island.is
+JetBrains/intellij-scala
+teammates/teammates
+intermine/intermine
+openstack/neutron
+projectskyfire/skyfire.406a
+LineageOS/android_device_google_coral
+darenlee/pixhawkpsp_firmware
+ibmruntimes/v8ppc
+wowsims/cata
+ontop/ontop
+terraform-providers/terraform-provider-azurerm
+lineageos/android_system_bt
+cxx-hep/root-cern
+BelledonneCommunications/linphone-sdk
+readthedocs/readthedocs.org
+coderaiser/putout
+illacceptanything/illacceptanything
+mozilla-services/socorro
+portabilis/i-diario
+endlessm/linux-meson
+cloudquery/cloudquery
+oracle/qemu
+openstack/keystone
+collectiveaccess/providence
+nnpdf/nnpdf
+sbmlteam/libsbml
+rchain/rchain
+nrfconnect/sdk-zephyr
+bagisto/bagisto
+casper-network/casper-node
+devexpress/devextreme
+civicrm/civicrm-core
+real-logic/aeron
+ostroproject/ostro-os
+OfficeDev/teams-toolkit
+openstack/cinder
+alphagov/notifications-admin
+fpc/Lazarus
