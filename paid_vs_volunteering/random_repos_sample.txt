@@ -48,81 +48,81 @@ magarena/magarena, volunteering
 shashlik/shashlik-build, volunteering
 dxx-rebirth/dxx-rebirth, volunteering
 mikhailprivalov/l2, volunteering
-oe4t/linux-tegra-4.9
-linode/docs
-noobaa/noobaa-core
-openstreetmap/id
-spryker/spryker-core
-qemu/qemu
-loomio/loomio
-gooddata/gooddata-ui-sdk
-facebook/buck2
-sushi-labs/sushiswap
-JuliaLang/METADATA.jl
-radiantblockchain/radiant-node
-expressionengine/expressionengine
-openjdk/jdk
-frappe/webshop
-wesnoth/wesnoth
-commaai/openpilot
-ROCm/rocMLIR
-openjdk/jdk-sandbox
-NixOS/nixpkgs
-steedos/steedos-platform
-mezonai/mezon
-gentoo-mirror/guru
-yui/yui3
-wikimedia/mediawiki-extensions-visualeditor
-qt-creator/qt-creator
-xwp/wordpress-develop
-ferrocene/ferrocene
-runelite/runelite
-xiaomi-msm8998/kernel_xiaomi_msm8998
-MidnightCommander/mc-old
-biolab/orange3
-Robbbert/mameui
-davidramiro/marlin-ai3m-2.0.x
-orcid/orcid-source
-netbox-community/netbox
-vassalengine/vassal
-entware/entware-packages
-peercoin/peercoin
-neomutt/neomutt
-metamask/eth-phishing-detect
-cyanogenmod/android_libcore
-ngsolve/ngsolve
-lss-manager/lssm-v.4
-pentoo/pentoo-overlay
-llvm-mirror/lldb
-unvanquished/unvanquished
-dependabot/dependabot-core
-cirruslogic/linux-drivers
-freecodecamp/freecodecamp
-acl2/acl2
-RMC-14/RMC-14
-goauthentik/authentik
-dragonflybsd/dragonflybsd
-wiredtiger/wiredtiger
-bitcoin/bitcoin
-vegaprotocol/vega
-aosp-mirror/platform_packages_providers_mediaprovider
-openvswitch/ovs
-wikimedia/mediawiki
-opensearch-project/opensearch
-nvaccess/nvda
-shiftmediaproject/gnutls
-jahia/jahia
-lineageos/android_art
-veil-project/veil
-0xproject/0x-monorepo
-dfe-digital/get-into-teaching-app
-i-novus-llc/n2o-framework
-bgerp/bgerp
-Partmedia/mining-station-14
-64kramsystem/qemu-pinning
-spurious/sdl-mirror
-grapheneos/kernel_msm-coral
-easylist/easylistgermany
+oe4t/linux-tegra-4.9, volunteering
+linode/docs, paid
+noobaa/noobaa-core, volunteering
+openstreetmap/id, volunteering
+spryker/spryker-core, company
+qemu/qemu, volunteering
+loomio/loomio, company
+gooddata/gooddata-ui-sdk, company
+facebook/buck2, company
+sushi-labs/sushiswap, company
+JuliaLang/METADATA.jl, volunteering
+radiantblockchain/radiant-node, volunteering
+expressionengine/expressionengine, company
+openjdk/jdk, volunteering
+frappe/webshop, volunteering
+wesnoth/wesnoth, volunteering
+commaai/openpilot, company
+ROCm/rocMLIR, company
+openjdk/jdk-sandbox, volunteering
+NixOS/nixpkgs, volunteering
+steedos/steedos-platform, volunteering
+mezonai/mezon, company
+gentoo-mirror/guru, volunteering
+yui/yui3, volunteering
+wikimedia/mediawiki-extensions-visualeditor, volunteering
+qt-creator/qt-creator, volunteering
+xwp/wordpress-develop, company
+ferrocene/ferrocene, company
+runelite/runelite, volunteering
+xiaomi-msm8998/kernel_xiaomi_msm8998, volunteering
+MidnightCommander/mc-old, volunteering
+biolab/orange3, volunteering
+Robbbert/mameui, volunteering
+davidramiro/marlin-ai3m-2.0.x, volunteering
+orcid/orcid-source, company
+netbox-community/netbox, company
+vassalengine/vassal, volunteering
+entware/entware-packages, volunteering
+peercoin/peercoin, company
+neomutt/neomutt, volunteering
+metamask/eth-phishing-detect, company
+cyanogenmod/android_libcore, volunteering
+ngsolve/ngsolve, volunteering
+lss-manager/lssm-v.4, volunteering
+pentoo/pentoo-overlay. volunteering
+llvm-mirror/lldb, volunteering
+unvanquished/unvanquished, volunteering
+dependabot/dependabot-core, company
+cirruslogic/linux-drivers, company
+freecodecamp/freecodecamp, company
+acl2/acl2, volunteering
+RMC-14/RMC-14, volunteering
+goauthentik/authentik, company
+dragonflybsd/dragonflybsd, volunteering
+wiredtiger/wiredtiger, company
+bitcoin/bitcoin, volunteering
+vegaprotocol/vega, company
+aosp-mirror/platform_packages_providers_mediaprovider, company
+openvswitch/ovs, volunteering
+wikimedia/mediawiki, volunteering
+opensearch-project/opensearch, volunteering
+nvaccess/nvda, company
+shiftmediaproject/gnutls, volunteering
+jahia/jahia, company
+lineageos/android_art, volunteering
+veil-project/veil, company
+0xproject/0x-monorepo, company
+dfe-digital/get-into-teaching-app, company
+i-novus-llc/n2o-framework, company
+bgerp/bgerp, company
+Partmedia/mining-station-14, volunteering
+64kramsystem/qemu-pinning, volunteering
+spurious/sdl-mirror, volunteering
+grapheneos/kernel_msm-coral, volunteering
+easylist/easylistgermany, volunteering
 openmc-dev/openmc
 joomla-projects/gsoc19_page-builder
 z88dk/z88dk
