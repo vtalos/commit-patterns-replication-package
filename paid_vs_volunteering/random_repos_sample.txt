@@ -49,7 +49,7 @@ shashlik/shashlik-build, volunteering
 dxx-rebirth/dxx-rebirth, volunteering
 mikhailprivalov/l2, volunteering
 oe4t/linux-tegra-4.9, volunteering
-linode/docs, paid
+linode/docs, company
 noobaa/noobaa-core, volunteering
 openstreetmap/id, volunteering
 spryker/spryker-core, company
@@ -92,7 +92,7 @@ metamask/eth-phishing-detect, company
 cyanogenmod/android_libcore, volunteering
 ngsolve/ngsolve, volunteering
 lss-manager/lssm-v.4, volunteering
-pentoo/pentoo-overlay. volunteering
+pentoo/pentoo-overlay, volunteering
 llvm-mirror/lldb, volunteering
 unvanquished/unvanquished, volunteering
 dependabot/dependabot-core, company
@@ -123,128 +123,233 @@ Partmedia/mining-station-14, volunteering
 spurious/sdl-mirror, volunteering
 grapheneos/kernel_msm-coral, volunteering
 easylist/easylistgermany, volunteering
-openmc-dev/openmc
-joomla-projects/gsoc19_page-builder
-z88dk/z88dk
-flux-framework/flux-core
-ilios/ilios
-intel-media-ci/ffmpeg
-decenomy/fls
-wolfssl/wolfssl
-THU-DSP-LAB/llvm-project
-vaadin/flow
-openswoole/swoole-src
-django-cms/django-cms
-shikimori/shikimori
-bioperl/bioperl-live
-qtumproject/qtum-electrum
-tukui-org/ElvUI
-rucio/rucio
-spikeinterface/spikeinterface
-intel/BigDL
-kde/amarok
-telegramdesktop/tdesktop
-cubicerp/cubicerp
-valvesoftware/wine
-sonydevworld/spresense-nuttx
-golang/go
-sherpya/android-busybox
-ome/openmicroscopy
-chapuni/llvm-project
-openvix/enigma2
-edgeapp/edge-react-gui
-ow2-proactive/scheduling
-nebadon2025/opensimulator
-bitcoin-core/gui
-maurossi/mesa
-jhipster/jhipster-lite
-eclipse-xtext/xtext
-telecominfraproject/opencellular
-nrfconnect/sdk-nrf
-kudproject/kernel_msm-3.18
-finnishtransportagency/digiroad2
-chunkeey/lede-ipq40xx
-graylog2/graylog2-server
-linux-shield/kernel
-hyperic/hq
-openjdk/jdk13u-dev
-gentoo/kde
-genesi/linux-legacy
-osgp/open-smart-grid-platform
-Illarion-eV/Illarion-Content
-pipedreamhq/pipedream
-gitlabhq/omnibus-gitlab
-liberapay/liberapay.com
-coolya/android_kernel_samsung
-quarkusio/quarkus
-security-onion-solutions/securityonion
-confluentinc/rest-utils
-fengguang/lkp-tests
-gandi/ktrill
-duality-solutions/dynamic
-GitoxideLabs/gitoxide
-joomla-projects/custom-fields
-jetbrains/intellij-kotlin
-mongodb/mongo
-ROCm/ROCgdb
-orioledb/postgres
-rfidresearchgroup/proxmark3
-rob006-software/flarum-translations
-zkoss/zk
-osrf/gazebo
-docgroup/ace_tao
-nasa/cumulus
-tue-robotics/tue_robocup
-kaltura/server
-linux4sam/buildroot-at91
-zatosource/zato
-matecat/matecat
-great-expectations/great_expectations
-zopefoundation/zope
-strapdata/elassandra
-janeliascicomp/workstation
-programmevitam/vitam
-opencart/opencart
-digitalinnovationone/dio-lab-open-source
-hpcng/singularity
-Alfresco/alfresco-community-share
-premid/localization
-island-is/island.is
-JetBrains/intellij-scala
-teammates/teammates
-intermine/intermine
-openstack/neutron
-projectskyfire/skyfire.406a
-LineageOS/android_device_google_coral
-darenlee/pixhawkpsp_firmware
-ibmruntimes/v8ppc
-wowsims/cata
-ontop/ontop
-terraform-providers/terraform-provider-azurerm
-lineageos/android_system_bt
-cxx-hep/root-cern
-BelledonneCommunications/linphone-sdk
-readthedocs/readthedocs.org
-coderaiser/putout
-illacceptanything/illacceptanything
-mozilla-services/socorro
-portabilis/i-diario
-endlessm/linux-meson
-cloudquery/cloudquery
-oracle/qemu
-openstack/keystone
-collectiveaccess/providence
-nnpdf/nnpdf
-sbmlteam/libsbml
-rchain/rchain
-nrfconnect/sdk-zephyr
-bagisto/bagisto
-casper-network/casper-node
-devexpress/devextreme
-civicrm/civicrm-core
-real-logic/aeron
-ostroproject/ostro-os
-OfficeDev/teams-toolkit
-openstack/cinder
-alphagov/notifications-admin
-fpc/Lazarus
+openmc-dev/openmc, volunteering
+joomla-projects/gsoc19_page-builder, volunteering
+z88dk/z88dk, volunteering
+flux-framework/flux-core, volunteering
+ilios/ilios, volunteering
+intel-media-ci/ffmpeg, company
+decenomy/fls, volunteering
+wolfssl/wolfssl, company
+THU-DSP-LAB/llvm-project, volunteering
+vaadin/flow, company
+openswoole/swoole-src, company
+django-cms/django-cms, volunteering
+shikimori/shikimori, volunteering
+bioperl/bioperl-live, volunteering
+qtumproject/qtum-electrum, volunteering
+tukui-org/ElvUI, volunteering
+rucio/rucio, volunteering
+spikeinterface/spikeinterface, volunteering
+intel/BigDL, company
+kde/amarok, volunteering
+telegramdesktop/tdesktop, company
+cubicerp/cubicerp, volunteering
+valvesoftware/wine, company
+sonydevworld/spresense-nuttx, company
+golang/go, company
+sherpya/android-busybox, volunteering
+ome/openmicroscopy, volunteering
+chapuni/llvm-project, volunteering
+openvix/enigma2, volunteering
+edgeapp/edge-react-gui, company
+ow2-proactive/scheduling, volunteering
+nebadon2025/opensimulator, volunteering
+bitcoin-core/gui, volunteering
+maurossi/mesa, volunteering
+jhipster/jhipster-lite, volunteering
+eclipse-xtext/xtext, volunteering
+telecominfraproject/opencellular, volunteering
+nrfconnect/sdk-nrf, company
+kudproject/kernel_msm-3.18, volunteering
+finnishtransportagency/digiroad2, company
+chunkeey/lede-ipq40xx, volunteering
+graylog2/graylog2-server, company
+linux-shield/kernel, volunteering
+hyperic/hq, company
+openjdk/jdk13u-dev, volunteering
+gentoo/kde, volunteering
+genesi/linux-legacy, volunteering
+osgp/open-smart-grid-platform, volunteering
+Illarion-eV/Illarion-Content, volunteering
+pipedreamhq/pipedream, company
+gitlabhq/omnibus-gitlab, company
+liberapay/liberapay.com, volunteering
+coolya/android_kernel_samsung, volunteering
+quarkusio/quarkus, company
+security-onion-solutions/securityonion, company
+confluentinc/rest-utils, company
+fengguang/lkp-tests, volunteering
+gandi/ktrill, company
+duality-solutions/dynamic, company
+GitoxideLabs/gitoxide, volunteering
+joomla-projects/custom-fields, volunteering
+jetbrains/intellij-kotlin, company
+mongodb/mongo, company
+ROCm/ROCgdb, company
+orioledb/postgres, company
+rfidresearchgroup/proxmark3, volunteering
+rob006-software/flarum-translations, volunteering
+zkoss/zk, company
+osrf/gazebo, volunteering
+docgroup/ace_tao, volunteering
+nasa/cumulus, company
+tue-robotics/tue_robocup, volunteering
+kaltura/server, company
+linux4sam/buildroot-at91, company
+zatosource/zato, company
+matecat/matecat, volunteering
+great-expectations/great_expectations, company
+zopefoundation/zope, volunteering
+strapdata/elassandra, company
+janeliascicomp/workstation, volunteering
+programmevitam/vitam, company
+opencart/opencart, volunteering
+digitalinnovationone/dio-lab-open-source, volunteering
+hpcng/singularity, company
+Alfresco/alfresco-community-share, company
+premid/localization, volunteering
+island-is/island.is, company
+JetBrains/intellij-scala, company
+teammates/teammates, volunteering
+intermine/intermine, volunteering
+openstack/neutron, volunteering
+projectskyfire/skyfire.406a, volunteering
+LineageOS/android_device_google_coral, volunteering
+darenlee/pixhawkpsp_firmware, volunteering
+ibmruntimes/v8ppc, company
+wowsims/cata, volunteering
+ontop/ontop, volunteering
+terraform-providers/terraform-provider-azurerm, company
+lineageos/android_system_bt, volunteering
+cxx-hep/root-cern, volunteering
+BelledonneCommunications/linphone-sdk, company
+readthedocs/readthedocs.org, company
+coderaiser/putout, volunteering
+illacceptanything/illacceptanything, volunteering
+mozilla-services/socorro, company
+portabilis/i-diario, company
+endlessm/linux-meson, volunteering
+cloudquery/cloudquery, company
+oracle/qemu, company
+openstack/keystone, volunteering
+collectiveaccess/providence, volunteering
+nnpdf/nnpdf, volunteering
+sbmlteam/libsbml, volunteering
+rchain/rchain, company
+nrfconnect/sdk-zephyr, company
+bagisto/bagisto, volunteering
+casper-network/casper-node, company
+devexpress/devextreme, company
+civicrm/civicrm-core, volunteering
+real-logic/aeron, company
+ostroproject/ostro-os, company
+OfficeDev/teams-toolkit, company
+openstack/cinder, volunteering
+alphagov/notifications-admin, company
+fpc/Lazarus, volunteering
+artifexsoftware/ghostpdl, company
+opensim-org/opensim-core, volunteering
+liudf0716/chawrt, volunteering
+aosp-mirror/platform_frameworks_support, company
+shogun-toolbox/shogun, volunteering
+appwrite/appwrite, company
+project-hatohol/hatohol, volunteering
+lctt/translateproject, volunteering
+nfs-ganesha/nfs-ganesha, volunteering
+oskariorg/oskari-frontend, volunteering
+strategy11/formidable-forms, company
+swarren/u-boot, volunteering
+logseq/logseq, company
+the-events-calendar/event-tickets, company
+buke/greenodoo, volunteering
+bitrig/bitrig-ports, volunteering
+yacy/yacy_search_server, volunteering
+apache/hive, volunteering
+apache/kafka, volunteering
+iotaledger/wasp, company
+crdroidandroid/android_kernel_oneplus_sdm845, volunteering
+mitk/mitk, volunteering
+speechanddebate/tabroom, company
+genom-project/android_kernel_xiaomi_ginkgo, volunteering
+zotero/zotero, volunteering
+mborgerson/xemu, volunteering
+zfigura/wine, volunteering
+wordpress/gutenberg, company
+cvmfs/cvmfs, volunteering
+tencent/tendbcluster-tendb, company
+xbmc/libandroidjni, volunteering
+shortlink-org/shortlink, company
+dotclear/dotclear, volunteering
+khadas/linux, company
+insolar/insolar, company
+explosion/spacy, company
+wavelog/wavelog, volunteering
+typetools/checker-framework, volunteering
+metasfresh/metasfresh, company
+unistuttgart-visus/megamol, volunteering
+jayanta525/rk3308-rock-pi-s, volunteering
+python-pillow/pillow, volunteering
+galsim-developers/galsim, volunteering
+misskey-dev/misskey, volunteering
+renovatebot/renovate, company
+googleapis/google-cloud-ruby, company
+polkadot-js/apps, volunteering
+jetbrains/intellij-plugins, company
+polardb/polardbx-engine, company
+kde/digikam, volunteering
+lineageos/android_kernel_lenovo_msm8953, volunteering
+flowminder/flowkit, volunteering
+expertiza/expertiza, volunteering
+zulip/zulip, company
+lineageos/android_system_sepolicy, volunteering
+osstech-jp/openldap, volunteering
+tsuru/tsuru, company
+vesoapp/veso, volunteering
+ponce/slackbuilds, volunteering
+linbit/drbd, company
+intel/external-mesa, company
+diaspora/diaspora, volunteering
+nwjs/v8, volunteering
+lineageos/android_kernel_oneplus_msm8996, volunteering
+lix-project/lix, volunteering
+andrewrk/ffmpeg, volunteering
+glotzerlab/hoomd-blue, volunteering
+jasonkung0211/launcher3, volunteering
+retroshare/retroshare, volunteering
+mozilla-bteam/bmo, company
+univention/univention-corporate-server, company
+finalburnneo/fbneo, volunteering
+opennebula/one, company
+pymedusa/medusa, volunteering
+prowlarr/prowlarr, volunteering
+openjdk/tsan, volunteering
+jeedom/core, company
+kde/kmail, volunteering
+lsfusion-solutions/erp, company
+ros/rosdistro, volunteering
+sarthakroy2002/kernel_realme_rmx2020, volunteering
+openstack/requirements, volunteering
+gchq/stroom, company
+mermaid-js/mermaid, company
+jason2866/tasmota-build, volunteering
+go-gitea/gitea, company
+deliciousmods/1956_beta, volunteering
+uportal-project/uportal, volunteering
+hardslog/platform_packages_inputmethods_enhancedime, volunteering
+eosnetworkfoundation/mandel, company
+JoeBidenWhatAreYouHiding/kx, volunteering
+concretecms/concretecms, company
+intel/luv-yocto, company
+scala/scala3, volunteering
+facebook/fbthrift, company
+pantheon-systems/drops-7, company
+tursodatabase/libsql, company
+oneapi-src/onednn, company
+mrchromebox/coreboot, volunteering
+gitlabhq/gitlabhq, company
+hypothesisworks/hypothesis, company
+arm-software/u-boot, company
+slicer/slicergitsvnarchive, volunteering
+codecombat/codecombat, company
+ONLYOFFICE/DocSpace-client, company
