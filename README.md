@@ -24,6 +24,8 @@ This repository contains the replication package for the research paper **"TGIF:
    - **Number of Stars**: Minimum = 10
    - **Number of Forks**: Minimum = 10
    - **Number of Contributors**: Minimum = 10
+   - **Exclude Forks**
+   - **Created no later than**: 12/31/2024
 3. Download the search results as a CSV file.
 
 ## Sampling
