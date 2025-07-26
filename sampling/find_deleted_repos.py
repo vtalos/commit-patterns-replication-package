@@ -7,7 +7,7 @@ load_dotenv()
 TOKEN = os.getenv("GH_TOKEN")
 HEADERS = {"Authorization": f"token {TOKEN}"}
 
-with open("sampling/projects-accepted.txt") as f:
+with open("projects-accepted.txt") as f:
     original = [line.strip() for line in f if line.strip()]
 
 final_projects = []
@@ -38,6 +38,6 @@ for proj in original:
 
     final_projects.append(proj)
 
-with open("sampling/projects-accepted.txt", "w") as out:
+with open("projects-accepted-checked.txt", "w") as out:
     for p in final_projects:
         out.write(p + "\n")

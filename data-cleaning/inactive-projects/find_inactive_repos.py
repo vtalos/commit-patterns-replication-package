@@ -1,5 +1,4 @@
 import json
-from collections import defaultdict
 import datetime
 
 repos_to_be_removed = []
