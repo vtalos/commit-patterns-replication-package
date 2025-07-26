@@ -9,8 +9,8 @@
 * [`hourly_stacked_bar_chart.py`](hourly_stacked_bar_chart.py) reads a CSV file containing time series data for various periods and plots a 100% stacked bar chart to visualize the distribution of data across specified time blocks. The user is prompted to input multiple time blocks (start and end) for aggregation.  
   Run `python hourly_stacked_bar_chart.py <filename>`
 
-* [`plots_on_days.py`](plots_on_days.py) generates plots based on commit data for weekdays and weekends. Depending on the chosen plot type, it either shows the frequency of commits for each weekend day across different time periods or the total commits per period.  
-  Run `python plots_on_days.py <filename.csv> <plot_type>`
+* [`total_commits_per_period.py`](total_commits_per_period.py) generates a bar chart showing total commits per period by reading and processing commit data from a CSV file.  
+  Run `python total_commits_per_period.py <filename.csv>`
 
 * [`weekdays_to_weekends_ratio.py`](weekdays_to_weekends_ratio.py) calculates and plots the ratio of average weekday commits to average weekend day commits over the years.  
   Run `python weekdays_to_weekends_ratio.py <filename.csv>`

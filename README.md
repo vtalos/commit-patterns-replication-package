@@ -10,14 +10,9 @@ This repository contains the replication package for the research paper **"TGIF:
     - [Data Cleaning](#data-cleaning)
     - [Assess Timezone Reliability](#assess-timezone-reliability)
     - [Write Data to CSV](#write-data-to-csv)
-    - [Data Cleaning After Generating the CSVs](#data-cleaning-after-generating-the-csvs)
 4. [Statistical Analysis & Plots](#statistical-analysis--plots)
-5. [Discussion](#discussion)
-   - [Work-Life Balance Analysis](#work-life-balance-analysis)
-   - [Number of Contributors Analysis](#number-of-contributors-analysis)
-   - [Average Commit Lines per Year Analysis](#average-commit-lines-per-year-analysis)
-   - [FreeBSD Demographics Analysis](#freebsd-demographics-analysis)
-6. [Distribution of Programming Languages](#distribution-of-programming-languages)
+5. [Distribution of Programming Languages](#distribution-of-programming-languages)
+6. [Paid vs Volunteering Analysis](#paid-vs-volunteering-analysis)
 
 ---
 
@@ -34,22 +29,27 @@ This repository contains the replication package for the research paper **"TGIF:
 ## Sampling
 
 1. Navigate to the `sampling` directory.
-2. Run `repo_sampler.py` to sample the repositories.
-3. Fetch the projects by running `fetch-projects.sh`.
+2. Run `csv_to_repos_list.py` to extract repository names from the CSV file.
+3. Optionally run `repo_information_scraper.py` to gather additional repository information.
+4. Run `find_deleted_repos.py` to check for deleted or inaccessible repositories.
+5. Fetch the projects by running `fetch-projects.sh`.
 
 ## Data Cleaning & Writing Data to CSV Files
 
 ### Data Cleaning
 
-1. Return to the base directory and then navigate to the `data-cleaning/find-duplicates` directory.
-2. Run `find_duplicates.py` to identify duplicate projects.
-3. Manually inspect the identified duplicates and remove one of each duplicate from the accepted projects text file.
+1. Return to the base directory and then navigate to the `data-cleaning/inactive-projects` directory.
+2. Run `find_inactive_repos.py` to identify repositories with last commit before 2015.
+3. Run `create_new_results.py` to create a cleaned results.json file without inactive repos.
 
 ### Assess Timezone Reliability
 
 1. Return to the base directory and then navigate to the `data-cleaning/timezone-reliability-assessment` directory.
-2. Run `count_timezone_commits.bash` for every desired year to calculate the number of commits per timezone.
-3. Run `early_year_variations.py` to calculate variation metrics.
+2. Run `count_timezone_commits.bash` for every desired year to calculate all commits per timezone.
+3. Run `count_timezone_per_repo.bash` to analyze timezone patterns per repository.
+4. Run `find_utc0_commits.py` to calculate UTC+0000 commit percentages for specific years.
+5. Run `find_commits_per_timezone.py` to count commits from contributors with timezone variation (filters out likely automated commits).
+6. Run `early_year_variations.py` to calculate variation metrics including standard deviation, coefficient of variation, and entropy.
 
 ### Write Data to CSV
 
@@ -57,59 +57,31 @@ This repository contains the replication package for the research paper **"TGIF:
 2. Generate commit counts and proportions per day by running `commit_count_per_day.py`.
 3. Generate commit counts and proportions per hour by running `commit_count_per_hour.py`.
 
-### Data Cleaning After Generating the CSVs
-
-1. Return to the base directory and then navigate to the `data-cleaning/2013-spike-analysis` directory.
-2. Run `rejected-mariadb-commits.bash` to find the commits that must be removed.
-3. Manualy remove those commits from the 4 CSV files at the `write-data-in-csv/csv-files` directory.
-
 ## Statistical Analysis & Plots
 
 1. Return to the base directory and then navigate to the `statistical-analysis` directory.
-2. Run the desired scripts to perform the statistical analysis.
-3. Return to the base directory and then navigate to the `plots` directory.
-4. Run the desired scripts to generate the plots.
+2. For Mann-Kendall trend tests, navigate to `mann-kendall` and run the desired scripts.
+3. For Kruskal-Wallis tests, navigate to `kruskal-wallis` and run `kruskal.py`.
+4. For effect size calculations, navigate to `effect-sizes` and run the Cohen's h scripts.
+5. For linear regression analysis, navigate to `linear-regression` and run the regression assumption scripts.
+6. Return to the base directory and then navigate to the `plots` directory.
+7. Run the desired plotting scripts such as `daily_stacked_bar_chart.py`, `hourly_frequencies.py`, `total_commits_per_period.py`, etc.
 
-## Discussion
-
-### Work-Life Balance Analysis
-
-1. Visit [Scopus](https://www.scopus.com/).
-2. Perform the first search:
-    - **Search within:** `language` - **Search Documents:** `English`
-    - Click **'Analyze results'**
-    - Select year range to analyze: **2000 to 2023**
-    - Click **'Export' -> 'Export the data to a CSV file'-> 'Export'**
-3. Perform the second search:
-    - **Search within:** `Article title, Abstract, Keywords` - **Search Documents:** `"wellness" OR "well-being" OR "work-life balance"`
-      **and within:** `language` - **Search Documents:** `English`
-    - Click **'Analyze results'**
-    - Select year range to analyze: **2000 to 2023**
-    - Click **'Export' -> 'Export the data to a CSV file'-> 'Export'**
-
-4. In the `discussion/work-life-balance-approach` directory, run `publication-analysis.py`.
-
-### Number of Contributors Analysis
-
-1. Navigate to the `discussion/contributors-number` directory.
-2. Run `all_contributors_per_year.bash`.
-3. Run `contributors_plot.py`.
-
-### Average Commit Lines per Year Analysis
-
-1. Navigate to the `discussion/avg-commit-lines-per-year-analysis` directory.
-2. Run `lines_per_commit.bash`.
-3. Run `lines_per_commit_plot.py`.
-
-### FreeBSD Demographics Analysis
-
-1. Navigate to the `discussion/FreeBSD-demographics-analysis` directory and run the scripts.
 
 ## Distribution of Programming Languages
 
 To analyze the distribution of programming languages in the sampled projects:
 
 1. Navigate to the `distribution-of-languages` directory.
-2. Run `find_distribution.py` to find the distribution.
+2. Run `find_loc_and_occurrences.py` to count repositories and lines of code per programming language.
+3. Run `find_last_commits_per_project.py` to analyze repository activity over time and generate active repos per year data.
+
+## Paid vs Volunteering Analysis
+
+To analyze differences between company-backed and volunteering projects:
+
+1. Navigate to the `paid_vs_volunteering` directory.
+2. Run `random_sample.py` to generate a random sample of repositories for manual classification.
+3. Manually classify the repositories in `random_repos_sample.txt` as company or volunteering projects.
 
 ---
