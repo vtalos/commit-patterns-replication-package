@@ -20,6 +20,7 @@ Example Output:
 """
 import json
 from collections import defaultdict
+
 def count_unique_values(list):
     count_dict = {}
     for item in list:
@@ -30,14 +31,18 @@ def count_unique_values(list):
     return count_dict
 
 repos=[]
+
 with open("projects-accepted.txt") as file1:
     lines = file1.readlines()
     for line in lines:
         repos.append(line.strip())
+
 loc = defaultdict(int)
-occurance=[]   
-with open ("results.json",encoding="utf-8") as file2:
+occurance=[]
+
+with open("results.json", encoding="utf-8") as file2:
     data = json.load(file2)
+
 for row in data["items"]:
     if row["name"] in repos:
         language = row["mainLanguage"]
@@ -47,12 +52,15 @@ for row in data["items"]:
         dicts_of_languages = row["metrics"]
         for lang in dicts_of_languages:
             loc[lang["language"]] += lang["codeLines"]
+
 occurance_dict = count_unique_values(occurance)
 languages = list(occurance_dict.keys())
 for lang in languages:
     if lang not in loc.keys():
         del loc[lang]
+
 sorted_loc = dict(sorted(loc.items(), key=lambda item: item[1], reverse=True))
 sorted_occurance = dict(sorted(occurance_dict.items(), key=lambda item: item[1], reverse=True))
+
 print(sorted_occurance)
 print(sorted_loc)

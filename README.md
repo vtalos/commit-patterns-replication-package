@@ -31,10 +31,9 @@ This repository contains the replication package for the research paper **"TGIF:
 ## Sampling
 
 1. Navigate to the `sampling` directory.
-2. Run `csv_to_repos_list.py` to extract repository names from the CSV file.
+2. Run `extract_and_validate_repos.py` to extract repository names from the CSV file and validate they exist on GitHub.
 3. Optionally run `repo_information_scraper.py` to gather additional repository information.
-4. Run `find_deleted_repos.py` to check for deleted or inaccessible repositories.
-5. Fetch the projects by running `fetch-projects.sh`.
+4. Fetch the projects by running `fetch-projects.sh`.
 
 ## Data Cleaning & Writing Data to CSV Files
 
