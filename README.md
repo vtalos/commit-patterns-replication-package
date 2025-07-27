@@ -41,8 +41,7 @@ This repository contains the replication package for the research paper **"TGIF:
 ### Data Cleaning
 
 1. Return to the base directory and then navigate to the `data-cleaning/inactive-projects` directory.
-2. Run `find_inactive_repos.py` to identify repositories with last commit before 2015.
-3. Run `create_new_results.py` to create a cleaned results.json file without inactive repos.
+2. Run `remove_inactive_repos.py` to identify and remove repositories with last commit before 2015 from results.json.
 
 ### Assess Timezone Reliability
 
