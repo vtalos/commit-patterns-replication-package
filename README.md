@@ -47,11 +47,11 @@ This repository contains the replication package for the research paper **"TGIF:
 ### Assess Timezone Reliability
 
 1. Return to the base directory and then navigate to the `data-cleaning/timezone-reliability-assessment` directory.
-2. Run `count_timezone_commits.bash` for every desired year to calculate all commits per timezone.
-3. Run `count_timezone_per_repo.bash` to analyze timezone patterns per repository.
-4. Run `find_utc0_commits.py` to calculate UTC+0000 commit percentages for specific years.
-5. Run `find_commits_per_timezone.py` to count commits from contributors with timezone variation (filters out likely automated commits).
-6. Run `early_year_variations.py` to calculate variation metrics including standard deviation, coefficient of variation, and entropy.
+2. Run `count_all_timezone_commits.bash` for every desired year to calculate all commits per timezone.
+3. Run `analyze_timezone_per_repo.bash` to analyze timezone patterns per repository.
+4. Run `calculate_utc_percentage.py` to calculate UTC+0000 commit percentages for specific years.
+5. Run `analyze_filtered_timezone_commits.py` to count commits from contributors with timezone variation (filters out likely automated commits).
+6. Run `calculate_yearly_timezone_variations.py` to calculate variation metrics including standard deviation, coefficient of variation, and entropy.
 
 ### Write Data to CSV
 
