@@ -10,13 +10,6 @@ This directory contains scripts to analyze timezone patterns in commit data to a
 * [`analyze_filtered_timezone_commits.py`](find_commits_per_timezone.py) counts commits from **contributors who have made at least one non-UTC commit**, filtering out likely automated/CI commits to focus on human developer patterns. Processes a date range across multiple years.   
     Run `python find_commits_per_timezone.py <start_year> <end_year> <repos_file> <repos_path>`
 
-* [`calculate_utc_percentage.py`](find_utc0_commits.py) calculates the percentage of UTC+0000 commits versus non-UTC commits for a specific year across repositories. Useful for understanding UTC bias in the dataset.   
-    Run `python find_utc0_commits.py <year> <repos_file> <repos_path>`
-
-## Repository-Level Analysis
-
-* [`analyze_timezone_per_repo.bash`](count_timezone_per_repo.bash) analyzes the most common timezone for each repository individually and generates per-repository timezone statistics and summary files.   
-    Run `bash count_timezone_per_repo.bash`
 
 ## Statistical Analysis
 

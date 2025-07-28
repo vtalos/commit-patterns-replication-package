@@ -34,8 +34,7 @@ This repository contains the replication package for the research paper **"TGIF:
 
 1. Navigate to the `sampling` directory.
 2. Run `extract_and_validate_repos.py` to extract repository names from the CSV file and validate they exist on GitHub.
-3. Optionally run `repo_information_scraper.py` to gather additional repository information.
-4. Fetch the projects by running `fetch-projects.sh`.
+3. Fetch the projects by running `fetch-projects.sh`.
 
 ## Data Cleaning & Writing Data to CSV Files
 
@@ -48,10 +47,8 @@ This repository contains the replication package for the research paper **"TGIF:
 
 1. Return to the base directory and then navigate to the `data-cleaning/timezone-reliability-assessment` directory.
 2. Run `count_all_timezone_commits.bash` for every desired year to calculate all commits per timezone.
-3. Run `analyze_timezone_per_repo.bash` to analyze timezone patterns per repository.
-4. Run `calculate_utc_percentage.py` to calculate UTC+0000 commit percentages for specific years.
-5. Run `analyze_filtered_timezone_commits.py` to count commits from contributors with timezone variation (filters out likely automated commits).
-6. Run `calculate_yearly_timezone_variations.py` to calculate variation metrics including standard deviation, coefficient of variation, and entropy.
+3. Run `analyze_filtered_timezone_commits.py` to count commits from contributors with timezone variation (filters out likely automated commits).
+4. Run `calculate_yearly_timezone_variations.py` to calculate variation metrics including standard deviation, coefficient of variation, and entropy.
 
 ### Write Data to CSV
 
@@ -65,7 +62,7 @@ This repository contains the replication package for the research paper **"TGIF:
 2. For Mann-Kendall trend tests, navigate to `mann-kendall` and run the desired scripts.
 3. For Kruskal-Wallis tests, navigate to `kruskal-wallis` and run `kruskal.py`.
 4. For effect size calculations, navigate to `effect-sizes` and run the Cohen's h scripts.
-5. For linear regression analysis, navigate to `linear-regression` and run the regression assumption scripts.
+5. For linear regression analysis, navigate to linear-regression and run the regression assumption scripts to verify that the linear regression assumptions are not satisfied.
 6. Return to the base directory and then navigate to the `plots` directory.
 7. Run the desired plotting scripts such as `daily_stacked_bar_chart.py`, `hourly_frequencies.py`, `total_commits_per_period.py`, etc.
 
