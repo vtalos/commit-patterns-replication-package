@@ -4,15 +4,17 @@ This repository contains the replication package for the research paper **"TGIF:
 
 ## Table of Contents
 
-1. [Collect Initial Projects](#collect-initial-projects)
-2. [Sampling](#sampling)
-3. [Data Cleaning & Writing Data to CSV Files](#data-cleaning--writing-data-to-csv-files)
+- [Replication Package for "TGIF: The Evolution of Developer Commits Over Time"](#replication-package-for-tgif-the-evolution-of-developer-commits-over-time)
+  - [Table of Contents](#table-of-contents)
+  - [Collect Initial Projects](#collect-initial-projects)
+  - [Sampling](#sampling)
+  - [Data Cleaning \& Writing Data to CSV Files](#data-cleaning--writing-data-to-csv-files)
     - [Data Cleaning](#data-cleaning)
     - [Assess Timezone Reliability](#assess-timezone-reliability)
     - [Write Data to CSV](#write-data-to-csv)
-4. [Statistical Analysis & Plots](#statistical-analysis--plots)
-5. [Distribution of Programming Languages](#distribution-of-programming-languages)
-6. [Paid vs Volunteering Analysis](#paid-vs-volunteering-analysis)
+  - [Statistical Analysis \& Plots](#statistical-analysis--plots)
+  - [Distribution of Programming Languages](#distribution-of-programming-languages)
+  - [Paid vs Volunteering Analysis](#paid-vs-volunteering-analysis)
 
 ---
 
@@ -81,7 +83,7 @@ To analyze the distribution of programming languages in the sampled projects:
 To analyze differences between company-backed and volunteering projects:
 
 1. Navigate to the `paid_vs_volunteering` directory.
-2. Run `random_sample.py` to generate a random sample of repositories for manual classification.
-3. Manually classify the repositories in `random_repos_sample.txt` as company or volunteering projects.
+2. See `random_sample.py` to understand how the random sample of repositories for manual classification was generated.
+3. Observe the  classification of  the repositories in `random_repos_sample.txt` as company or volunteering projects.
 
 ---
