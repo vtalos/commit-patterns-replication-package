@@ -1,6 +1,6 @@
-# Replication Package for "TGIF: The Evolution of Developer Commits Over Time"
+# Replication Package for "TGIF: The Evolution of Developer Commit Times"
 
-This repository contains the replication package for the research paper **"TGIF: The Evolution of Developer Commits Over Time"**. Follow the steps outlined below to reproduce the results presented in the study.
+This repository contains the replication package for the research paper **"TGIF: The Evolution of Developer Commit Times"**. Follow the steps outlined below to reproduce the results presented in the study.
 
 ## Table of Contents
 
