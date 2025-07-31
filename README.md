@@ -2,6 +2,8 @@
 
 This repository contains the replication package for the research paper **"TGIF: The Evolution of Developer Commit Times"**. Follow the steps outlined below to reproduce the results presented in the study.
 
+The list of GitHub repositories analyzed in the study is provided at [sampling/projects-accepted.txt](sampling/projects-accepted.txt).
+
 ## Table of Contents
 
 - [Replication Package for "TGIF: The Evolution of Developer Commits Over Time"](#replication-package-for-tgif-the-evolution-of-developer-commits-over-time)
