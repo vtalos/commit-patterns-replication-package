@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define variables
-REPO_NAME="working-patterns-replication-package"
+REPO_NAME="commit-patterns-replication-package"
 ZIP_FILE="${REPO_NAME}.zip"
 
 # Create the zip file
