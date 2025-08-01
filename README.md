@@ -84,5 +84,5 @@ To analyze differences between company-backed and volunteering projects:
 1. Navigate to the `paid_vs_volunteering` directory.
 2. See `random_sample.py` to understand how the random sample of repositories for manual classification was generated.
 3. Observe the  classification of  the repositories in `random_repos_sample.txt` as company or volunteering projects.
-
+4. Run `python find_enterprise_projects.py` to find the number of repositories from our sample that is classified as enterprise or enterprise-like from a dataset about open-source enterprise software(https://zenodo.org/records/3742962). 
 ---
